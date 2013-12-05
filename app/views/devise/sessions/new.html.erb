@@ -1,17 +1,45 @@
-<h2>Sign in</h2>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<center><h1>Log In</h1></center>
+	</div>
 
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
+	<div class="panel-body">
+		<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+			<% devise_error_messages! %>
 
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
+			<div class="form-group">
+				<%= f.label :email %>
+				<%= f.email_field :email, autofocus: true, class: "form-control" %>
+			</div>
 
-<%= render "devise/shared/links" %>
+			<div class="form-group">
+				<%= f.label :password %>
+				<%= f.password_field :password, class: "form-control" %>
+			</div>
+
+			<div class="form-group">
+				<div class="checkbox">
+					<%= f.check_box :remember_me %>
+					<%= f.label :remember_me %>
+				</div>
+			</div>
+
+			<center>
+			<div class="form-group">
+				<%= f.submit "Login", class: "btn btn-primary" %>
+			</div>
+			</center>
+
+		<% end %>
+
+
+
+	</div>
+
+	<div class="panel-footer">
+		<%= render "devise/shared/links" %>
+	</div>
+
+</div>
