@@ -1,27 +1,50 @@
-<h1>Listing weighins</h1>
+<% if user_signed_in? %>
 
-<table>
+
+
+
+<h1>
+  Weigh-Ins (<%= current_user.email %>)
+  <%= link_to 'New Weigh-In', new_weighin_path, class: "btn btn-default btn-success", style: "float: right" %>
+</h1>
+
+
+<table class="table table-hover table-bordered">
   <thead>
     <tr>
-      <th>Weight</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Date</th>
+      <th style="text-align: center">Weight</th>
+      <th style="text-align: center">Tools</th>
     </tr>
   </thead>
 
   <tbody>
     <% @weighins.each do |weighin| %>
-      <tr>
-        <td><%= weighin.weight %></td>
-        <td><%= link_to 'Show', weighin %></td>
-        <td><%= link_to 'Edit', edit_weighin_path(weighin) %></td>
-        <td><%= link_to 'Destroy', weighin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+      <% if weighin.user == current_user %>
+
+        <tr>
+          <td><%= weighin.created_at.strftime("%B %-d, %Y %-I:%M %p") %></td>
+          <td style="text-align: center"><%= weighin.weight %> lbs</td>
+          <td style="text-align: center"><%= link_to '', edit_weighin_path(weighin), class: "glyphicon glyphicon-pencil" %>
+          <%= link_to '', weighin, class: "glyphicon glyphicon-remove", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+
+      <% end %>
+      <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'New Weighin', new_weighin_path %>
+
+<% else %>
+
+
+<div class="jumbotron center">
+    <h1>Y U NO LOSE WEIGHT?</h1>
+    <p>Welcome to the eCWellness: The Biggest Loser Competition 2013!</p>
+</div>
+
+
+
+<% end %>

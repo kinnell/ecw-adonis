@@ -1,5 +1,7 @@
 class WeighinsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_weighin, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @weighins = Weighin.all
@@ -9,16 +11,16 @@ class WeighinsController < ApplicationController
   end
 
   def new
-    @weighin = Weighin.new
+    @weighin = current_user.weighins.build
   end
 
   def edit
   end
 
   def create
-    @weighin = Weighin.new(weighin_params)
+    @weighin = current_user.weighins.build(weighin_params)
     if @weighin.save
-      redirect_to @weighin, notice: 'Weighin was successfully created.'
+      redirect_to weighins_url, notice: 'Weigh-in was successfully added.'
     else
       render action: 'new'
     end
@@ -26,21 +28,26 @@ class WeighinsController < ApplicationController
 
   def update
     if @weighin.update(weighin_params)
-      format.html { redirect_to @weighin, notice: 'Weighin was successfully updated.' }
+      redirect_to weighins_url, notice: 'Weigh-in was successfully editted.'
     else
-      format.html { render action: 'edit' }
+      render action: 'edit'
     end  
   end
 
   def destroy
     @weighin.destroy
-    redirect_to weighins_url
+    redirect_to weighins_url, notice: 'Weigh-in was successfully deleted.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_weighin
       @weighin = Weighin.find(params[:id])
+    end
+
+    def correct_user
+      @weighin = current_user.weighin.find_by(id: params[:id])
+      redirect_to weighin_path, notice: "Not authorized to edit this weighin" if @pin.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

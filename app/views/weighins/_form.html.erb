@@ -1,21 +1,45 @@
-<%= form_for(@weighin) do |f| %>
-  <% if @weighin.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@weighin.errors.count, "error") %> prohibited this weighin from being saved:</h2>
+<div class="panel panel-default">
+  <div class="panel-heading">
+  </div>
 
-      <ul>
-      <% @weighin.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+  <div class="panel-body">
+    <%= form_for(@weighin) do |f| %>
+
+      <% if @weighin.errors.any? %>
+          <div id="error_explanation">
+          <h2><%= pluralize(@weighin.errors.count, "error") %> prohibited this weighin from being saved:</h2>
+
+          <ul>
+          <% @weighin.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :weight %><br>
-    <%= f.number_field :weight %>
+
+      <div class="form-group">
+        <%= f.label :weight %>
+        <%= f.number_field :weight, autofocus: true, class: "form-control" %>
+      </div>
+
+    
+
+      <center>
+      <div class="form-group">
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+      </div>
+      </center>
+
+    <% end %>
+
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
+</div>
+
+
+
+
+
+
+  
