@@ -4,9 +4,13 @@
 
 
 <h1>
-  Weigh-Ins (<%= current_user.email %>)
+  Weigh-Ins (<%= current_user.name %>)
   <%= link_to 'New Weigh-In', new_weighin_path, class: "btn btn-default btn-success", style: "float: right" %>
 </h1>
+
+
+
+<%= pie_chart User.group("name").count %>
 
 
 <table class="table table-hover table-bordered">
@@ -25,7 +29,7 @@
         <tr>
           <td><%= weighin.created_at.strftime("%B %-d, %Y %-I:%M %p") %></td>
           <td style="text-align: center"><%= weighin.weight %> lbs</td>
-          <td style="text-align: center"><%= link_to '', edit_weighin_path(weighin), class: "glyphicon glyphicon-pencil" %>
+          <td style="text-align: center"><%#<%= link_to '', edit_weighin_path(weighin), class: "glyphicon glyphicon-pencil" %>
           <%= link_to '', weighin, class: "glyphicon glyphicon-remove", method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
 
