@@ -1,0 +1,2 @@
+module WeighinsHelper
+end

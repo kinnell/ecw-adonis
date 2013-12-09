@@ -1,0 +1,27 @@
+<h1>Listing weighins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Weight</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weighins.each do |weighin| %>
+      <tr>
+        <td><%= weighin.weight %></td>
+        <td><%= link_to 'Show', weighin %></td>
+        <td><%= link_to 'Edit', edit_weighin_path(weighin) %></td>
+        <td><%= link_to 'Destroy', weighin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Weighin', new_weighin_path %>
