@@ -45,8 +45,6 @@ gem 'devise', '~> 3.1.1'
 
 gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 
-gem 'groupdate'
-gem 'chartkick'
 gem 'newrelic_rpm'
 
 # Use ActiveModel has_secure_password
