@@ -1,0 +1,46 @@
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <% @weighin = Weighin.new %>
+      <%= form_for(@weighin) do |f| %>
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">New Weigh-In</h4>
+          </div>
+          
+          <div class="modal-body">
+            
+              <!-- Error Printing -->
+              <% if @weighin.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@weighin.errors.count, "error") %> prohibited this weighin from being saved:</h2>
+                  <ul>
+                    <% @weighin.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              
+              <%= f.label :weight %>
+              <%= f.number_field :weight, autofocus: true, class: "form-control" %>
+                                
+          </div>
+
+          <div class="modal-footer">
+              <%= f.submit "Submit", class: "btn btn-primary" %>
+          </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+  

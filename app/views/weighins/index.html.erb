@@ -5,11 +5,13 @@
 
 <h1>
   Weigh-Ins (<%= current_user.name %>)
-  <%= link_to 'New Weigh-In', new_weighin_path, class: "btn btn-default btn-success", style: "float: right" %>
+  <button class="btn btn-primary btn-success" style="float: right" data-toggle="modal" data-target="#myModal">
+  New Weigh-In
+</button>
 </h1>
 
+              <%= render 'modalform' %>  
 
-<%= line_chart Weighin.group(:created_at) %>
 
 <table class="table table-hover table-bordered">
   <thead>
