@@ -11,7 +11,8 @@
 </h1>
 
   <%= render 'modalform' %>  
-
+<div id="myfirstchart"></div>
+<%= content_tag :div, "", id: "weighins_chart", data: {weighins: @weighins} %>
 
 
 <table class="table table-hover table-bordered">

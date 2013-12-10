@@ -14,6 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require turbolinks
-//= require jsapi
-//= require chartkick
+//= require raphael
+//= require morris
 //= require_tree .
