@@ -27,18 +27,53 @@
   </thead>
 
   <tbody>
+    <% prevWeight = 0 %>
     <% @weighins.each do |weighin| %>
       <% if weighin.user == current_user %>
 
+        <% if prevWeight != 0 %>
+            <% weightChange = 100*(weighin.weight-prevWeight)/prevWeight %>
+        <% elsif %>
+
+        <% weightChange = 0 %>
+
+        <% end %>
+
+
+        
+
         <tr>
-          <td><%= weighin.created_at.strftime("%B %-d, %Y %-I:%M %p") %></td>
-          <td style="text-align: center"><%= weighin.weight %> lbs</td>
+
+          <td><%= weighin.created_at.strftime("%A, %B %-d, %Y %-I:%M %p") %>
+              <% if weighin.verified? %><span class="glyphicon glyphicon-check" style="color:green"></span><% end %>
+
+          </td>
+          
+
+
+          <td style="text-align: center"><%= weighin.weight %> lbs
+            <% if (weightChange > 0) %>
+              <b><font color=red>(+<%= weightChange %>%)</font></b>
+            <% elsif weightChange < 0 %>
+              <b><font color=green>(<%= weightChange %>%)</font></b>
+
+            <% else %>
+              <b>(<%= weightChange %>%)</b>
+            <% end %>
+             
+             
+
+          </td>
+
+        
+
           <td style="text-align: center"><%#<%= link_to '', edit_weighin_path(weighin), class: "glyphicon glyphicon-pencil" %>
           <%= link_to '', weighin, class: "glyphicon glyphicon-remove", method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
 
+          <% prevWeight = weighin.weight %>
       <% end %>
-      <% end %>
+    <% end %>
   </tbody>
 </table>
 
