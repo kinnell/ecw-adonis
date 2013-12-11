@@ -5,7 +5,7 @@
 
 <h1>
   Weigh-Ins (<%= current_user.name %>)
-  <button class="btn btn-primary btn-success" style="float: right" data-toggle="modal" data-target="#myModal">
+  <button class="btn btn-primary btn-success" style="float: right" data-toggle="modal" data-target="#addWeighin">
   New Weigh-In
 </button>
 </h1>
@@ -19,7 +19,7 @@
 
 <table class="table table-hover table-bordered">
   <thead>
-    <tr>
+    <tr style="background-color: #eeeeee">
       <th>Date</th>
       <th style="text-align: center">Weight</th>
       <th style="text-align: center">Tools</th>
@@ -41,8 +41,8 @@
 
 
         
-
-        <tr>
+        <% if weighin.verified? %><tr style="background-color: #F5FFF5"><% else %><tr><% end %>
+       
 
           <td><%= weighin.created_at.strftime("%A, %B %-d, %Y %-I:%M %p") %>
               <% if weighin.verified? %><span class="glyphicon glyphicon-check" style="color:green"></span><% end %>
