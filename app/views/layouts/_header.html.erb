@@ -1,8 +1,6 @@
 <nav class="navbar navbar-static-top navbar-default" role="navigation">
-<div class="container">
-  <!-- Brand and toggle get grouped for better mobile display -->
   <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
       <span class="sr-only">Toggle navigation</span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
@@ -12,25 +10,34 @@
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
-  <div class="collapse navbar-collapse navbar-ex1-collapse">
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+   
+    
     <ul class="nav navbar-nav navbar-right">
-
-      <% if user_signed_in? %>
+            <% if user_signed_in? %>
            
+              <li class="dropdown">
+                  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                      <i class="halflings-icon white user"></i> 
+                      <%= current_user.name %>
+                      <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                      
+                      <li>
+                          <%= link_to(edit_user_registration_path) do %>
+                              <i class='halflings-icon white cog'></i> Settings
+                          <% end %>
+                      </li>
+              
+                      <li>
+                          <%= link_to(destroy_user_session_path, method: :delete) do %>
+                              <i class='halflings-icon white off'></i> Logout
+                          <% end %>
+                      </li>
 
-          <div class="btn-group">
-            <button type="button" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown">
-             <%= current_user.name %> <span class="caret"></span>
-            </button>
-
-            <ul class="dropdown-menu" role="menu">
-              <li><%= link_to "Account Settings", edit_user_registration_path, method: :get %></li>
-              <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
-            </ul>
-          </div>
-
-
-
+                  </ul>
+              </li>
 
       <% else %>
           <li><%= button_to "Register", new_user_registration_path, class: "btn btn-default navbar-btn", style: "margin-right:10px;", method: :get %></li>
@@ -40,11 +47,6 @@
 
       <% end %>
 
-      
-
-
-
     </ul>
   </div><!-- /.navbar-collapse -->
-</div>
 </nav>
