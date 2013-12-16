@@ -9,6 +9,9 @@ Adonis::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'weighins#index'
 
+  get "weighins/:id/verify" => "weighins#verify", :as => "verify_weighin"
+  get "weighins/:id/unverify" => "weighins#unverify", :as => "unverify_weighin"
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

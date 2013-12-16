@@ -6,7 +6,7 @@
 <h1>
   Weigh-Ins (<%= current_user.name %>)
   <button class="btn btn-primary btn-success" style="float: right" data-toggle="modal" data-target="#addWeighin">
-  New Weigh-In
+  <span class="fa fa-plus"></span> New Weigh-In
 </button>
 </h1>
 
@@ -22,6 +22,8 @@
     <tr style="background-color: #eeeeee">
       <th>Date</th>
       <th style="text-align: center">Weight</th>
+      <th style="text-align: center">Change Since Previous Weigh-In</th>
+      <th style="text-align: center">Change Since First Weigh-In</th>
       <th style="text-align: center">Tools</th>
     </tr>
   </thead>
@@ -32,12 +34,13 @@
       <% if weighin.user == current_user %>
 
         <% if prevWeight != 0 %>
-            <% weightChange = 100*(weighin.weight-prevWeight)/prevWeight %>
+          <% weightChange = 100*(weighin.weight-prevWeight)/prevWeight %>
         <% elsif %>
-
-        <% weightChange = 0 %>
-
+          <% weightChange = 0 %>
         <% end %>
+
+
+
 
 
         
@@ -48,18 +51,25 @@
               <% if weighin.verified? %><span class="glyphicon glyphicon-check" style="color:green"></span><% end %>
 
           </td>
-          
 
 
-          <td style="text-align: center"><%= weighin.weight %> lbs
+          <td style="text-align: center"><%= weighin.weight %> lbs</td>
+
+          <td style="text-align: center"><%= weighin.weight-prevWeight %> lbs
             <% if (weightChange > 0) %>
               <b><font color=red>(+<%= weightChange %>%)</font></b>
             <% elsif weightChange < 0 %>
               <b><font color=green>(<%= weightChange %>%)</font></b>
-
             <% else %>
               <b>(<%= weightChange %>%)</b>
             <% end %>
+
+
+          </td>
+
+
+          <td style="text-align: center">
+            
              
              
 
@@ -67,8 +77,22 @@
 
         
 
-          <td style="text-align: center"><%#<%= link_to '', edit_weighin_path(weighin), class: "glyphicon glyphicon-pencil" %>
-          <%= link_to '', weighin, class: "glyphicon glyphicon-remove", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td style="text-align: center">
+            <% if current_user.admin? %>
+
+              
+              <% if weighin.verified? %>
+                <%= link_to '', unverify_weighin_path(weighin), class: "fa fa-check-square-o" %>
+              <% else %>
+                <%= link_to '', verify_weighin_path(weighin), class: "fa fa-square-o" %>
+              <% end %>
+              <%= link_to '', edit_weighin_path(weighin), class: "fa fa-edit" %>
+              <%= link_to '', weighin, class: "fa fa-times", method: :delete, data: { confirm: 'Are you sure?' } %>
+
+
+            <% end %>
+            
+          </td>
         </tr>
 
           <% prevWeight = weighin.weight %>

@@ -39,6 +39,21 @@ class WeighinsController < ApplicationController
     redirect_to weighins_url, notice: 'Weigh-in was successfully deleted.'
   end
 
+  def verify
+    @weighin = Weighin.find(params[:id])
+    if @weighin.update_attributes(:verified => true)
+      redirect_to weighins_url, notice: 'Weigh-in was verified.'
+    end 
+  end
+
+  def unverify
+    @weighin = Weighin.find(params[:id])
+    if @weighin.update_attributes(:verified => false)
+      redirect_to weighins_url, notice: 'Weigh-in was unverified.'
+    end 
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_weighin
