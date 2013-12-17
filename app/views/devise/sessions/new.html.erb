@@ -1,7 +1,10 @@
 
+ <div id="content" class="contentSmall">
+
+
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<center><h1>Log In</h1></center>
+		<h1><span class="fa fa-sign-in"></span> Log In</h1>
 	</div>
 
 	<div class="panel-body">
@@ -9,22 +12,22 @@
 
 			<% devise_error_messages! %>
 
-			<div class="form-group">
-				<%= f.label :email %>
-				<%= f.email_field :email, autofocus: true, class: "form-control" %>
-			</div>
 
-			<div class="form-group">
-				<%= f.label :password %>
-				<%= f.password_field :password, class: "form-control" %>
-			</div>
-
-			<div class="form-group">
-				<div class="checkbox">
-					<%= f.check_box :remember_me %>
-					<%= f.label :remember_me %>
-				</div>
-			</div>
+			<table>
+		    		<tr>
+		    			<td>Your Email:</td>
+		    			<td><%= f.email_field :email, class: "form-control", :autofocus => true, style: "padding: 5px 10px 5px 10px;" %></td>
+		    		</tr>
+		    		<tr>
+		    			<td>Your Password: </td>
+		    			<td><%= f.password_field :password, class: "form-control", style: "padding: 5px 10px 5px 10px;" %></td>
+		    		</tr>
+		    		<tr>
+		    			<td style="text-align: right;"><%= f.check_box :remember_me %></td>
+		    			<td style="text-align: left;">Remember Me</td>
+		    			
+		    		</tr>
+		    	</table>
 
 			<center>
 			<div class="form-group">
@@ -41,5 +44,7 @@
 	<div class="panel-footer">
 		<%= render "devise/shared/links" %>
 	</div>
+
+</div>
 
 </div>

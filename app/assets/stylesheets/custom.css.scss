@@ -1,0 +1,66 @@
+// Place all the styles related to the weighins controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+body {
+  background-image: url('dust.png');
+}
+
+
+.navbar {
+	margin-bottom: 20px;
+}
+
+.navbar-inner {
+	background-color: #00334c;
+	background-image: url('concrete_wall.png');
+	min-height: 60px;
+
+
+	.brand {
+		margin-top: 10px;
+		
+	}
+
+	.header-nav {
+		margin-top: 10px;
+	}
+}
+
+
+#content {
+	//width: 50%;
+	//margin: 0 auto;
+
+	width: 86%; 
+	min-height: 560px; 
+	margin-bottom: 60px;
+
+	.container {
+		margin-left: 0%; 
+		width: 100%;
+	}
+
+
+}
+
+.center {
+	text-align: center;
+}
+
+h1 {
+	font-size: 48px;
+	padding: 15px;
+}
+
+.contentSmall {
+	width: 25% !important;
+	margin: 0 auto !important;
+	min-height: 0px !important;
+	text-align: center;
+}
+
+
+

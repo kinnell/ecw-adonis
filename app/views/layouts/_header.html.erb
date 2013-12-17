@@ -1,39 +1,41 @@
-<!-- start: Header -->
-    <div class="navbar" style="margin-bottom: 20px">
-        <div class="navbar-inner" style="min-height: 50px; background-color: #00334c;">
-            <div class="container-fluid">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".top-nav.nav-collapse,.sidebar-nav.nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-                <%= link_to root_path, class: "brand", style: "margin-top: 5px;" do %>
-                  <span>eCWellness: The Biggest Loser</span>
-                <% end %>
-                                
-                <!-- start: Header Menu -->
-                <div class="nav-no-collapse header-nav" style="margin-top: 5px;">
-                    
-                    <ul class="nav pull-right">
-                       
-                        
-                      <% if user_signed_in? %>
-                          <li><%= link_to current_user.name, edit_user_registration_path, class: "btn btn-primary btn-large" %></li>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      
+      <%= link_to root_path, class: "brand" do %>
+          <span>eCWellness: <font face="Rock Salt">The Biggest Loser</font></span>
+      <% end %>
+                                        
+      <div class="nav-no-collapse header-nav">                   
+        <ul class="nav pull-right"> 
 
-                      <% else %>
+          <% if user_signed_in? %>
 
-                          <li><%= link_to "Register", new_user_registration_path, class: "btn btn-primary btn-large" %></li>
-                          <li><%= link_to "Login", new_user_session_path, class: "btn btn-primary btn-large" %></li>
+              <li>
+                <%= link_to edit_user_registration_path, class: "btn btn-primary btn-large" do %><span class="fa fa-user"></span>  <%= current_user.name %><% end %>
+              </li>
 
-                      <% end %>
-                        
-                    </ul>
-                </div>
-                <!-- end: Header Menu -->
-                
-            </div>
-        </div>
+              
+
+          <% else %>
+
+              <li>
+                <%= link_to new_user_registration_path, class: "btn btn-primary btn-large" do %>
+                  <span class="fa fa-magic"></span>  Register<% end %>
+              </li>
+              <li>
+                <%= link_to new_user_session_path, class: "btn btn-primary btn-large" do %>
+                <span class="fa fa-key"></span>  Login<% end %>
+              </li>
+
+          <% end %>
+        </ul>
+      </div>
+       
+
     </div>
+  </div>
+</div>
 
 
 

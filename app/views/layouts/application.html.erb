@@ -6,21 +6,30 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
 <%= render 'layouts/header' %>
+
+
 <%= render 'layouts/menu' %>
 
-  <div id="content" class="span11" style="width: 86%; min-height: 560px; margin-bottom: 60px;">
-    <div class="container" style="margin-left: 0%; width: 100%;">
-    	<% flash.each do |name, msg| %>
-         	<%= content_tag(:div, msg, class: "alert alert-info") %>
-    	<% end %>
-    	<%= yield %>
-    </div>
-  </div>
+
+<script>
+  $(document).ready(function() {
+    <% flash.each do |name, msg| %>
+      noty({"text":"<%= msg %>","layout":"topCenter","type":"alert","closeButton":"true","animateOpen": {"opacity": "show"}});        
+    <% end %>
+  });
+</script>
+    
+   
+
+<%= yield %>
+
+
 
 </body>
 </html>

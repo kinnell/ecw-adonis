@@ -1,9 +1,10 @@
+<% if user_signed_in? %>
+
+
 <div id="sidebar-left" class="span1" style="width: 8%">
 	<div class="nav-collapse sidebar-nav">
 		<ul class="nav nav-tabs nav-stacked main-menu">
 			
-			<% if user_signed_in? %>
-
 			<li><%= link_to(root_path) do %><i class="fa fa-dashboard"></i><span class="hidden-tablet"> Dashboard</span><% end %></li>	
 			
 			<li><%= link_to() do %><i class="fa fa-user"></i><span class="hidden-tablet"> My Progress</span><% end %></li>
@@ -16,15 +17,8 @@
 			
 			<li><%= link_to(destroy_user_session_path, method: :delete) do %><i class="fa-icon-remove-sign"></i><span class="hidden-tablet"> Sign Out</span><% end %></li>	
 
-
-
-
-			
-
-			<% end %>
-
-
-
 		</ul>
 	</div>
 </div>
+
+<% end %>

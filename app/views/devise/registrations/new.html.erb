@@ -1,6 +1,7 @@
+ <div id="content" class="contentSmall">
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<h2><span class="glyphicon glyphicon-user"></span> Registration</h2>
+		<h1><span class="fa fa-user"></span> Registration</h1>
 	</div>
 
 	<div class="panel-body">
@@ -8,34 +9,29 @@
 
 	    <%= devise_error_messages! %>
 
+	    	<table>
+	    		<tr>
+	    			<td>Your Name:</td>
+	    			<td><%= f.text_field :name, class: "form-control", :autofocus => true, style: "padding: 5px 10px 5px 10px;" %></td>
+	    		</tr>
+	    		<tr>
+	    			<td>Your Email: </td>
+	    			<td><%= f.email_field :email, class: "form-control", style: "padding: 5px 10px 5px 10px;" %></td>
+	    		</tr>
+	    		<tr>
+	    			<td>Your Password: </td>
+	    			<td><%= f.password_field :password, class: "form-control", style: "padding: 5px 10px 5px 10px;" %></td>
+	    		</tr>
+	    	</table>
 
-			 <div class="form-group">
-		        <%= f.label :name %>
-		        <%= f.text_field :name, class: "form-control", :autofocus => true %>
-		     </div>
 
-			<div class="form-group">
-				<%= f.label :email %>
-				<%= f.email_field :email, class: "form-control" %>
-			</div>
-
-			<div class="form-group">
-				<%= f.label :password %>
-				<%= f.password_field :password, class: "form-control" %>
-			</div>
-
-			<center>
 			<div class="form-group">
 				<%= f.submit "Register", class: "btn btn-primary" %>
 			</div>
-			</center>
 
 		<% end %>
 
 	</div>
 
-	<div class="panel-footer">
-		<%= render "devise/shared/links" %>
-	</div>
-
+</div>
 </div>
