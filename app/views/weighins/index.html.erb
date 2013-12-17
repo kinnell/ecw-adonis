@@ -22,9 +22,11 @@
         <table class="table table-hover table-bordered">
           <thead>
             <tr style="background-color: #eeeeee">
+              <th>#</th>
               <th>Date</th>
+
               <th style="text-align: center">Weight</th>
-              <th style="text-align: center">Status</th>
+              <th style="text-align: center">Weigh-In Type</th>
               <th style="text-align: center">Change Since Previous Weigh-In</th>
               <th style="text-align: center">Change Since First Weigh-In</th>
               <th style="text-align: center">Actions</th>
@@ -33,6 +35,7 @@
 
           <tbody>
             <% prevWeight = 0 %>
+            <% weighinNo = 1 %>
 
 
 
@@ -47,6 +50,8 @@
                 
                 <% if weighin.verified? %><tr style="background-color: #F5FFF5"><% else %><tr><% end %>
                
+                  <td style="text-align: center"><%= weighinNo %></td>
+
 
                   <td><%= weighin.created_at.strftime("%A, %B %-d, %Y %-I:%M %p") %>
                   </td>
@@ -111,6 +116,7 @@
                 </tr>
 
                   <% prevWeight = weighin.weight %>
+                  <% weighinNo += 1 %>
               <% end %>
             
           </tbody>
