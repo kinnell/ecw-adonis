@@ -1,3 +1,5 @@
+<% if user_signed_in? %>
+
 <div class="navbar">
   <div class="navbar-inner">
     <div class="container-fluid">
@@ -15,7 +17,7 @@
                 <%= link_to edit_user_registration_path, class: "btn btn-primary btn-large" do %><span class="fa fa-user"></span>  <%= current_user.name %><% end %>
               </li>
 
-              
+
 
           <% else %>
 
@@ -36,6 +38,8 @@
     </div>
   </div>
 </div>
+
+<% end %>
 
 
 

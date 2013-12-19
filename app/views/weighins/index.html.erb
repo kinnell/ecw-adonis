@@ -1,127 +1,80 @@
 <% if user_signed_in? %>
 
   <div id="content" class="span11">
-
-      <div class="container">
+    <div class="container">
       
 
-        <h1>
-          Weigh-Ins (<%= current_user.name %>)
-          <button class="btn btn-primary btn-success" style="float: right" data-toggle="modal" data-target="#addWeighin">
-          <span class="fa fa-plus"></span> New Weigh-In
-        </button>
-        </h1>
+      <h1>
+        Weigh-Ins (<%= current_user.name %>)
+        <button class="btn btn-primary btn-success" style="float: right" data-toggle="modal" data-target="#addWeighin"><span class="fa fa-plus"></span> New Weigh-In</button>
+      </h1>
 
-        <%= render 'modalform' %>  
+      <%= render 'modalform' %>  
 
-        <%= content_tag :div, "", id: "weighins_chart", data: {weighins: Weighin.where("user_id = ?", current_user.id).all} %>
+      <%= content_tag :div, "", id: "weighins_chart", data: {weighins: current_user.weighins} %>
 
-        <br>
+      <br>
 
+      <table class="table table-hover table-bordered table-center">
+        <thead>
+          <tr style="background-color: #eeeeee">
+            <th>#</th>
+            <th style="text-align: left">Date</th>
+            <th>Weight</th>
+            <th>Weigh-In Type</th>
+            <th>Change Since Previous Weigh-In</th>
+            <th>Change Since First Weigh-In</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
 
-        <table class="table table-hover table-bordered">
-          <thead>
-            <tr style="background-color: #eeeeee">
-              <th>#</th>
-              <th>Date</th>
-
-              <th style="text-align: center">Weight</th>
-              <th style="text-align: center">Weigh-In Type</th>
-              <th style="text-align: center">Change Since Previous Weigh-In</th>
-              <th style="text-align: center">Change Since First Weigh-In</th>
-              <th style="text-align: center">Actions</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% prevWeight = 0 %>
-            <% weighinNo = 1 %>
-
-
-
-            <% current_user.weighins.each do |weighin| %>
-              
-                <% if prevWeight != 0 %>
-                  <% weightChange = 100*(weighin.weight-prevWeight)/prevWeight %>
-                <% elsif %>
-                  <% weightChange = 0 %>
-                <% end %>
-
+        <tbody>
+          <% current_user.weighins.each do |weighin| %>
+            <tr> 
                 
-                <% if weighin.verified? %><tr style="background-color: #F5FFF5"><% else %><tr><% end %>
-               
-                  <td style="text-align: center"><%= weighinNo %></td>
-
-
-                  <td><%= weighin.created_at.strftime("%A, %B %-d, %Y %-I:%M %p") %>
-                  </td>
-
-
-                  <td style="text-align: center"><%= weighin.weight %> lbs</td>
-                  <td style="text-align: center">
+                <td><%= weighin.weighinNum %></td>
+                <td style="text-align: left"><%= weighin.printCreatedAt %></td>
+                <td><%= weighin.weight %> lbs</td>
+                <td>
                     <% if weighin.verified? %>
                         <span class="label label-success">Verified</span>
                     <% else %>
                         <span class="label label-info">Personal</span>
                     <% end %>
-                  </td>
+                </td>
+                <td><%= weighin.printWeightChange %></td>
+                <td><%= weighin.printWeightTotalChange %></td>
+                <td>
 
-
-                  <td style="text-align: center"><%= weighin.weight-prevWeight %> lbs
-                    <% if (weightChange > 0) %>
-                      <b><font color=red>(+<%= weightChange %>%)</font></b>
-                    <% elsif weightChange < 0 %>
-                      <b><font color=green>(<%= weightChange %>%)</font></b>
-                    <% else %>
-                      <b>(<%= weightChange %>%)</b>
-                    <% end %>
-
-
-                  </td>
-
-
-                  <td style="text-align: center">
-                    
-                     
-                     
-
-                  </td>
-
-                
-
-                  <td style="text-align: center">
-
-                    <% if current_user.admin? %> 
-                      <% if weighin.verified? %>
+                  <% if current_user.admin? %> 
+                    <% if weighin.verified? %>
                         <%= link_to unverify_weighin_path(weighin), class: "btn-small btn btn-success" do %><i class="fa fa-check-square-o"></i><% end %>
-                      <% else %>
-                        
-                        <%= link_to verify_weighin_path(weighin), class: "btn-small btn btn-success" do %><i class="fa fa-square-o"></i><% end %>
-                      <% end %>
-                      
-                      <%= link_to edit_weighin_path(weighin), class: "btn-small btn btn-info" do %><i class="fa fa-edit"></i><% end %>
-
-                    
-                      
-
-                      <%= link_to weighin, class: "btn-small btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
                     <% else %>
-                      <% unless weighin.verified? %>
-                        <%= link_to weighin, class: "btn-small btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
-                      <% end %>
-
-                    <% end %>
+                        <%= link_to verify_weighin_path(weighin), class: "btn-small btn btn-success" do %><i class="fa fa-square-o"></i><% end %>
+                    <% end %>                
                     
-                  </td>
-                </tr>
+                    <%= link_to edit_weighin_path(weighin), class: "btn-small btn btn-info" do %><i class="fa fa-edit"></i><% end %>
 
-                  <% prevWeight = weighin.weight %>
-                  <% weighinNo += 1 %>
-              <% end %>
-            
-          </tbody>
-        </table>
+                    <%= link_to weighin, class: "btn-small btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
+                  
+                  <% else %>
 
+                    <% unless weighin.verified? %>
+                      <%= link_to weighin, class: "btn-small btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
+                    <% end %>
+
+                  <% end %>
+                  
+                </td>
+            </tr>
+
+          <% end %>
+          
+        </tbody>
+      </table>
+
+
+ 
         <br>
 
       </div>
@@ -131,9 +84,24 @@
 
 
 <% else %>
+<div class="frontBackground">
 
-  <div class="alert alert-info center" style="width: 50%; margin: 0 auto;">Welcome to the eCWellness: The Biggest Loser Competition 2013!</div><br>
+<div class="frontLogo">eCWellness: <font face="Rock Salt" color="#f4f4f6">The Biggest Loser</font>
+<br><br><br><br>
 
+
+<%= link_to new_user_registration_path, class: "btn btn-large" do %>
+                  <span class="fa fa-magic"></span>  Register<% end %>
+           
+                <%= link_to new_user_session_path, class: "btn btn-large" do %>
+                <span class="fa fa-key"></span>  Login<% end %>
+
+
+                
+              </div>
+             
+
+</div>
 <% end %>
 
 
