@@ -13,6 +13,8 @@ Adonis::Application.routes.draw do
   get "weighins/:id/unverify" => "weighins#unverify", :as => "unverify_weighin"
 
   get "leaderboard", to: "weighins#leaderboard"
+  get "progress", to: "weighins#progress"
+  get "teams", to: "weighins#teams"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -11,6 +11,10 @@ class WeighinsController < ApplicationController
     @weighins = Weighin.all
   end
 
+  def progress
+    @weighins = current_user.weighins
+  end
+
   def show
 
   end

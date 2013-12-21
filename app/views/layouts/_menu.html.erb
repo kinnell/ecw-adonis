@@ -7,9 +7,9 @@
 			
 			<li><%= link_to(root_path) do %><i class="fa fa-dashboard"></i><span class="hidden-tablet"> Dashboard</span><% end %></li>	
 			
-			<li><%= link_to() do %><i class="fa fa-user"></i><span class="hidden-tablet"> My Progress</span><% end %></li>
+			<li><%= link_to(progress_path) do %><i class="fa fa-bar-chart-o"></i><span class="hidden-tablet"> My Progress</span><% end %></li>
 
-			<li><%= link_to() do %><i class="fa fa-users"></i><span class="hidden-tablet"> My Team</span><% end %></li>
+			<li><%= link_to(teams_path) do %><i class="fa fa-users"></i><span class="hidden-tablet"> My Team</span><% end %></li>
 			
 			<li><%= link_to(leaderboard_path) do %><i class="fa fa-trophy"></i><span class="hidden-tablet"> Leaderboard</span><% end %></li>
 			
