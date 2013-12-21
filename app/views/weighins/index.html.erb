@@ -11,6 +11,9 @@
 
       <%= render 'modalform' %>  
 
+<hr>
+<center><h2><b>Weight Change</b></h2></center>
+
       <%= content_tag :div, "", id: "weight_chart", data: {weighins: current_user.weighins} %>
 
       <br>
@@ -21,9 +24,9 @@
             <th>#</th>
             <th style="text-align: left">Date</th>
             <th>Weight</th>
-            <th>Weigh-In Type</th>
             <th>Change Since Previous Weigh-In</th>
             <th>Change Since First Weigh-In</th>
+            <th>Weigh-In Type</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -35,6 +38,9 @@
                 <td><%= weighin.weighinNum %></td>
                 <td style="text-align: left"><%= weighin.printCreatedAt %></td>
                 <td><%= weighin.weight %> lbs</td>
+                
+                <td><%= weighin.printWeightChange %></td>
+                <td><%= weighin.printWeightTotalChange %></td>
                 <td>
                     <% if weighin.verified? %>
                         <span class="label label-success">Verified</span>
@@ -42,8 +48,6 @@
                         <span class="label label-info">Personal</span>
                     <% end %>
                 </td>
-                <td><%= weighin.printWeightChange %></td>
-                <td><%= weighin.printWeightTotalChange %></td>
                 <td>
 
                   <% if current_user.admin? %> 
@@ -73,27 +77,27 @@
         </tbody>
       </table>
 
+<br>
+<hr>
+<center><h2><b>Percent Change from Initial Weigh-in</b></h2></center>
 <%= content_tag :div, "", id: "percent_chart", data: {weighins: Weighin.allWeightPercentTotalChanges(current_user)} %>
 
       <table class="table table-hover table-bordered table-center">
         <thead>
           <tr style="background-color: #eeeeee">
-            <th>Date</th>
+            <th>#</th>
+            <th style="text-align: left">Date</th>
             <th>Change Since First Weigh-In</th>
           </tr>
         </thead>
-
         <tbody>
-          <% @weighins.allWeightPercentTotalChanges(current_user).each do |weightChange| %>
-            <tr> 
-                
-                <td><%= weightChange[:created_at] %>%</td>               
-                <td><%= weightChange[:percent_change] %>%</td>
-               
-            </tr>
-
-          <% end %>
-          
+          <% @weighins.allWeightPercentTotalChanges(current_user).each_with_index do |percentChange,i| %>
+              <tr>    
+                  <td><%= i+1 %></td>             
+                  <td style="text-align: left"><%= percentChange[:created_at].strftime("%A, %B %-d, %Y %-I:%M %p") %></td>               
+                  <td><%= percentChange[:percent_change] %>%</td>
+              </tr>
+          <% end %>          
         </tbody>
       </table>
 
