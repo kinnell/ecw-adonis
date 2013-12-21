@@ -18,9 +18,12 @@
           </tr>
 
           <tr>
-            <td style="text-align: center; vertical-align: middle; margin: 0 auto;" ><%= f.check_box :privacy, :as => :boolean, :autocomplete => "on" %></td>
+            <td style="text-align: center; vertical-align: middle; margin: 0 auto;" >
+              <%= f.check_box :privacy %></td>
             <td style="text-align: left; vertical-align: middle; padding: 10px 0 10px 0; margin-left: 10px;">Hidden from Leaderboard?</td>    
           </tr>
+
+
           <tr>
             <td style="text-align: center; vertical-align: middle; margin: 0 auto;" ><%= f.check_box :admin, :as => :boolean, :autocomplete => "on", :disabled => true %></td>
             <td style="text-align: left; vertical-align: middle; padding: 10px 0 10px 0; margin-left: 10px;">Admin?</td>    

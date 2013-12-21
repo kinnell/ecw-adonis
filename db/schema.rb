@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20131220154518) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.boolean  "privacy"
+    t.boolean  "privacy",                default: false
     t.string   "location"
   end
 

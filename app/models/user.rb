@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
    validates_format_of :email, :with=>email_regexp, :allow_blank => true, :message=>"needs to be an eClinicalWorks email."      
    validates :name, presence: true
-   has_many :weighins
 
+   has_many :weighins
 
 end
