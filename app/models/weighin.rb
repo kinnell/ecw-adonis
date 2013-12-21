@@ -2,7 +2,7 @@ class Weighin < ActiveRecord::Base
 	belongs_to :user
 	validates :weight, presence: true, numericality: { greater_than: 0 }
 
-	def firstWeight() Weighin.by_user(user).find(1).weight end
+	def firstWeight() Weighin.by_user(user)[0].weight end
 
 	def weighinNum
 		Weighin.by_user(user).each_with_index do |wt, i|
