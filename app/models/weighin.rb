@@ -10,6 +10,17 @@ class Weighin < ActiveRecord::Base
 		end
 	end
 
+	def allWeightPercentTotalChanges
+		weightPercentTotalChanges = Array.new(Weighin.by_user(user).length)
+
+		Weighin.by_user(user).each_with_index do |wt, i|
+			weightPercentTotalChanges[i] = wt.weightPercentTotalChange
+		end
+
+		return weightPercentTotalChanges
+
+	end
+
 	def previousWeight
 		if weighinNum == 1
 			return weight
@@ -57,10 +68,24 @@ class Weighin < ActiveRecord::Base
 
 	def printCreatedAt() return created_at.strftime("%A, %B %-d, %Y %-I:%M %p") end
 
-
 	def self.by_user(user)
 		where(user: user)
 	end
+
+	def self.allWeightPercentTotalChanges(user)
+		weightPercentTotalChanges = Array.new(Weighin.by_user(user).length)
+
+		Weighin.by_user(user).each_with_index do |wt, i|
+			weightPercentTotalChanges[i] = Hash(created_at: wt.created_at, percent_change: wt.weightPercentTotalChange)
+		end
+
+		return weightPercentTotalChanges
+
+	end
+ 
+
+
+
 
 
 

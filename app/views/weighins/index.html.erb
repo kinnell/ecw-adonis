@@ -11,7 +11,7 @@
 
       <%= render 'modalform' %>  
 
-      <%= content_tag :div, "", id: "weighins_chart", data: {weighins: current_user.weighins} %>
+      <%= content_tag :div, "", id: "weight_chart", data: {weighins: current_user.weighins} %>
 
       <br>
 
@@ -66,6 +66,30 @@
                   <% end %>
                   
                 </td>
+            </tr>
+
+          <% end %>
+          
+        </tbody>
+      </table>
+
+<%= content_tag :div, "", id: "percent_chart", data: {weighins: Weighin.allWeightPercentTotalChanges(current_user)} %>
+
+      <table class="table table-hover table-bordered table-center">
+        <thead>
+          <tr style="background-color: #eeeeee">
+            <th>Date</th>
+            <th>Change Since First Weigh-In</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @weighins.allWeightPercentTotalChanges(current_user).each do |weightChange| %>
+            <tr> 
+                
+                <td><%= weightChange[:created_at] %>%</td>               
+                <td><%= weightChange[:percent_change] %>%</td>
+               
             </tr>
 
           <% end %>
