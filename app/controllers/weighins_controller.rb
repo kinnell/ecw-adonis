@@ -7,8 +7,12 @@ class WeighinsController < ApplicationController
     @weighins = Weighin.all
   end
 
+  def leaderboard
+    @weighins = Weighin.all
+  end
+
   def show
-    
+
   end
 
   def new

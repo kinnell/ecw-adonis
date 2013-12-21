@@ -16,7 +16,7 @@
 //= require turbolinks
 //= require raphael
 //= require morris
-//= require customjs
+//= require custom
 //= require_tree .
 //= require_tree ../../../vendor/assets/javascripts
 
