@@ -18,7 +18,6 @@
   border-radius: 18px;
   box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
   cursor: pointer;
-	.box-sizing(content-box);
 }
 
 .switch-input {
