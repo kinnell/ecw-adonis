@@ -17,7 +17,7 @@
 //= require raphael
 //= require morris
 //= require custom
-//= require_tree .
 //= require_tree ../../../vendor/assets/javascripts
+//= require_tree .
 
 
