@@ -1,59 +1,39 @@
-  <div id="content" class="span11">
+<div id="content" class="span11">
+  <div class="container">
 
-      <div class="container">
+    <h1><i class="fa fa-cog"></i> My Settings</h1>
 
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <div class="panel-title">
-      <h1><i class="fa fa-cog"></i> My Settings</h1>
-    </div>
-  </div>
-  <div class="panel-body">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+
       <%= devise_error_messages! %>
 
-      <div class="form-group">
-        <%= f.label :name %>
-        <%= f.text_field :name, class: "form-control", :autofocus => true %>
-      </div>
+      <table>
+          <tr>
+            <td style="vertical-align: middle; padding: 10px 0 10px 0; font-size:13px;">Your Name:</td>
+            <td><%= f.text_field :name, class: "form-control", :autofocus => true, style: "padding: 5px 10px 5px 10px; float: left; margin: 0px; margin-left: 10px; vertical-align: middle;" %></td>
+          </tr>
+          <tr>
+            <td style="vertical-align: middle; padding: 10px 0 10px 0; font-size:13px;">Your Email: </td>
+            <td><%= f.email_field :email, class: "form-control", style: "padding: 5px 10px 5px 10px; float: left; margin: 0px; margin-left: 10px;" %></td>
+          </tr>
 
-      <div class="form-group">
-        <%= f.label :email %>
-        <%= f.email_field :email, class: "form-control" %>
-      </div>
-
-
-      <div class="form-group">
-        <div class="checkbox">
-          <%= f.check_box :privacy, :as => :boolean, :autocomplete => "on" %>
-          Hide on Leaderboard?
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <div class="checkbox">
-          <%= f.check_box :admin, :autocomplete => "on", :disabled => true %>
-          Admin?
-        </div>
-      </div>
+          <tr>
+            <td style="text-align: center; vertical-align: middle; margin: 0 auto;" ><%= f.check_box :privacy, :as => :boolean, :autocomplete => "on" %></td>
+            <td style="text-align: left; vertical-align: middle; padding: 10px 0 10px 0; margin-left: 10px;">Hidden from Leaderboard?</td>    
+          </tr>
+          <tr>
+            <td style="text-align: center; vertical-align: middle; margin: 0 auto;" ><%= f.check_box :admin, :as => :boolean, :autocomplete => "on", :disabled => true %></td>
+            <td style="text-align: left; vertical-align: middle; padding: 10px 0 10px 0; margin-left: 10px;">Admin?</td>    
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.submit "Update", class: "btn btn-primary" %></td>
+          </tr>
+        </table>
 
 
-  
-
-      <div class="form-group">
-        <%= f.submit "Update", class: "btn btn-primary" %>
-      </div>
     <% end %>
   </div>
-  <div class="panel-footer">
 
-
-  <%= button_to "Delete my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: "btn btn-warning" %>
-
-
-    
   </div>
 </div>
-
-</div></div>
