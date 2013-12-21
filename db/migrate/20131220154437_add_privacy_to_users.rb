@@ -1,5 +1,5 @@
 class AddPrivacyToUsers < ActiveRecord::Migration
   def change
-    add_column :users, :privacy, :boolean, :default => false
+    add_column :users, :visible, :boolean, :default => true
   end
 end

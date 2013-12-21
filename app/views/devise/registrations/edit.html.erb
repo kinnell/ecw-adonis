@@ -18,22 +18,23 @@
           </tr>
 
           <tr>
-            <td style="text-align: center; vertical-align: middle; margin: 0 auto;" >
-              <%= f.check_box :privacy %></td>
-            <td style="text-align: left; vertical-align: middle; padding: 10px 0 10px 0; margin-left: 10px;">Hidden from Leaderboard?</td>    
+            <td style="text-align: center; vertical-align: bottom; margin: 0 auto;" >
+              <label class="switch switch-primary">
+                <%= f.check_box :visible, {:class => "switch-input"} %>
+                <span class="switch-label" data-on="Yes" data-off="No"></span>
+                <span class="switch-handle"></span>
+              </label>
+            </td>
+            <td style="text-align: left; padding: 10px 0 10px 0;"><div style="margin-left: 10px;">Visible from Leaderboard?</div>
+            </td>    
           </tr>
 
 
-          <tr>
-            <td style="text-align: center; vertical-align: middle; margin: 0 auto;" ><%= f.check_box :admin, :as => :boolean, :autocomplete => "on", :disabled => true %></td>
-            <td style="text-align: left; vertical-align: middle; padding: 10px 0 10px 0; margin-left: 10px;">Admin?</td>    
-          </tr>
-          <tr>
-            <td></td>
-            <td><%= f.submit "Update", class: "btn btn-primary" %></td>
-          </tr>
         </table>
+        <hr>
 
+          <%= f.submit "Update", class: "btn btn-primary" %></td>
+          
 
     <% end %>
   </div>
