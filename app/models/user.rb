@@ -8,10 +8,12 @@ class User < ActiveRecord::Base
    validates :name, presence: true
 
    has_many :weighins, dependent: :destroy
+   belongs_to :team
 
 	def self.visible
 		where(visible: true)
 	end
+
 
 	def latestWeightPercentChange
 		weighins.last.weightPercentTotalChange
