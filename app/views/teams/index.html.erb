@@ -32,9 +32,20 @@
 
               <tbody>
                 <% Team.all.each_with_index do |team, i| %>
-                  <tr> 
+                  
+                  <% if team == current_user.team %>
+                    <tr style="background-color: #E0FFFF">
+                  <% else %>
+                    <tr>
+                  <% end %>
+
+
                     <td><%= i+1 %></td>             
-                    <td><%= team.name %></td>
+                    <td><%= team.name %>
+                      <% if team == current_user.team %>
+                         <b>(Your Team)</b>
+                      <% end %>
+                    </td>
                     <td><%= team.membership.size %></td>
                     <td>
                       <% team.membership.each_with_index do |member, i| %>
@@ -46,7 +57,7 @@
                       <% if team == current_user.team %>
                         <%= link_to leave_team_path(team), class: "btn-small btn btn-warning" do %><i class="fa fa-mail-reply"></i>  Leave Team<% end %></td>
                       <% else %>
-                        <%= link_to join_team_path(team), class: "btn-small btn btn-success" do %><i class="fa fa-share"></i>  Join Team<% end %></td>
+                        <%= link_to join_team_path(team), class: "btn-small btn btn-primary" do %><i class="fa fa-share"></i>  Join Team<% end %></td>
                       <% end %>
                       
                   </tr>

@@ -24,15 +24,15 @@ jQuery(function() {
     ykeys: ["percent_change"],
     labels: ["Percent Change"],
     xLabels: ["day"],
-    xLabelFormat: function(date) {
-          return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear(); 
-          },
     postUnits: ["%"],
     dateFormat: function(date) {
       var d;
       d = new Date(date);
       return (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
     },
+    xLabelFormat: function(date) {
+      return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear(); 
+      },
   });
 
 });
