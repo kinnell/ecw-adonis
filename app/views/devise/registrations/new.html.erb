@@ -19,6 +19,10 @@
 	    			<td style="vertical-align: middle; padding: 10px 0 10px 0; font-size:13px;">Your Password: </td>
 	    			<td><%= f.password_field :password, class: "form-control", style: "padding: 5px 10px 5px 10px; float: left; margin: 0px; margin-left: 10px;" %></td>
 	    		</tr>
+	    		<tr>
+	    		<td style="vertical-align: middle; padding: 10px 0 10px 0; font-size:13px;">Your Location: </td>
+	    		<td><div style="padding-top:5px"><%= f.select :location, ["Westborough, MA", "New York City, NY", "Pleasanton, CA", "Alpharetta, GA", "Remote"]%></div></td>
+	    	</tr>
 	    	</table>
 
 

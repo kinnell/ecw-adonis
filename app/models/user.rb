@@ -9,4 +9,23 @@ class User < ActiveRecord::Base
 
    has_many :weighins
 
+	def self.visible
+		where(visible: true)
+	end
+
+	def latestWeightPercentChange
+		weighins.last.weightPercentTotalChange
+	end
+
+	def self.withWeighins
+		usersWithWeighins = Array.new
+
+		User.all.each do |u|			
+			usersWithWeighins = usersWithWeighins + [u] unless (u.weighins.blank?)
+		end
+		
+		return usersWithWeighins
+
+	end
+
 end

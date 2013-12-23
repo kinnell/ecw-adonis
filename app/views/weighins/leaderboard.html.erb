@@ -6,9 +6,34 @@
 
       <h1><i class="fa fa-trophy"></i> Leaderboard</h1>
 
-      <br>
+<hr>
 
 
+	<table class="table table-hover table-bordered table-center">
+        <thead>
+          <tr style="background-color: #eeeeee">
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Percent Weight Loss</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        	<% sortedUsers = User.visible.withWeighins.sort_by {|u| u.latestWeightPercentChange } %>
+          <% sortedUsers.each_with_index do |user, i| %>
+            <tr> 
+            	<td><%= i+1 %></td>
+            	<td><%= user.name %></td>
+			<td><%= user.location %></td>
+            	<td><%= (user.latestWeightPercentChange) %>%</td>
+
+            </tr>
+
+          <% end %>
+          
+        </tbody>
+      </table>
 
 
  
