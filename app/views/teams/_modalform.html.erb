@@ -1,0 +1,46 @@
+<div class="modal fade" id="addTeam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <% @team = Team.new %>
+      <%= form_for(@team, :html => { :style => 'margin: 0;' }) do |f| %>
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h2 class="modal-title" id="myModalLabel"><b>New Team</b></h4>
+          </div>
+          
+          <div class="modal-body">
+            
+              <!-- Error Printing -->
+              <% if @team.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@team.errors.count, "error") %> prohibited this team from being saved:</h2>
+                  <ul>
+                    <% @team.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              
+              
+              <div style="text-align: center"> Team Name: <%= f.text_field :name, class: "form-control", autofocus: true %></div>
+                                
+          </div>
+
+          <div class="modal-footer">
+              <%= f.submit "Submit", class: "btn btn-primary" %>
+          </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+  

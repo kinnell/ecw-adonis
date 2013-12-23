@@ -22,10 +22,17 @@
         <tbody>
         	<% sortedUsers = User.visible.withWeighins.sort_by {|u| u.latestWeightPercentChange } %>
           <% sortedUsers.each_with_index do |user, i| %>
-            <tr> 
+            
+            <% if current_user == user %>
+              <tr style="background-color: #E0FFFF">
+            <% else %>
+              <tr>
+            <% end %>
+
+             
             	<td><%= i+1 %></td>            	
             	<td><%= user.name %><% if (current_user == user) %> <b>(You)</b><% end %></td>
-			<td><%= user.location %></td>
+			        <td><%= user.location %></td>
             	<td><%= (user.latestWeightPercentChange) %>%</td>
 
             </tr>

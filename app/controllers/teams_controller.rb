@@ -15,6 +15,7 @@ class TeamsController < ApplicationController
   def edit
   end
 
+
   def create
     @team = Team.new(team_params)
     if @team.save
@@ -35,6 +36,20 @@ class TeamsController < ApplicationController
   def destroy
     @team.destroy
       redirect_to teams_url
+  end
+
+  def join
+    @team = Team.find(params[:id])
+    if current_user.update_attributes(:team_id => @team.id)
+      redirect_to teams_url, notice: 'Joined team'
+    end 
+  end
+
+  def leave
+    @team = Team.find(params[:id])
+    if current_user.update_attributes(:team_id => nil)
+      redirect_to teams_url, notice: 'Left team'
+    end 
   end
 
   private

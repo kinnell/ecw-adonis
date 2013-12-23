@@ -6,11 +6,16 @@
       <h1><i class="fa fa-users"></i> Teams</h1>
 
         <% unless current_user.team.blank? %>
-            You are on Team <%= current_user.team.name %>
+            You are on Team <%= current_user.team.name %>.
         <% else %>
 
             You are not on a team.<br>
-            <%= link_to "New Team", new_team_path, class: "btn btn-primary btn-success", style: "float: right" %>
+
+        <% end %>
+
+            <button class="btn btn-primary btn-success" style="float: right" data-toggle="modal" data-target="#addTeam"><span class="fa fa-plus"></span> New Team</button>
+
+                <%= render 'modalform' %>  
 
             <hr>      
 
@@ -19,6 +24,7 @@
                 <tr style="background-color: #eeeeee">
                   <th>#</th>
                   <th>Team Name</th>
+                  <th>Number of Members</th>
                   <th>Members</th>
                   <th>Action</th>
                 </tr>
@@ -29,21 +35,29 @@
                   <tr> 
                     <td><%= i+1 %></td>             
                     <td><%= team.name %></td>
+                    <td><%= team.membership.size %></td>
                     <td>
-                      <% team.membership.each do |member| %>
-                        <%= member.name %> 
+                      <% team.membership.each_with_index do |member, i| %>
+                        <% if (i > 0) && (team.membership.size > 1) %>|<% end %>
+                        <%= member.name %>
                       <% end %>
                     </td>
-                    <td></td>
+                    <td>
+                      <% if team == current_user.team %>
+                        <%= link_to leave_team_path(team), class: "btn-small btn btn-warning" do %><i class="fa fa-mail-reply"></i>  Leave Team<% end %></td>
+                      <% else %>
+                        <%= link_to join_team_path(team), class: "btn-small btn btn-success" do %><i class="fa fa-share"></i>  Join Team<% end %></td>
+                      <% end %>
+                      
                   </tr>
                 <% end %>
 
               </tbody>
             </table>
 
-            <br>
 
-        <% end %>
+            
+
 
     </div>
   </div>

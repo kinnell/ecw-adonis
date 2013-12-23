@@ -15,7 +15,7 @@
 			
 			<li class="<%= 'active' if current_page?(edit_user_registration_path) %>"><%= link_to(edit_user_registration_path) do %><i class="fa fa-gear"></i><span class="hidden-tablet"> My Settings</span><% end %></li>	
 			
-			<li><%= link_to(destroy_user_session_path, method: :delete) do %><i class="fa-icon-remove-sign"></i><span class="hidden-tablet"> Sign Out</span><% end %></li>	
+			<li><%= link_to(destroy_user_session_path, method: :delete) do %><i class="fa fa-sign-out"></i><span class="hidden-tablet"> Sign Out</span><% end %></li>	
 
 		</ul>
 	</div>

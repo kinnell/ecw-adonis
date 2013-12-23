@@ -22765,17 +22765,196 @@ if ( typeof module === "object" && module && typeof module.exports === "object" 
   })(Morris.EventEmitter);
 
 }).call(this);
-/**
-* noty - jQuery Notification Plugin v1.2.1
-* Contributors: https://github.com/needim/noty/graphs/contributors
-*
-* Examples and Documentation - http://needim.github.com/noty/
-*
-* Licensed under the MIT licenses:
-* http://www.opensource.org/licenses/mit-license.php
-*
-**/
-function noty(e){return jQuery.noty(e)}(function(e){e.noty=function(t,n){var r={},i=null,s=!1;r.init=function(t){r.options=e.extend({},e.noty.defaultOptions,t);r.options.type=r.options.cssPrefix+r.options.type;r.options.id=r.options.type+"_"+(new Date).getTime();r.options.layout=r.options.cssPrefix+"layout_"+r.options.layout;r.options.custom.container&&(n=r.options.custom.container);s=e.type(n)==="object"?!0:!1;return r.addQueue()};r.addQueue=function(){var t=e.inArray(r.options.layout,e.noty.growls)==-1?!1:!0;t||(r.options.force?e.noty.queue.unshift({options:r.options}):e.noty.queue.push({options:r.options}));return r.render(t)};r.render=function(t){var o=s?n.addClass(r.options.theme+" "+r.options.layout+" noty_custom_container"):e("body");if(t){e("ul.noty_cont."+r.options.layout).length==0&&o.prepend(e("<ul/>").addClass("noty_cont "+r.options.layout));o=e("ul.noty_cont."+r.options.layout)}else{if(!e.noty.available)return r.options.id;var u=e.noty.queue.shift();if(e.type(u)!=="object"){e.noty.available=!0;return r.options.id}e.noty.available=!1;r.options=u.options}r.container=o;r.bar=e('<div class="noty_bar"/>').attr("id",r.options.id).addClass(r.options.theme+" "+r.options.layout+" "+r.options.type);i=r.bar;i.append(r.options.template).find(".noty_text").html(r.options.text);i.data("noty_options",r.options);r.options.closeButton?i.addClass("noty_closable").find(".noty_close").show():i.find(".noty_close").remove();i.find(".noty_close").bind("click",function(){i.trigger("noty.close")});r.options.buttons&&(r.options.closeOnSelfClick=r.options.closeOnSelfOver=!1);r.options.closeOnSelfClick&&i.bind("click",function(){i.trigger("noty.close")}).css("cursor","pointer");r.options.closeOnSelfOver&&i.bind("mouseover",function(){i.trigger("noty.close")}).css("cursor","pointer");if(r.options.buttons){$buttons=e("<div/>").addClass("noty_buttons");i.find(".noty_message").append($buttons);e.each(r.options.buttons,function(t,n){bclass=n.type?n.type:"gray";$button=e("<button/>").addClass(bclass).html(n.text).appendTo(i.find(".noty_buttons")).bind("click",function(){e.isFunction(n.click)&&n.click.call($button,i)})})}return r.show(t)};r.show=function(t){r.options.modal&&e("<div/>").addClass("noty_modal").addClass(r.options.theme).prependTo(e("body")).fadeIn("fast");i.close=function(){return this.trigger("noty.close")};t?r.container.prepend(e("<li/>").append(i)):r.container.prepend(i);(r.options.layout=="noty_layout_topCenter"||r.options.layout=="noty_layout_center")&&e.noty.reCenter(i);i.bind("noty.setText",function(t,n){i.find(".noty_text").html(n);(r.options.layout=="noty_layout_topCenter"||r.options.layout=="noty_layout_center")&&e.noty.reCenter(i)});i.bind("noty.setType",function(t,n){i.removeClass(i.data("noty_options").type);n=i.data("noty_options").cssPrefix+n;i.data("noty_options").type=n;i.addClass(n);(r.options.layout=="noty_layout_topCenter"||r.options.layout=="noty_layout_center")&&e.noty.reCenter(i)});i.bind("noty.getId",function(e){return i.data("noty_options").id});i.one("noty.close",function(t){var n=i.data("noty_options");n.onClose&&n.onClose();n.modal&&e(".noty_modal").fadeOut("fast",function(){e(this).remove()});i.clearQueue().stop().animate(i.data("noty_options").animateClose,i.data("noty_options").speed,i.data("noty_options").easing,i.data("noty_options").onClosed).promise().done(function(){if(e.inArray(i.data("noty_options").layout,e.noty.growls)>-1)i.parent().remove();else{i.remove();e.noty.available=!0;r.render(!1)}})});r.options.onShow&&r.options.onShow();i.animate(r.options.animateOpen,r.options.speed,r.options.easing,r.options.onShown);r.options.timeout&&i.delay(r.options.timeout).promise().done(function(){i.trigger("noty.close")});return r.options.id};return r.init(t)};e.noty.get=function(t){return e("#"+t)};e.noty.close=function(t){for(var n=0;n<e.noty.queue.length;)e.noty.queue[n].options.id==t?e.noty.queue.splice(t,1):n++;e.noty.get(t).trigger("noty.close")};e.noty.setText=function(t,n){e.noty.get(t).trigger("noty.setText",n)};e.noty.setType=function(t,n){e.noty.get(t).trigger("noty.setType",n)};e.noty.closeAll=function(){e.noty.clearQueue();e(".noty_bar").trigger("noty.close")};e.noty.reCenter=function(t){t.css({left:(e(window).width()-t.outerWidth())/2+"px"})};e.noty.clearQueue=function(){e.noty.queue=[]};var t=window.alert;e.noty.consumeAlert=function(t){window.alert=function(n){t?t.text=n:t={text:n};e.noty(t)}};e.noty.stopConsumeAlert=function(){window.alert=t};e.noty.queue=[];e.noty.growls=["noty_layout_topLeft","noty_layout_topRight","noty_layout_bottomLeft","noty_layout_bottomRight"];e.noty.available=!0;e.noty.defaultOptions={layout:"top",theme:"noty_theme_default",animateOpen:{height:"toggle"},animateClose:{height:"toggle"},easing:"swing",text:"",type:"alert",speed:500,timeout:5e3,closeButton:!1,closeOnSelfClick:!0,closeOnSelfOver:!1,force:!1,onShow:!1,onShown:!1,onClose:!1,onClosed:!1,buttons:!1,modal:!1,template:'<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',cssPrefix:"noty_",custom:{container:null}};e.fn.noty=function(t){return this.each(function(){new e.noty(t,e(this))})}})(jQuery);
+/* -------------------- Check Browser --------------------- */
+function browser(){function i(e){return e in document.documentElement.style}var e=!!window.opera&&!!window.opera.version,t=i("MozBoxSizing"),n=Object.prototype.toString.call(window.HTMLElement).indexOf("Constructor")>0,r=!n&&i("WebkitTransform");return e?!1:n||r?!0:!1}function retina(){retinaMode=window.devicePixelRatio>1;return retinaMode}function hexToRgb(e){var t=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e);return t?{r:parseInt(t[1],16),g:parseInt(t[2],16),b:parseInt(t[3],16)}:null}function rgbToRgba(e,t){if(jQuery.browser.version<=8){e=hexToRgb(e);rgba="rgba("+e.r+","+e.g+","+e.b+","+t+")"}else{e=e.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);rgba="rgba("+e[1]+","+e[2]+","+e[3]+","+t+")"}return rgba}function widthFunctions(e){$(".timeline")&&$(".timeslot").each(function(){var e=$(this).find(".task").outerHeight();$(this).css("height",e)});var t=$("#sidebar-left").outerHeight(),n=$("#content").height(),r=$("#content").outerHeight(),i=$(window).height(),s=$(window).width();if(s<992&&$("#widgets-area").is(":visible")==1){$("#widgets-area-button").removeClass("close").addClass("open");var o=$("#content").attr("class"),u=parseInt(o.replace(/^\D+/g,"")),a=u+2,f="col-sm-"+a;$("#widgets-area").hide();$("#content").removeClass("col-sm-"+u);$("#content").addClass(f)}if(s>767){t>n?$("#content").css("min-height",t):$("#content").css("min-height","auto");$(".dark").css("height",r)}else $(".dark").css("height","auto")}jQuery(document).ready(function(e){jQuery.browser.version.substring(0,2)=="8."&&e(".hideInIE8").remove();e('a[href="#"][data-top!=true]').click(function(e){e.preventDefault()});e(".noty").click(function(t){t.preventDefault();var n=e.parseJSON(e(this).attr("data-noty-options"));noty(n)});e("#myTab a:first").tab("show");e("#myTab a").click(function(t){t.preventDefault();e(this).tab("show")});e('[rel="tooltip"],[data-rel="tooltip"]').tooltip({placement:"bottom",delay:{show:400,hide:200}});e('[rel="popover"],[data-rel="popover"],[data-toggle="popover"]').popover();e(".btn-close").click(function(t){t.preventDefault();e(this).parent().parent().parent().fadeOut()});e(".btn-minimize").click(function(t){t.preventDefault();var n=e(this).parent().parent().next(".box-content");n.is(":visible")?e("i",e(this)).removeClass("fa fa-chevron-up").addClass("fa fa-chevron-down"):e("i",e(this)).removeClass("fa fa-chevron-down").addClass("fa fa-chevron-up");n.slideToggle("slow",function(){widthFunctions()})});e(".btn-setting").click(function(t){t.preventDefault();e("#myModal").modal("show")})});jQuery(document).ready(function(e){e(".discussions").find(".delete").click(function(){e(this).parent().fadeTo("slow",0,function(){e(this).slideUp("slow",function(){e(this).remove()})})})});jQuery(document).ready(function(e){e(".messagesList").width()&&jQuery.browser.version.substring(0,2)=="8."&&e("ul.messagesList li:nth-child(2n+1)").addClass("odd")});jQuery(document).ready(function(e){e("ul.main-menu li a").each(function(){e(e(this))[0].href==String(window.location)&&e(this).parent().addClass("active")});e("ul.main-menu li ul li a").each(function(){if(e(e(this))[0].href==String(window.location)){e(this).parent().addClass("active");e(this).parent().parent().parent().addClass("active");e(this).parent().parent().show()}});e(".dropmenu").click(function(t){t.preventDefault();e(this).parent().find("ul").slideToggle()})});jQuery(document).ready(function(e){var t=!0;e("#main-menu-toggle").click(function(){if(e(this).hasClass("open")){e(this).removeClass("open").addClass("close");var t=e("#content").attr("class"),n=parseInt(t.replace(/^\D+/g,"")),r=n+1,i="col-sm-"+r;e("#content").removeClass("col-sm-"+n);e("#content").addClass(i);e("#content").addClass("full-radius");e("#sidebar-left").hide()}else{e(this).removeClass("close").addClass("open");var t=e("#content").attr("class"),n=parseInt(t.replace(/^\D+/g,"")),r=n-1,i="col-sm-"+r;e("#sidebar-left").fadeIn();e("#content").removeClass("col-sm-"+n);e("#content").removeClass("full-radius");e("#content").addClass(i)}})});jQuery(document).ready(function(e){var t=!0;e("#widgets-area-button").click(function(){if(e(this).hasClass("open")){e(this).removeClass("open").addClass("close");var n=e("#content").attr("class"),r=parseInt(n.replace(/^\D+/g,"")),i=r-2,s="col-sm-"+i;e("#content").removeClass("col-sm-"+r);e("#content").addClass(s);e("#widgets-area").fadeIn();if(t){widget_area_functions();t=!1}}else{e(this).removeClass("close").addClass("open");var n=e("#content").attr("class"),r=parseInt(n.replace(/^\D+/g,"")),i=r+2,s="col-sm-"+i;e("#widgets-area").fadeOut();e("#content").removeClass("col-sm-"+r);e("#content").addClass(s)}});e("#close-widgets-area").click(function(){var t=e("#content").attr("class"),n=parseInt(t.replace(/^\D+/g,"")),r=n+2,i="col-sm-"+r;e("#widgets-area").fadeOut();e("#content").removeClass("col-sm-"+n);e("#content").addClass(i);e("#widgets-area-button").hasClass("open")?e("#widgets-area-button").removeClass("open").addClass("close"):e("#widgets-area-button").removeClass("close").addClass("open")})});jQuery(document).ready(function(e){if(e(".todo-remove").length){e(".todo-remove").click(function(){e(this).parent().parent().fadeTo("slow",0,function(){e(this).slideUp("slow",function(){e(this).remove()})});return!1});e(function(){e(".todo-remove").parent().parent().parent().sortable();e(".todo-remove").parent().parent().parent().disableSelection()})}});$(document).ready(function(){widthFunctions()});$(window).bind("resize",widthFunctions);
+function noty(e) {
+    return jQuery.noty(e)
+}(function (e) {
+    e.noty = function (t, n) {
+        var r = {}, i = null,
+            s = !1;
+        r.init = function (t) {
+            r.options = e.extend({}, e.noty.defaultOptions, t);
+            r.options.type = r.options.cssPrefix + r.options.type;
+            r.options.id = r.options.type + "_" + (new Date).getTime();
+            r.options.layout = r.options.cssPrefix + "layout_" + r.options.layout;
+            r.options.custom.container && (n = r.options.custom.container);
+            s = e.type(n) === "object" ? !0 : !1;
+            return r.addQueue()
+        };
+        r.addQueue = function () {
+            var t = e.inArray(r.options.layout, e.noty.growls) == -1 ? !1 : !0;
+            t || (r.options.force ? e.noty.queue.unshift({
+                options: r.options
+            }) : e.noty.queue.push({
+                options: r.options
+            }));
+            return r.render(t)
+        };
+        r.render = function (t) {
+            var o = s ? n.addClass(r.options.theme + " " + r.options.layout + " noty_custom_container") : e("body");
+            if (t) {
+                e("ul.noty_cont." + r.options.layout).length == 0 && o.prepend(e("<ul/>").addClass("noty_cont " + r.options.layout));
+                o = e("ul.noty_cont." + r.options.layout)
+            } else {
+                if (!e.noty.available) return r.options.id;
+                var u = e.noty.queue.shift();
+                if (e.type(u) !== "object") {
+                    e.noty.available = !0;
+                    return r.options.id
+                }
+                e.noty.available = !1;
+                r.options = u.options
+            }
+            r.container = o;
+            r.bar = e('<div class="noty_bar"/>').attr("id", r.options.id).addClass(r.options.theme + " " + r.options.layout + " " + r.options.type);
+            i = r.bar;
+            i.append(r.options.template).find(".noty_text").html(r.options.text);
+            i.data("noty_options", r.options);
+            r.options.closeButton ? i.addClass("noty_closable").find(".noty_close").show() : i.find(".noty_close").remove();
+            i.find(".noty_close").bind("click", function () {
+                i.trigger("noty.close")
+            });
+            r.options.buttons && (r.options.closeOnSelfClick = r.options.closeOnSelfOver = !1);
+            r.options.closeOnSelfClick && i.bind("click", function () {
+                i.trigger("noty.close")
+            }).css("cursor", "pointer");
+            r.options.closeOnSelfOver && i.bind("mouseover", function () {
+                i.trigger("noty.close")
+            }).css("cursor", "pointer");
+            if (r.options.buttons) {
+                $buttons = e("<div/>").addClass("noty_buttons");
+                i.find(".noty_message").append($buttons);
+                e.each(r.options.buttons, function (t, n) {
+                    bclass = n.type ? n.type : "gray";
+                    $button = e("<button/>").addClass(bclass).html(n.text).appendTo(i.find(".noty_buttons")).bind("click", function () {
+                        e.isFunction(n.click) && n.click.call($button, i)
+                    })
+                })
+            }
+            return r.show(t)
+        };
+        r.show = function (t) {
+            r.options.modal && e("<div/>").addClass("noty_modal").addClass(r.options.theme).prependTo(e("body")).fadeIn("fast");
+            i.close = function () {
+                return this.trigger("noty.close")
+            };
+            t ? r.container.prepend(e("<li/>").append(i)) : r.container.prepend(i);
+            (r.options.layout == "noty_layout_topCenter" || r.options.layout == "noty_layout_center") && e.noty.reCenter(i);
+            i.bind("noty.setText", function (t, n) {
+                i.find(".noty_text").html(n);
+                (r.options.layout == "noty_layout_topCenter" || r.options.layout == "noty_layout_center") && e.noty.reCenter(i)
+            });
+            i.bind("noty.setType", function (t, n) {
+                i.removeClass(i.data("noty_options").type);
+                n = i.data("noty_options").cssPrefix + n;
+                i.data("noty_options").type = n;
+                i.addClass(n);
+                (r.options.layout == "noty_layout_topCenter" || r.options.layout == "noty_layout_center") && e.noty.reCenter(i)
+            });
+            i.bind("noty.getId", function (e) {
+                return i.data("noty_options").id
+            });
+            i.one("noty.close", function (t) {
+                var n = i.data("noty_options");
+                n.onClose && n.onClose();
+                n.modal && e(".noty_modal").fadeOut("fast", function () {
+                    e(this).remove()
+                });
+                i.clearQueue().stop().animate(i.data("noty_options").animateClose, i.data("noty_options").speed, i.data("noty_options").easing, i.data("noty_options").onClosed).promise().done(function () {
+                    if (e.inArray(i.data("noty_options").layout, e.noty.growls) > -1) i.parent().remove();
+                    else {
+                        i.remove();
+                        e.noty.available = !0;
+                        r.render(!1)
+                    }
+                })
+            });
+            r.options.onShow && r.options.onShow();
+            i.animate(r.options.animateOpen, r.options.speed, r.options.easing, r.options.onShown);
+            r.options.timeout && i.delay(r.options.timeout).promise().done(function () {
+                i.trigger("noty.close")
+            });
+            return r.options.id
+        };
+        return r.init(t)
+    };
+    e.noty.get = function (t) {
+        return e("#" + t)
+    };
+    e.noty.close = function (t) {
+        for (var n = 0; n < e.noty.queue.length;) e.noty.queue[n].options.id == t ? e.noty.queue.splice(t, 1) : n++;
+        e.noty.get(t).trigger("noty.close")
+    };
+    e.noty.setText = function (t, n) {
+        e.noty.get(t).trigger("noty.setText", n)
+    };
+    e.noty.setType = function (t, n) {
+        e.noty.get(t).trigger("noty.setType", n)
+    };
+    e.noty.closeAll = function () {
+        e.noty.clearQueue();
+        e(".noty_bar").trigger("noty.close")
+    };
+    e.noty.reCenter = function (t) {
+        t.css({
+            left: (e(window).width() - t.outerWidth()) / 2 + "px"
+        })
+    };
+    e.noty.clearQueue = function () {
+        e.noty.queue = []
+    };
+    var t = window.alert;
+    e.noty.consumeAlert = function (t) {
+        window.alert = function (n) {
+            t ? t.text = n : t = {
+                text: n
+            };
+            e.noty(t)
+        }
+    };
+    e.noty.stopConsumeAlert = function () {
+        window.alert = t
+    };
+    e.noty.queue = [];
+    e.noty.growls = ["noty_layout_topLeft", "noty_layout_topRight", "noty_layout_bottomLeft", "noty_layout_bottomRight"];
+    e.noty.available = !0;
+    e.noty.defaultOptions = {
+        layout: "top",
+        theme: "noty_theme_default",
+        animateOpen: {
+            height: "toggle"
+        },
+        animateClose: {
+            height: "toggle"
+        },
+        easing: "swing",
+        text: "",
+        type: "alert",
+        speed: 500,
+        timeout: 5e3,
+        closeButton: !1,
+        closeOnSelfClick: !0,
+        closeOnSelfOver: !1,
+        force: !1,
+        onShow: !1,
+        onShown: !1,
+        onClose: !1,
+        onClosed: !1,
+        buttons: !1,
+        modal: !1,
+        template: '<div class="noty_message"><span class="noty_text"></span><div class="noty_close"></div></div>',
+        cssPrefix: "noty_",
+        custom: {
+            container: null
+        }
+    };
+    e.fn.noty = function (t) {
+        return this.each(function () {
+            new e.noty(t, e(this))
+        })
+    }
+})(jQuery);
 jQuery(function() {
   Morris.Line({
     element: "weight_chart",
@@ -22814,6 +22993,10 @@ jQuery(function() {
   });
 
 });
+(function() {
+
+
+}).call(this);
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //

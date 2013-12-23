@@ -5,6 +5,7 @@ Adonis::Application.routes.draw do
   resources :weighins
 
   devise_for :users
+#  devise_for :users, :controllers => { :sessions => 'users/sessions' } 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -13,6 +14,9 @@ Adonis::Application.routes.draw do
 
   get "weighins/:id/verify" => "weighins#verify", :as => "verify_weighin"
   get "weighins/:id/unverify" => "weighins#unverify", :as => "unverify_weighin"
+
+  get "teams/:id/join" => "teams#join", :as => "join_team"
+  get "teams/:id/leave" => "teams#leave", :as => "leave_team"
 
   get "leaderboard", to: "weighins#leaderboard"
   get "progress", to: "weighins#progress"
