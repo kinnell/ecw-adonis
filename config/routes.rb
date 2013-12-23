@@ -1,5 +1,7 @@
 Adonis::Application.routes.draw do
 
+  resources :teams
+
   resources :weighins
 
   devise_for :users
@@ -14,7 +16,7 @@ Adonis::Application.routes.draw do
 
   get "leaderboard", to: "weighins#leaderboard"
   get "progress", to: "weighins#progress"
-  get "teams", to: "weighins#teams"
+  get "teams", to: "teams#index"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
