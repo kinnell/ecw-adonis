@@ -35,7 +35,7 @@
             	<td><%= i+1 %></td>            	
             	<td><%= user.name %><% if (current_user == user) %> <b>(You)</b><% end %></td>
 			        <td><%= user.location %></td>
-              <td><%= user.team.name %></td>
+              <td><%= user.team.name if user.team %></td>
             	<td><%= (user.latestWeightPercentChange) %>%</td>
 
             </tr>
