@@ -7,6 +7,7 @@
       <h1><i class="fa fa-trophy"></i> Leaderboard</h1>
 
 <hr>
+<center><h2><b>Individual Rankings</b></h2></center>
 
 
 	<table class="table table-hover table-bordered table-center">
@@ -15,6 +16,7 @@
             <th>Rank</th>
             <th>Name</th>
             <th>Location</th>
+            <th>Team</th>
             <th>Percent Weight Loss</th>
           </tr>
         </thead>
@@ -33,7 +35,44 @@
             	<td><%= i+1 %></td>            	
             	<td><%= user.name %><% if (current_user == user) %> <b>(You)</b><% end %></td>
 			        <td><%= user.location %></td>
+              <td><%= user.team.name %></td>
             	<td><%= (user.latestWeightPercentChange) %>%</td>
+
+            </tr>
+
+          <% end %>
+          
+        </tbody>
+      </table>
+
+
+      <hr>
+      <center><h2><b>Team Rankings</b></h2></center>
+
+
+      <table class="table table-hover table-bordered table-center">
+        <thead>
+          <tr style="background-color: #eeeeee">
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Percent Weight Loss</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% sortedTeams = Team.all.sort_by {|t| t.teamPercentLoss } %>
+          <% sortedTeams.each_with_index do |team, i| %>
+            
+            <% if current_user.team == team %>
+              <tr style="background-color: #E0FFFF">
+            <% else %>
+              <tr>
+            <% end %>
+
+             
+              <td><%= i+1 %></td>             
+              <td><%= team.name %><% if (current_user.team == team) %> <b>(Your Team)</b><% end %></td>
+              <td><%= (team.teamPercentLoss) %>%</td>
 
             </tr>
 
@@ -51,7 +90,6 @@
     </div>
   </div>
 
-<% end %>
-
+  <% end %>
 
 

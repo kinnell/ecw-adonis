@@ -55,10 +55,14 @@
                     </td>
                     <td>
                       <% if team == current_user.team %>
-                        <%= link_to leave_team_path(team), class: "btn-small btn btn-warning" do %><i class="fa fa-mail-reply"></i>  Leave Team<% end %></td>
+                        <%= link_to leave_team_path(team), class: "btn-small btn btn-warning" do %><i class="fa fa-mail-reply"></i>  Leave Team<% end %>
+                      <% elsif team.membership.size > 6 %>
+                        <%= link_to class: "btn-small btn btn-danger" do %><i class="fa fa-times-circle"></i>  Team Full<% end %>
                       <% else %>
-                        <%= link_to join_team_path(team), class: "btn-small btn btn-primary" do %><i class="fa fa-share"></i>  Join Team<% end %></td>
+                        <%= link_to join_team_path(team), class: "btn-small btn btn-primary" do %><i class="fa fa-share"></i>  Join Team<% end %>
                       <% end %>
+
+                      </td>
                       
                   </tr>
                 <% end %>

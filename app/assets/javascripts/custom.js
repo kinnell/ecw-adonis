@@ -7,8 +7,8 @@ jQuery(function() {
     labels: ["Weight"],
     xLabel: ["day"],
     xLabelFormat: function(date) {
-          return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear(); 
-          },
+      return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear(); 
+    },
     postUnits: [" lbs"],
     dateFormat: function(date) {
       var d;
@@ -32,7 +32,8 @@ jQuery(function() {
     },
     xLabelFormat: function(date) {
       return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear(); 
-      },
+    },
   });
 
 });
+

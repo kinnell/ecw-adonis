@@ -19,8 +19,6 @@
 
 .morris-hover{position:absolute;z-index:1000;}.morris-hover.morris-default-style{border-radius:10px;padding:6px;color:#666;background:rgba(255, 255, 255, 0.8);border:solid 2px rgba(230, 230, 230, 0.8);font-family:sans-serif;font-size:12px;text-align:center;}.morris-hover.morris-default-style .morris-hover-row-label{font-weight:bold;margin:0.25em 0;}
 .morris-hover.morris-default-style .morris-hover-point{white-space:nowrap;margin:0.1em 0;}
-@import url(jquery.noty.css);
-@import url(noty_theme_default.css);
 /*!
  * Bootstrap v2.3.1
  *
@@ -5662,23 +5660,23 @@ a.badge:focus {
 
 /* Import Section
 =================================================================== */
-
-@import "jquery-ui-1.8.21.custom.css";  /* jQuery User Interface Framework Styles */
-@import "fullcalendar.css";				/* Calendars Styles */
-@import "chosen.min.css";				/* Select Boxes Styles */  
-@import "uniform.default.css";			/* Uniform Styles */
-@import "jquery.cleditor.css";			/* Text Editor Styles. */  
-@import "jquery.noty.css";				/* Noty Notifications Style */
-@import "noty_theme_default.css";		/* Noty Notifications Style */
-@import "elfinder.min.css";				/* File Manager Style */
-@import "elfinder.theme.css";			/* File Manager Style */
-@import "jquery.iphone.toggle.css";		/* Styles for iPhone */
-@import "uploadify.css";				/* Uploadify Styles */
-@import "jquery.gritter.css";			/* Growl Like Notifications Styles */
-@import "font-awesome.css";				/* Font Awesome Styles */
-@import "font-awesome-ie7.min.css";		/* Font Awesome Styles */
-@import "glyphicons.css";				/* Glyphicons Font */
-@import "halflings.css";				/* Glyphicons Halflings Font */
+/* @import "jquery-ui-1.8.21.custom.css";  /* jQuery User Interface Framework Styles */
+/* @import "fullcalendar.css";				/* Calendars Styles */
+/* @import "chosen.min.css";				/* Select Boxes Styles */  
+/* @import "uniform.default.css";			/* Uniform Styles */
+/* @import "jquery.cleditor.css";			/* Text Editor Styles. */  
+/* @import "jquery.noty.css";				/* Noty Notifications Style */
+/* @import "noty_theme_default.css";		/* Noty Notifications Style */
+/* @import "elfinder.min.css";				/* File Manager Style */
+/* @import "elfinder.theme.css";			/* File Manager Style */
+/* @import "jquery.iphone.toggle.css";		/* Styles for iPhone */
+/* @import "uploadify.css";				/* Uploadify Styles */
+/* @import "jquery.gritter.css";			/* Growl Like Notifications Styles */
+/* @import "font-awesome.css";				/* Font Awesome Styles */
+/* @import "font-awesome-ie7.min.css";		/* Font Awesome Styles */
+/* @import "glyphicons.css";				/* Glyphicons Font */
+/* @import "halflings.css";				/* Glyphicons Halflings Font */
+ 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300);	/* Google Web Fonts */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400);	/* Google Web Fonts */
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:600);	/* Google Web Fonts */
