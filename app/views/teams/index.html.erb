@@ -7,11 +7,25 @@
 
         <% unless current_user.team.blank? %>
             You are on Team <%= current_user.team.name %>.
+
+
+
+
         <% else %>
 
-            You are not on a team.<br>
+            
+
+  <div id="content" class="contentSmall" style="top: 0px;">
+    <h2> You are not on a team yet! </h2>
+  </div>
+
+
+
 
         <% end %>
+
+
+        <% if false %>
 
             <button class="btn btn-primary btn-success" style="float: right" data-toggle="modal" data-target="#addTeam"><span class="fa fa-plus"></span> New Team</button>
 
@@ -69,6 +83,8 @@
 
               </tbody>
             </table>
+
+            <% end %>
 
 
             

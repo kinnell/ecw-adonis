@@ -6,9 +6,24 @@
 
       <h1><i class="fa fa-bar-chart-o"></i> My Progress</h1>
 
-      <button class="btn btn-primary btn-success" style="float: right" data-toggle="modal" data-target="#addWeighin"><span class="fa fa-plus"></span> New Weigh-In</button>
+      
 
       <%= render 'modalform' %>  
+
+  <% if current_user.weighins.length == 0 %>
+
+   <div id="content" class="contentSmall" style="top: 0px;" >
+    <h2> You have no Weigh-Ins yet! </h2><br>
+
+    <button class="btn btn-primary btn-success" data-toggle="modal" data-target="#addWeighin"><span class="fa fa-plus"></span> Add your first Weigh-In</button>
+</div>
+
+  <% else %>
+
+  <button class="btn btn-primary btn-success" style="float: right;" data-toggle="modal" data-target="#addWeighin"><span class="fa fa-plus"></span> Add a Weigh-In</button>
+
+  
+
 
 <hr>
 <center><h2><b>Weight Change</b></h2></center>
@@ -91,6 +106,8 @@
 
   </div>
 
+  <% end %>
+
 <% else %>
 
     <div class="frontBackground">
@@ -113,6 +130,7 @@
     </div>
 
 <% end %>
+
 
 
 
