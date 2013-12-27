@@ -7,7 +7,6 @@
   <%= csrf_meta_tags %>
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -15,12 +14,12 @@
 
 <script type="text/javascript">
 
+    $(document).ready(function () {
+      <% flash.each do |name, msg| %>
+        noty({text:'<%= msg %>', type: 'information', layout: 'topCenter', timeout: 5000, dismissQueue: true, animateOpen: {opacity: 'show'}});      
+      <% end %>
+    });
 
-
-  $(document).ready(function() {
-    <% flash.each do |name, msg| %>
-    <% end %>
-  });
 </script>
 
 
