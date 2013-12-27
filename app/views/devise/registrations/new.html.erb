@@ -4,7 +4,16 @@
 
 		<%= form_for(resource, :html => { :style => 'margin: 0;' }, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 
-	    <%= devise_error_messages! %>
+
+
+
+			<script type="text/javascript">
+				$(document).ready(function () {
+				 <% devise_error_messages!.each do |content| %>
+				   noty({text:'<%= content %>', type: 'warning', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});      
+				 <% end %>
+				});
+		  	</script>
 
 	    	<table>
 	    		<tr>
