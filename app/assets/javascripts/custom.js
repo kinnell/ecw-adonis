@@ -1,8 +1,10 @@
 jQuery(function() {
+
+
   Morris.Line({
     element: "weight_chart",
     data: $("#weight_chart").data("weighins"),
-    xkey: "created_at",
+    xkey: ["created_at"],
     ykeys: ["weight"],
     labels: ["Weight"],
     xLabel: ["day"],
@@ -25,13 +27,13 @@ jQuery(function() {
     labels: ["Percent Change"],
     xLabels: ["day"],
     postUnits: ["%"],
-    dateFormat: function(date) {
+    dateFormat: function(date2) {
       var d;
-      d = new Date(date);
+      d = new Date(date2);
       return (d.getMonth() + 1) + "/" + d.getDate() + "/" + d.getFullYear();
     },
-    xLabelFormat: function(date) {
-      return (date.getMonth() + 1) + "/" + date.getDate() + "/" + date.getFullYear(); 
+    xLabelFormat: function(date2) {
+      return (date2.getMonth() + 1) + "/" + date2.getDate() + "/" + date2.getFullYear(); 
     },
   });
 

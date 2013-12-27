@@ -1,5 +1,3 @@
-<% if user_signed_in? %>
-
   <div id="content" class="span11">
     <div class="container">
       
@@ -17,12 +15,12 @@
             <th>Name</th>
             <th>Location</th>
             <th>Team</th>
-            <th>Percent Weight Loss</th>
+            <th>Overall Percent Weight Loss</th>
           </tr>
         </thead>
 
         <tbody>
-        	<% sortedUsers = User.visible.withWeighins.sort_by {|u| u.latestWeightPercentChange } %>
+        	<% sortedUsers = User.visible.withWeighins.sort_by {|u| u.overallWeightPercentChange } %>
           <% sortedUsers.each_with_index do |user, i| %>
             
             <% if current_user == user %>
@@ -36,7 +34,7 @@
             	<td><%= user.name %><% if (current_user == user) %> <b>(You)</b><% end %></td>
 			        <td><%= user.location %></td>
               <td><%= user.team.name if user.team %></td>
-            	<td><%= (user.latestWeightPercentChange) %>%</td>
+            	<td><%= printWeightPercentChange(user.overallWeightPercentChange) %></td>
 
             </tr>
 
@@ -72,7 +70,7 @@
              
               <td><%= i+1 %></td>             
               <td><%= team.name %><% if (current_user.team == team) %> <b>(Your Team)</b><% end %></td>
-              <td><%= (team.teamPercentLoss) %>%</td>
+              <td><%= printWeightPercentChange(team.teamPercentLoss) %></td>
 
             </tr>
 
@@ -89,7 +87,5 @@
 
     </div>
   </div>
-
-  <% end %>
 
 

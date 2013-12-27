@@ -10,12 +10,14 @@ class User < ActiveRecord::Base
    has_many :weighins, dependent: :destroy
    belongs_to :team
 
+   include WeighinsHelper
+
 	def self.visible
 		where(visible: true)
 	end
 
 
-	def latestWeightPercentChange
+	def overallWeightPercentChange
 		weighins.last.weightPercentTotalChange
 	end
 

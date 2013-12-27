@@ -1,4 +1,6 @@
 class Weighin < ActiveRecord::Base
+	include WeighinsHelper
+
 	belongs_to :user
 	validates :weight, presence: true, numericality: { greater_than: 0 }
 
@@ -22,11 +24,8 @@ class Weighin < ActiveRecord::Base
 	end
 
 	def previousWeight
-		if weighinNum == 1
-			return weight
-		else
-			return Weighin.by_user(user)[weighinNum-2].weight
-		end
+		return weight if weighinNum == 1
+		return Weighin.by_user(user)[weighinNum-2].weight
 	end
 
 	def weightChange() weight - previousWeight end
@@ -34,40 +33,10 @@ class Weighin < ActiveRecord::Base
 
 	def weightPercentChange() (100*(weightChange.to_f)/previousWeight.to_f).round(2) end
 	def weightPercentTotalChange() (100*(weightTotalChange.to_f)/firstWeight.to_f).round(2) end
-
 	
 	def printWeightChange() printWeight(weightChange, weightPercentChange) end
 	def printWeightTotalChange() printWeight(weightTotalChange, weightPercentTotalChange) end
-
-
-	def printWeight wtChange, wtPercentChange
-		if weightTotalChange < 0
-			("<font color=green>" + printLbs(wtChange) + " <b>(" + printSign(wtPercentChange) + "%)</b></font>").html_safe
-		elsif weightTotalChange == 0
-			("<font color=black>" + printLbs(wtChange) + " <b>(" + printSign(wtPercentChange) + "%)</b></font>").html_safe
-		elsif (weightTotalChange > 0)
-			("<font color=red>" + printLbs(wtChange) + " <b>(" + printSign(wtPercentChange) + "%)</b></font>").html_safe
-		end
-	end
-
-	def printLbs wt
-		if wt == 1
-			(printSign(wt) + " lb")
-		else
-			(printSign(wt) + " lbs")
-		end	
-	end
-
-	def printSign num
-		if num >= 0
-			return ("+" + num.to_s)
-		else
-			return num.to_s
-		end
-	end
-
-	def printCreatedAt() return created_at.strftime("%A, %B %-d, %Y %-I:%M %p") end
-
+	
 	def self.by_user(user)
 		where(user: user)
 	end
@@ -83,6 +52,10 @@ class Weighin < ActiveRecord::Base
 
 	end
  
+ 	def weighinWeek
+ 		return 0 if created_at < Time.parse("05/01/2014")
+ 		return ((created_at - Time.parse("05/01/2014"))/604800).ceil
+ 	end
 
 
 

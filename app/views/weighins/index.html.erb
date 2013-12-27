@@ -16,11 +16,15 @@
     <h2> You have no Weigh-Ins yet! </h2><br>
 
     <button class="btn btn-primary btn-success" data-toggle="modal" data-target="#addWeighin"><span class="fa fa-plus"></span> Add your first Weigh-In</button>
-</div>
+  </div>
 
   <% else %>
 
+  <div class="alert alert-info"><center><b>Reminder:</b> The competition officially begins on January 6th, 2014!</center></div>
+
   <button class="btn btn-primary btn-success" style="float: right;" data-toggle="modal" data-target="#addWeighin"><span class="fa fa-plus"></span> Add a Weigh-In</button>
+
+
 
   
 
@@ -36,6 +40,7 @@
         <thead>
           <tr style="background-color: #eeeeee">
             <th>#</th>
+            <th>Week #</th>
             <th style="text-align: left">Date</th>
             <th>Weight</th>
             <th>Change Since Previous Weigh-In</th>
@@ -50,6 +55,7 @@
             <tr> 
                 
                 <td><%= weighin.weighinNum %></td>
+                <td><%= "Week #{weighin.weighinWeek}" %></td>
                 <td style="text-align: left"><%= weighin.printCreatedAt %></td>
                 <td><%= weighin.weight %> lbs</td>
                 

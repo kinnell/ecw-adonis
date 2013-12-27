@@ -1,5 +1,53 @@
-<h2>New Weigh-In</h2>
 
-<%= render 'form' %>
 
-<%= link_to 'Back', weighins_path %>
+ <div id="content" class="contentSmall">
+    <h1><span class="fa fa-plus"></span> New Weigh-In</h1>
+
+    <%= form_for(@weighin) do |f| %>
+
+      <% if @weighin.errors.any? %>
+                <% @weighin.errors.full_messages.each do |msg| %>
+                    <script>
+                    $(document).ready(function () {
+                      noty({text:'<%= msg %>', type: 'warning', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});  
+                    });
+                    </script>
+                    <% end %>
+                  </ul>
+                
+              <% end %>
+
+        <table>
+          <tr>
+            <td style="vertical-align: middle; padding: 10px 0 10px 0; font-size: 13px;">Your Weight (lbs): </td>
+            <td><%= f.number_field :weight, class: "form-control", style: "padding: 5px 10px 5px 10px; float: left; margin: 0px; margin-left: 10px;", :autofocus => true %></td>
+          </tr>
+          
+
+        </table>
+
+
+      <div class="form-group" style="padding: 10px 0 0 0;">
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+      </div>
+
+      <hr>
+      
+
+
+    <% end %>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  

@@ -1,43 +1,25 @@
 <% if user_signed_in? %>
 
-<div class="navbar">
-  <div class="navbar-inner">
-    <div class="container-fluid">
-      
-      <%= link_to root_path, class: "brand" do %>
-          <span>eCWellness: <font face="Rock Salt">The Biggest Loser</font></span>
-      <% end %>
-                                        
-      <div class="nav-no-collapse header-nav">                   
-        <ul class="nav pull-right"> 
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        
+        <%= link_to root_path, class: "brand" do %>
+            <span>eCWellness: <font face="Rock Salt">The Biggest Loser</font></span>
+        <% end %>
+                                          
+        <div class="nav-no-collapse header-nav">                   
+          <ul class="nav pull-right"> 
 
-          <% if user_signed_in? %>
+            <li>
+              <%= link_to edit_user_registration_path, class: "btn btn-primary btn-large" do %><span class="fa fa-user"></span>  <%= current_user.name %><% end %>
+            </li>
 
-              <li>
-                <%= link_to edit_user_registration_path, class: "btn btn-primary btn-large" do %><span class="fa fa-user"></span>  <%= current_user.name %><% end %>
-              </li>
-
-
-
-          <% else %>
-
-              <li>
-                <%= link_to new_user_registration_path, class: "btn btn-primary btn-large" do %>
-                  <span class="fa fa-magic"></span>  Register<% end %>
-              </li>
-              <li>
-                <%= link_to new_user_session_path, class: "btn btn-primary btn-large" do %>
-                <span class="fa fa-key"></span>  Login<% end %>
-              </li>
-
-          <% end %>
-        </ul>
+          </ul>
+        </div>
       </div>
-       
-
     </div>
   </div>
-</div>
 
 <% end %>
 

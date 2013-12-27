@@ -1,0 +1,56 @@
+<button class="btn btn-primary btn-success" style="float: right" data-toggle="modal" data-target="#addTeam"><span class="fa fa-plus"></span> New Team</button>
+
+                <%= render 'modalform' %>  
+
+            <hr>      
+
+            <table class="table table-hover table-bordered table-center">
+              <thead>
+                <tr style="background-color: #eeeeee">
+                  <th>#</th>
+                  <th>Team Name</th>
+                  <th>Number of Members</th>
+                  <th>Members</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% Team.all.each_with_index do |team, i| %>
+                  
+                  <% if team == current_user.team %>
+                    <tr style="background-color: #E0FFFF">
+                  <% else %>
+                    <tr>
+                  <% end %>
+
+
+                    <td><%= i+1 %></td>             
+                    <td><%= team.name %>
+                      <% if team == current_user.team %>
+                         <b>(Your Team)</b>
+                      <% end %>
+                    </td>
+                    <td><%= team.membership.size %></td>
+                    <td>
+                      <% team.membership.each_with_index do |member, i| %>
+                        <% if (i > 0) && (team.membership.size > 1) %>|<% end %>
+                        <%= member.name %>
+                      <% end %>
+                    </td>
+                    <td>
+                      <% if team == current_user.team %>
+                        <%= link_to leave_team_path(team), class: "btn-small btn btn-warning" do %><i class="fa fa-mail-reply"></i>  Leave Team<% end %>
+                      <% elsif team.membership.size > 6 %>
+                        <%= link_to class: "btn-small btn btn-danger" do %><i class="fa fa-times-circle"></i>  Team Full<% end %>
+                      <% else %>
+                        <%= link_to join_team_path(team), class: "btn-small btn btn-primary" do %><i class="fa fa-share"></i>  Join Team<% end %>
+                      <% end %>
+
+                      </td>
+                      
+                  </tr>
+                <% end %>
+
+              </tbody>
+            </table>

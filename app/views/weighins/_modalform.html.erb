@@ -1,4 +1,4 @@
-<div class="modal fade" id="addWeighin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="addWeighin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  style="width: 400px; left: 58%;">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -7,7 +7,7 @@
 
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h2 class="modal-title" id="myModalLabel"><b>New Weigh-In</b></h4>
+            <h2 class="modal-title" id="myModalLabel"><b><center>New Weigh-In</center></b></h4>
           </div>
           
           <div class="modal-body">
@@ -15,10 +15,13 @@
               <!-- Error Printing -->
               <% if @weighin.errors.any? %>
                 <div id="error_explanation">
-                  <h2><%= pluralize(@weighin.errors.count, "error") %> prohibited this weighin from being saved:</h2>
                   <ul>
                     <% @weighin.errors.full_messages.each do |msg| %>
-                      <li><%= msg %></li>
+                     <script type="text/javascript">
+                    $(document).ready(function () {
+                      noty({text:'<%= msg %>', type: 'information', layout: 'topCenter', timeout: 5000, dismissQueue: true, animateOpen: {opacity: 'show'}});  
+                    });
+                    </script>
                     <% end %>
                   </ul>
                 </div>
@@ -26,12 +29,12 @@
 
               
               
-              <div style="text-align: center"> Weight (lbs): <%= f.number_field :weight, class: "form-control", autofocus: true %></div>
+              <div style="text-align: center;"> Weight (lbs): <%= f.number_field :weight, class: "form-control", autofocus: true %></div>
                                 
           </div>
 
           <div class="modal-footer">
-              <%= f.submit "Submit", class: "btn btn-primary" %>
+              <center><%= f.submit "Submit", class: "btn btn-primary" %></center>
           </div>
 
       <% end %>
