@@ -19,6 +19,8 @@ class WeighinsController < ApplicationController
 
   end
 
+
+
   def new
     @weighin = current_user.weighins.build
   end

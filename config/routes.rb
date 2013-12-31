@@ -17,9 +17,6 @@ Adonis::Application.routes.draw do
     root :to => "pages#home"
   
 
-
-  
-
   get "weighins/:id/verify" => "weighins#verify", :as => "verify_weighin"
   get "weighins/:id/unverify" => "weighins#unverify", :as => "unverify_weighin"
 
