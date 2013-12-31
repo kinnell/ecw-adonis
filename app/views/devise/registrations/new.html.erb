@@ -1,57 +1,45 @@
- <div class="frontBackground">
- <div id="content" class="contentSmall">
-		<h1><span class="fa fa-user"></span> Registration</h1>
+<script type="text/javascript">
+	$(document).ready(function () {
+		<% unless devise_error_messages!.blank? %>
 
-		<%= form_for(resource, :html => { :style => 'margin: 0;' }, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+			<% devise_error_messages!.each do |content| %>
+				noty({text:'<%= content %>', type: 'error', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});      
+			<% end %>
 
+		<% end %>
+	});
+</script>
 
+<div class="container">
+	
+	<%= form_for(resource, :html => {:class => 'form-signin'}, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 
-
-			<script type="text/javascript">
-				$(document).ready(function () {
-				 <% unless devise_error_messages!.blank? %>
-
-				 <% devise_error_messages!.each do |content| %>
-				   noty({text:'<%= content %>', type: 'warning', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});      
-				 <% end %>
-
-				 <% end %>
-				});
-		  	</script>
-
-	    	<table>
-	    		<tr>
-	    			<td style="vertical-align: middle; padding: 10px 0 10px 0; font-size:13px;">Your Name:</td>
-	    			<td><%= f.text_field :name, class: "form-control", :autofocus => true, style: "padding: 5px 10px 5px 10px; float: left; margin: 0px; margin-left: 10px; vertical-align: middle;" %></td>
-	    		</tr>
-	    		<tr>
-	    			<td style="vertical-align: middle; padding: 10px 0 10px 0; font-size:13px;">Your Email: </td>
-	    			<td><%= f.email_field :email, class: "form-control", style: "padding: 5px 10px 5px 10px; float: left; margin: 0px; margin-left: 10px;" %></td>
-	    		</tr>
-	    		<tr>
-	    			<td style="vertical-align: middle; padding: 10px 0 10px 0; font-size:13px;">Your Password: </td>
-	    			<td><%= f.password_field :password, class: "form-control", style: "padding: 5px 10px 5px 10px; float: left; margin: 0px; margin-left: 10px;" %></td>
-	    		</tr>
-	    		<tr>
-	    		<td style="vertical-align: middle; padding: 10px 0 10px 0; font-size:13px;">Your Location: </td>
-	    		<td><div style="padding-top:5px"><%= f.select :location, ["Westborough, MA", "New York City, NY", "Pleasanton, CA", "Alpharetta, GA", "Remote"]%></div></td>
-	    	</tr>
-	    	</table>
+		<h2 class="form-signin-heading" style="background-color: #00334b"><span class="fa fa-user"></span> Registration</h2>
+   
+   	<div class="login-wrap">
 
 
-			<div class="form-group" style="padding: 10px 0 0 0;">
-				
-				<%= f.submit "Register", class: "btn btn-primary" %>
-			</div>
+		   <%= f.text_field :name, class: "form-control", :placeholder => "Your Name", :autofocus => true %>
+		   <%= f.email_field :email, class: "form-control", :placeholder => "Your Email" %>
+		   <%= f.password_field :password, class: "form-control", :placeholder => "Your Password" %>
+		   
+		   <%= f.select(:location, ["Westborough, MA", "New York City, NY", "Pleasanton, CA", "Alpharetta, GA", "Chicago, IL", "Remote"], {}, { :class => 'form-control m-bot15' }) %>
+			
+		  
+		   <div class="form-group"><%= f.submit "Register", class: "btn btn-primary btn-block" %></div>
 
 			<hr>
-
+				
 			<div style="font-size: 10px; text-align:justify; line-height:15px;">
 				By registering in this challenge I recognize and acknowledge that there are risks of physical injury and I, agree to assume the full risk of any injuries (including death), damages or loss which I, may sustain as a result of participating in any and all activities arising out of, connected with this challenge I, acknowledge that participation this program is voluntary and I will abide by the rules of the challenge as outlined.
 			</div>
 
-		<% end %>
+		</div>
+
+	<% end %>
 
 </div>
 
-</div>
+
+
+			

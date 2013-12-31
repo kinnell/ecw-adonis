@@ -23,10 +23,11 @@ module Adonis
     # config.i18n.default_locale = :de
 
     config.assets.paths << "#{Rails.root}/vendor/assets/fonts"
-    config.assets.paths << "#{Rails.root}/vendor/assets/images"
+    config.assets.paths << "#{Rails.root}/vendor/assets/img"
     config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
     config.assets.precompile += %w( .svg .eot .woff .ttf )
 
     config.assets.initialize_on_precompile = false
+
   end
 end

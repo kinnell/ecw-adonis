@@ -1,0 +1,264 @@
+body {
+  background-image: url('bokeh_bg.png');
+  background-size: 100%;
+  background-attachment:fixed;
+}
+
+a.logo {
+	text-transform: none;
+	font-family: 'Open Sans';
+	font-size: 18px;
+	color: #fff;
+
+	span {
+		color: #fff;
+	}
+}
+
+.frontBackground {
+  background-image: url('concrete_wall.png');
+  width:      100%;
+  height:     100%; 
+  z-index:    10;
+  top:        0; 
+  left:       0; 
+  position:   absolute; 
+  -moz-box-shadow: inset 0 0 20em #000;  
+ -webkit-box-shadow: inset 0 0 20em #000;   
+ box-shadow: inset 0 0 20em #000;
+}
+
+header.header {
+	background-image: url('concrete_wall.png');
+}
+
+
+.table {
+	td, th {
+		text-align: center;
+	}
+}
+
+
+.frontLogo {
+	color: #00334b;
+	font-size: 21px;
+	font-family: "Open Sans";
+	font-weight: 200;
+
+}
+
+
+
+.boxed-page .container {
+    background: none;    
+}
+
+.container.logged {
+margin-top: 40px;
+margin-bottom: 50px;
+
+-moz-box-shadow: 0 0 10px rgba(0,0,0,0.2);
+-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.2);
+box-shadow: 0 0 10px rgba(0,0,0,0.2);
+
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+
+background-color: #2a3542;
+
+}
+
+
+
+ul.sidebar-menu, section.wrapper {
+    margin-top: 0px;
+}
+
+section.wrapper {
+-webkit-border-top-right-radius: 5px;
+-webkit-border-bottom-right-radius: 5px;
+-moz-border-radius-topright: 5px;
+-moz-border-radius-bottomright: 5px;
+border-top-right-radius: 5px;
+border-bottom-right-radius: 5px;
+
+background: white;
+}
+
+#sidebar {
+-webkit-border-top-left-radius: 5px;
+-webkit-border-bottom-left-radius: 5px;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-bottomleft: 5px;
+border-top-left-radius: 5px;
+border-bottom-left-radius: 5px;
+
+background-color: #2a3542;
+}
+
+
+.profile-nav .user-heading {
+    background: #428bca;
+    color: #fff;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    border-top-left-radius: 5px;
+    padding: 30px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
+.profile-nav .user-heading.round a  {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 10px solid rgba(255,255,255,0.3);
+    display: inline-block;
+}
+
+.profile-nav .user-heading a img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+.profile-nav .user-heading h1 {
+    font-size: 22px;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+.profile-nav .user-heading p {
+    font-size: 12px;
+}
+
+
+
+/*
+
+
+.navbar {
+	margin-bottom: 20px;
+}
+
+.navbar-inner {
+	background-color: #00334c;
+	background-image: url('concrete_wall.png');
+	min-height: 60px;
+
+
+	.brand {
+		margin-top: 10px;
+		color: white;
+		
+	}
+
+	.header-nav {
+		margin-top: 10px;
+	}
+}
+
+
+
+#content {
+	//width: 50%;
+	//margin: 0 auto;
+
+	width: 86%; 
+	min-height: 560px; 
+	margin-bottom: 60px;
+
+	.container {
+		margin-left: 0%; 
+		width: 100%;
+		padding: 0 15px 0 0;
+	}
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+
+}
+
+
+
+h1 {
+	font-size: 36px;
+	padding: 15px;
+}
+
+.contentSmall {
+	width: 25% !important;
+	margin: 0 auto !important;
+	min-height: 0px !important;
+	text-align: center;
+  top: 100px;
+}
+
+.form-control {
+  padding: 5px 10px 5px 10px;
+}
+
+
+
+*/
+
+.property {
+    padding: 100px 0;
+    margin-bottom: 60px;
+    margin: 100px auto 0px auto;
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.gray-bg {
+    background: white;
+}
+
+
+a.btn-purchase {
+    background: #475168;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 20px 40px;
+    margin-top: 30px;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+}
+a.btn-purchase:hover, a.btn-purchase:focus{
+    background: #F77B6F;
+    color: #fff;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
+
+}
+
+h1.title {
+  color: #2a3542;
+  font-size: 28px;
+  font-weight: 200;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #dddddd;
+}
+
+
+
+

@@ -1,21 +1,41 @@
-  <div id="content" class="span11">
-    <div class="container">
+  <section id="main-content">
+      <section class="wrapper">
 
-      <h1><i class="fa fa-users"></i> Teams</h1>
+      <h1 class="title"><i class="fa fa-users"></i> My Team</h1>
+
+      <hr>
 
         <% if current_user.team.blank? %>
 
-          <div id="content" class="contentSmall" style="top: 0px;">
-            <h2> You are not on a team yet! </h2>
-          </div>
+
+          <section class="panel panel-primary">
+            <div class="panel-heading">
+              You are not on a team yet!
+            </div>
+
+            <div class="panel-body">
+              If you would like to join a team, please have one person from your team email <b>TheBiggestLoser@eClinicalWorks.com</b> with the team name and team members by January 6th. Only 4 to 6 people per team and members cannot be modified after January 6th.
+            </div>
+          </section>
+
+
+
+          
 
         <% else %>
 
-            <%= "You are on Team '#{current_user.team.name}'." %><br>
+            <%= "You are on Team '#{current_user.team.name}'." %><br><br>
 
-            <center><h2><b>Team Members</b></h2></center>
+           
 
-            <table class="table table-hover table-bordered table-center">
+          <div class="row">
+            <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">Team Members</header>
+                <table class="table table-bordered table-advance table-hover">
+
+
+           
               <thead>
                 <tr style="background-color: #eeeeee">
                   <th>#</th>
@@ -42,7 +62,11 @@
               </tbody>
             </table>
 
+          </section>
+        </div>
+      </div>
+
         <% end %>
 
-    </div>
-  </div>
+    </section>
+  </section>

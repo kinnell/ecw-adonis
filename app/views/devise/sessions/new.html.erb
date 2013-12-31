@@ -1,44 +1,26 @@
- <div class="frontBackground">
- <div id="content" class="contentSmall">
-		<h1><span class="fa fa-sign-in"></span> Login</h1>
+<div class="container">
+	
+	<%= form_for(resource, :html => {:class => 'form-signin'}, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
-		<%= form_for(resource, :html => { :style => 'margin: 0;' }, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+		<h2 class="form-signin-heading" style="background-color: #00334b"><span class="fa fa-sign-in"></span> Login</h2>
+   
+   	<div class="login-wrap">
 
-	    <%= devise_error_messages! %>
+		   <%= devise_error_messages! %>
 
-	    	<table>
-	    		<tr>
-	    			<td style="vertical-align: middle; padding: 10px 0 10px 0; font-size: 13px;">Your Email: </td>
-	    			<td><%= f.email_field :email, class: "form-control", style: "padding: 5px 10px 5px 10px; float: left; margin: 0px; margin-left: 10px;", :autofocus => true %></td>
-	    		</tr>
-	    		<tr>
-	    			<td style="vertical-align: middle; padding: 10px 0 10px 0; font-size: 13px;">Your Password: </td>
-	    			<td><%= f.password_field :password, class: "form-control", style: "padding: 5px 10px 5px 10px; float: left; margin: 0px; margin-left: 10px;" %></td>
-	    		</tr>
-	    		<tr>
-		    			<td style="text-align: right; vertical-align: middle; margin: 0 auto;" ><%= f.check_box :remember_me, {checked: true} %></td>
-		    			<td style="text-align: left; vertical-align: middle; padding: 10px 0 10px 0;"><div style="margin-left:10px;">Remember Me</div></td>
-		    			
-		    		</tr>
+		   <%= f.email_field :email, class: "form-control", :placeholder => "Email address", :autofocus => true %>
+		   <%= f.password_field :password, class: "form-control", :placeholder => "Password" %>
 
-	    	</table>
+		   <label class="checkbox"><%= f.check_box :remember_me, {checked: true} %> Remember Me</label>
 
-
-			<div class="form-group" style="padding: 10px 0 0 0;">
-				<%= f.submit "Login", class: "btn btn-primary" %>
-			</div>
+		   <div class="form-group"><%= f.submit "Login", class: "btn btn-primary btn-block" %></div>
 
 			<hr>
-			
-			<%= render "devise/shared/links" %>
+				
+			<center><%= render "devise/shared/links" %></center>
 
+		</div>
 
-		<% end %>
+	<% end %>
 
 </div>
-
-</div>
-
-
-
-

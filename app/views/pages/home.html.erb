@@ -1,5 +1,22 @@
+<div class="property gray-bg">
+        <div class="container loggedOut">
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 text-center">
+                    <%= image_tag("dumbbell.png", :size => "300x300") %>
+                </div>
+                <div class="col-lg-6 col-sm-6">
+                    <div class="frontLogo">eCWellness: <font face="Rock Salt" color="#00334b">The Biggest Loser</font></div><br>
 
-<div class="jumbotron center">
-		<h1>Y U NO LOSE WEIGHT?</h1>
-		<p>Welcome to the eCWellness: The Biggest Loser Competition 2013!</p>
-</div>
+                    <p>Are you ready? You know what we’re talking about: the crunch of too many hours in front of a computer screen, too many last-minute, drive-thru meals?  It's taking a toll on us, and we’re sure we’re not alone.  It's time for us to get back into shape and take control of our lives – one pound at a time.</p>
+ 
+                    <p>But we’re not talking about some starvation, packaged-meal program where we have to eat like birds. We’re talking about a friendly challenge for cash: everyone (and eCW) puts money into the pot and those who lose the most weight (%) at the end walks away with nice chunk of change (and hopefully a healthier lifestyle).</p>
+            
+            <%= link_to new_user_registration_path, class: "btn btn-purchase" do %>
+            <span class="fa fa-magic"></span>  Register<% end %>
+     
+          <%= link_to new_user_session_path, class: "btn btn-purchase" do %>
+          <span class="fa fa-key"></span>  Login<% end %>
+                </div>
+            </div>
+        </div>
+    </div>

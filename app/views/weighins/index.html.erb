@@ -1,49 +1,52 @@
  <% if user_signed_in? %> 
 
-  <div id="content" class="span11">
-    <div class="container">
-      
+<%= render 'modalform' %>
+  
+<section id="main-content">
+  <section class="wrapper">
+   
+  <div class="alert alert-info"><center><b>The competition officially begins on Monday, January 6th, 2014!</b><br>
+  You can enter your weight in today, but the first official (validated) weight on January 6th will be your official starting weight.</center></div>
 
-      <h1><i class="fa fa-bar-chart-o"></i> My Progress</h1>
 
-      
 
-      <%= render 'modalform' %>  
+  <h1 class="title"><i class="fa fa-bar-chart-o"></i> My Progress
 
-  <% if current_user.weighins.length == 0 %>
+    <button class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#addWeighin"><span class="fa fa-plus"></span> Add a Weigh-In</button>
 
-   <div id="content" class="contentSmall" style="top: 0px;" >
-    <h2> You have no Weigh-Ins yet! </h2><br>
+    </h1>
 
-    <button class="btn btn-primary btn-success" data-toggle="modal" data-target="#addWeighin"><span class="fa fa-plus"></span> Add your first Weigh-In</button>
-  </div>
 
-  <% else %>
 
-  <div class="alert alert-info"><center><b>Reminder:</b> The competition officially begins on January 6th, 2014!</center></div>
-
-  <button class="btn btn-primary btn-success" style="float: right;" data-toggle="modal" data-target="#addWeighin"><span class="fa fa-plus"></span> Add a Weigh-In</button>
+  <hr>
+  
 
 
 
   
 
 
-<hr>
-<center><h2><b>Weight Change</b></h2></center>
-
+     
+    <% if false %>
       <%= content_tag :div, "", id: "weight_chart", data: {weighins: current_user.weighins} %>
+    <% end %>
 
       <br>
 
-      <table class="table table-hover table-bordered table-center">
+      <div class="row">
+        <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">Your Weigh-Ins</header>
+                <table class="table table-bordered table-advance table-hover">
+              
+
+
         <thead>
           <tr style="background-color: #eeeeee">
             <th>#</th>
             <th>Week #</th>
             <th style="text-align: left">Date</th>
             <th>Weight</th>
-            <th>Change Since Previous Weigh-In</th>
             <th>Total Change Since Start</th>
             <th>Weigh-In Type</th>
             <th>Actions</th>
@@ -51,40 +54,42 @@
         </thead>
 
         <tbody>
+
+
+
+
           <% current_user.weighins.each do |weighin| %>
             <tr> 
                 
                 <td><%= weighin.weighinNum %></td>
-                <td><%= "Week #{weighin.weighinWeek}" %></td>
+                <td><%= "#{weighin.weighinWeek}" %></td>
                 <td style="text-align: left"><%= weighin.printCreatedAt %></td>
-                <td><%= weighin.weight %> lbs</td>
-                
-                <td><%= weighin.printWeightChange %></td>
+                <td><%= weighin.weight %> lbs</td>                
                 <td><%= weighin.printWeightTotalChange %></td>
                 <td>
                     <% if weighin.verified? %>
-                        <span class="label label-success">Verified</span>
+                        <span class="label label-success label-mini">Verified</span>
                     <% else %>
-                        <span class="label label-info">Personal</span>
+                        <span class="label label-info label-mini">Personal</span>
                     <% end %>
                 </td>
                 <td>
 
                   <% if current_user.admin? %> 
                     <% if weighin.verified? %>
-                        <%= link_to unverify_weighin_path(weighin), class: "btn-small btn btn-success" do %><i class="fa fa-check-square-o"></i><% end %>
+                        <%= link_to unverify_weighin_path(weighin), class: "btn-xs btn btn-success" do %><i class="fa fa-check-square-o"></i><% end %>
                     <% else %>
-                        <%= link_to verify_weighin_path(weighin), class: "btn-small btn btn-success" do %><i class="fa fa-square-o"></i><% end %>
+                        <%= link_to verify_weighin_path(weighin), class: "btn-xs btn btn-success" do %><i class="fa fa-square-o"></i><% end %>
                     <% end %>                
                     
-                    <%= link_to edit_weighin_path(weighin), class: "btn-small btn btn-info" do %><i class="fa fa-edit"></i><% end %>
+                    <%= link_to edit_weighin_path(weighin), class: "btn-xs btn btn-info" do %><i class="fa fa-edit"></i><% end %>
 
-                    <%= link_to weighin, class: "btn-small btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
+                    <%= link_to weighin, class: "btn-xs btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
                   
                   <% else %>
 
                     <% unless weighin.verified? %>
-                      <%= link_to weighin, class: "btn-small btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
+                      <%= link_to weighin, class: "btn-xs btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
                     <% end %>
 
                   <% end %>
@@ -96,50 +101,36 @@
           
         </tbody>
       </table>
+    </section>
+  </div>
+</div>
+
 
 <br>
-<hr>
+
+
+<% if false %>
 <center><h2><b>Percent Change from Initial Weigh-in</b></h2></center>
 <%= content_tag :div, "", id: "percent_chart", data: {weighins: Weighin.allWeightPercentTotalChanges(current_user)} %>
 
-    
-
-
- 
+<% end %>
         <br>
 
-      </div>
+      </section>
 
-  </div>
+
+    </section>
+
+
 
   <% end %>
 
-<% else %>
 
 
-
-    <div class="frontBackground">
-
-    <div class="frontLogo">eCWellness: <font face="Rock Salt" color="#f4f4f6">The Biggest Loser</font>
-    <br><br><br><br>
-
-
-
-
-    <%= link_to new_user_registration_path, class: "btn btn-large" do %>
-            <span class="fa fa-magic"></span>  Register<% end %>
-     
-          <%= link_to new_user_session_path, class: "btn btn-large" do %>
-          <span class="fa fa-key"></span>  Login<% end %>
-
-
-          
-        </div>
        
 
-    </div>
 
-<% end %>
+
 
 
 

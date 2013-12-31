@@ -10,7 +10,15 @@ Adonis::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root "weighins#index"
+  
+  authenticated :user do
+    root :to => "weighins#index", as: :authenticated_root
+  end
+    root :to => "pages#home"
+  
+
+
+  
 
   get "weighins/:id/verify" => "weighins#verify", :as => "verify_weighin"
   get "weighins/:id/unverify" => "weighins#unverify", :as => "unverify_weighin"

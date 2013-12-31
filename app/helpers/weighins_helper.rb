@@ -1,7 +1,7 @@
 module WeighinsHelper
 	include ActionView::Helpers::TextHelper
 
-	def printCreatedAt() return created_at.strftime("%A, %B %-d, %Y %-I:%M %p") end
+	def printCreatedAt() return created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%A, %B %-d, %Y %-I:%M %p %Z") end
 
 
 	def printWeightPercentChange wtPercentChange

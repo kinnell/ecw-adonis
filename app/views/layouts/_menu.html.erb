@@ -1,21 +1,72 @@
 <% if user_signed_in? %>
 
+
+
+<aside>
+<div class="profile-nav" style="max-width: 210px;"><div class="user-heading round">
+                              <a href="#">
+                                  <%= image_tag("user.jpg") %>
+                              </a>
+                              <h1><%= current_user.name %></h1>
+                              <p>Competitor</p>
+                          </div></div>
+
+                          <br>
+                        
+  <div id="sidebar"  class="nav-collapse ">
+
+
+      <ul class="sidebar-menu" id="nav-accordion">
+          <li><%= link_to(root_path) do %>
+                  <i class="fa fa-bar-chart-o"></i>
+                  <span>My Progress</span>
+          <% end %></a></li>
+
+          <li><%= link_to(teams_path) do %>
+                  <i class="fa fa-users"></i>
+                  <span>My Team</span>
+          <% end %></li>
+
+          <li><%= link_to(leaderboard_path) do %>
+                  <i class="fa fa-trophy"></i>
+                  <span>Leaderboard</span>
+          <% end %></li>
+
+          <li><%= link_to(edit_user_registration_path) do %>
+                  <i class="fa fa-gear"></i>
+                  <span>My Settings</span>
+          <% end %></li>
+
+          <li><%= link_to(destroy_user_session_path, method: :delete) do %>
+                  <i class="fa fa-sign-out"></i>
+                  <span>Sign Out</span>
+          <% end %></li>
+                
+      </ul>
+  </div>
+</aside>
+
+<% if false %>
+
 <div id="sidebar-left" class="span1" style="width: 8%">
 	<div class="nav-collapse sidebar-nav">
 		<ul class="nav nav-tabs nav-stacked main-menu">
 						
-			<li class="<%= 'active' if current_page?(root_path) %>"><%= link_to(root_path) do %><i class="fa fa-bar-chart-o"></i><span class="hidden-tablet"> My Progress</span><% end %></li>
+			<li class="<%= 'active' if current_page?(root_path) %>"><%= link_to(root_path) do %><i class="fa fa-bar-chart-o"></i><span class="hidden-sm"> My Progress</span><% end %></li>
 
-			<li class="<%= 'active' if current_page?(teams_path) %>"><%= link_to(teams_path) do %><i class="fa fa-users"></i><span class="hidden-tablet"> My Team</span><% end %></li>
+			<li class="<%= 'active' if current_page?(teams_path) %>"><%= link_to(teams_path) do %><i class="fa fa-users"></i><span class="hidden-sm"> My Team</span><% end %></li>
 			
-			<li class="<%= 'active' if current_page?(leaderboard_path) %>"><%= link_to(leaderboard_path) do %><i class="fa fa-trophy"></i><span class="hidden-tablet"> Leaderboard</span><% end %></li>
+			<li class="<%= 'active' if current_page?(leaderboard_path) %>"><%= link_to(leaderboard_path) do %><i class="fa fa-trophy"></i><span class="hidden-sm"> Leaderboard</span><% end %></li>
 			
-			<li class="<%= 'active' if current_page?(edit_user_registration_path) %>"><%= link_to(edit_user_registration_path) do %><i class="fa fa-gear"></i><span class="hidden-tablet"> My Settings</span><% end %></li>	
+			<li class="<%= 'active' if current_page?(edit_user_registration_path) %>"><%= link_to(edit_user_registration_path) do %><i class="fa fa-gear"></i><span class="hidden-sm"> My Settings</span><% end %></li>	
 			
-			<li><%= link_to(destroy_user_session_path, method: :delete) do %><i class="fa fa-sign-out"></i><span class="hidden-tablet"> Sign Out</span><% end %></li>	
+			<li><%= link_to(destroy_user_session_path, method: :delete) do %><i class="fa fa-sign-out"></i><span class="hidden-sm"> Sign Out</span><% end %></li>	
 
 		</ul>
 	</div>
 </div>
+
+<% end %>
+
 
 <% end %>

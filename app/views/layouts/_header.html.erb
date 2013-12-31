@@ -1,29 +1,31 @@
 <% if user_signed_in? %>
+  
+  <header class="header">
+      <div class="sidebar-toggle-box">
+          <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+      </div>
+          
+      <%= link_to root_path, class: "logo" do %>
+        <span><font face="Open Sans">eCWellness: </font><font face="Rock Salt" color="#00334b">The Biggest Loser</font></span>
+      <% end %>
+            
+    
 
-  <div class="navbar">
-    <div class="navbar-inner">
-      <div class="container-fluid">
-        
-        <%= link_to root_path, class: "brand" do %>
-            <span>eCWellness: <font face="Rock Salt">The Biggest Loser</font></span>
-        <% end %>
-                                          
-        <div class="nav-no-collapse header-nav">                   
+      <div class="nav-no-collapse header-nav">                   
           <ul class="nav pull-right"> 
 
-            <li>
-              <%= link_to edit_user_registration_path, class: "btn btn-primary btn-large" do %><span class="fa fa-user"></span>  <%= current_user.name %><% end %>
-            </li>
+            
+
+            <%= link_to root_path, class: "logo" do %>
+              <span class="fa fa-user"></span>  <%= current_user.name %>
+            <% end %>
 
           </ul>
         </div>
-      </div>
-    </div>
-  </div>
+
+  </header>
 
 <% end %>
-
-
 
 
 

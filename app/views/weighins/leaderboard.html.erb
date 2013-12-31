@@ -1,14 +1,18 @@
-  <div id="content" class="span11">
-    <div class="container">
+  <section id="main-content">
+      <section class="wrapper">
       
 
-      <h1><i class="fa fa-trophy"></i> Leaderboard</h1>
+      <h1 class="title"><i class="fa fa-trophy"></i> Leaderboard</h1>
 
 <hr>
-<center><h2><b>Individual Rankings</b></h2></center>
 
 
-	<table class="table table-hover table-bordered table-center">
+
+	<div class="row">
+            <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">Individual Rankings</header>
+                <table class="table table-bordered table-advance table-hover">
         <thead>
           <tr style="background-color: #eeeeee">
             <th>Rank</th>
@@ -19,12 +23,14 @@
           </tr>
         </thead>
 
+        <% unless User.blank? %>
+
         <tbody>
         	<% sortedUsers = User.visible.withWeighins.sort_by {|u| u.overallWeightPercentChange } %>
           <% sortedUsers.each_with_index do |user, i| %>
             
             <% if current_user == user %>
-              <tr style="background-color: #E0FFFF">
+              <tr style="background-color: #e3f2ff">
             <% else %>
               <tr>
             <% end %>
@@ -41,14 +47,21 @@
           <% end %>
           
         </tbody>
+
+        <% end %>
+        
       </table>
 
+    </section>
+  </div></div>
 
-      <hr>
-      <center><h2><b>Team Rankings</b></h2></center>
 
 
-      <table class="table table-hover table-bordered table-center">
+      <div class="row">
+            <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">Team Rankings</header>
+                <table class="table table-bordered table-advance table-hover">
         <thead>
           <tr style="background-color: #eeeeee">
             <th>Rank</th>
@@ -57,12 +70,14 @@
           </tr>
         </thead>
 
+        <% unless Team.blank? %>
+
         <tbody>
           <% sortedTeams = Team.all.sort_by {|t| t.teamPercentLoss } %>
           <% sortedTeams.each_with_index do |team, i| %>
             
             <% if current_user.team == team %>
-              <tr style="background-color: #E0FFFF">
+              <tr style="background-color: #e3f2ff">
             <% else %>
               <tr>
             <% end %>
@@ -77,7 +92,10 @@
           <% end %>
           
         </tbody>
+
+        <% end %>
       </table>
+    </section></div></div>
 
 
  
@@ -85,7 +103,7 @@
 
 
 
-    </div>
-  </div>
+    </section>
+  </section>
 
 
