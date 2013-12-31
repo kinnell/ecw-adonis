@@ -8,7 +8,10 @@
 
 		   <%= devise_error_messages! %>
 
+		   <%= "Email Address:" if browser.ie? %>
 		   <%= f.email_field :email, class: "form-control", :placeholder => "Email address", :autofocus => true %>
+
+		   <%= "Password:" if browser.ie? %>
 		   <%= f.password_field :password, class: "form-control", :placeholder => "Password" %>
 
 		   <label class="checkbox"><%= f.check_box :remember_me, {checked: true} %> Remember Me</label>

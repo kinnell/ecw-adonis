@@ -7,9 +7,9 @@
                   <div class="fa fa-bars tooltips" style="color: white" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
 <div class="profile-nav" style="max-width: 210px;"><div class="user-heading round">
-                              <a href="#">
+                              <%= link_to(edit_user_registration_path) do %>
                                   <%= image_tag("user.jpg") %>
-                              </a>
+                              <% end %>
                               <h1><%= current_user.name %></h1>
                               <p>Competitor</p>
                           </div></div>
@@ -20,22 +20,23 @@
 
 
       <ul class="sidebar-menu" id="nav-accordion">
-          <li><%= link_to(root_path) do %>
+
+          <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to(root_path) do %>
                   <i class="fa fa-bar-chart-o"></i>
                   <span>My Progress</span>
           <% end %></a></li>
 
-          <li><%= link_to(teams_path) do %>
+          <li class="<%= 'active' if current_page?(teams_path) %>"><%= link_to(teams_path) do %>
                   <i class="fa fa-users"></i>
                   <span>My Team</span>
           <% end %></li>
 
-          <li><%= link_to(leaderboard_path) do %>
+          <li class="<%= 'active' if current_page?(leaderboard_path) %>"><%= link_to(leaderboard_path) do %>
                   <i class="fa fa-trophy"></i>
                   <span>Leaderboard</span>
           <% end %></li>
 
-          <li><%= link_to(edit_user_registration_path) do %>
+          <li class="<%= 'active' if current_page?(edit_user_registration_path) %>"><%= link_to(edit_user_registration_path) do %>
                   <i class="fa fa-gear"></i>
                   <span>My Settings</span>
           <% end %></li>

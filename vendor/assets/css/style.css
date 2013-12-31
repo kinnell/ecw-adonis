@@ -308,6 +308,28 @@ ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:fo
     transition: all 0.3s ease;
 }
 
+ul.sidebar-menu li.active, ul.sidebar-menu li:hover, ul.sidebar-menu li:focus {
+    background: #35404d;
+    color: #fff;
+    display: block;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+
+}
+
+ul.sidebar-menu li.active i {
+    color: #FF6C60;
+}
+
+
+
+
 
 ul.sidebar-menu li a i {
     font-size: 15px;

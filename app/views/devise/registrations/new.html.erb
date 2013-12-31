@@ -18,10 +18,17 @@
    
    	<div class="login-wrap">
 
+   		<%= "Your Name:" if browser.ie? %> 	
+   		<%= f.text_field :name, class: "form-control", :placeholder => "Your Name", :autofocus => true %>
 
-		   <%= f.text_field :name, class: "form-control", :placeholder => "Your Name", :autofocus => true %>
+   		
+
+		   <%= "Your Email:" if browser.ie? %>
 		   <%= f.email_field :email, class: "form-control", :placeholder => "Your Email" %>
+
+		   <%= "Your Password:" if browser.ie? %>
 		   <%= f.password_field :password, class: "form-control", :placeholder => "Your Password" %>
+		   
 		   
 		   <%= f.select(:location, ["Westborough, MA", "New York City, NY", "Pleasanton, CA", "Alpharetta, GA", "Chicago, IL", "Remote"], {}, { :class => 'form-control m-bot15' }) %>
 			

@@ -47,6 +47,8 @@ gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 
 gem 'newrelic_rpm'
 
+gem "browser"
+
 # gem 'protected_attributes'
 
 # Use ActiveModel has_secure_password
