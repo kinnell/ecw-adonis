@@ -1,3 +1,16 @@
+<script type="text/javascript">
+  $(document).ready(function () {
+    <% unless devise_error_messages!.blank? %>
+
+      <% devise_error_messages!.each do |content| %>
+        noty({text:'<%= content %>', type: 'error', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});      
+      <% end %>
+
+    <% end %>
+  });
+</script>
+
+
 <div class="container">
   
   <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => 'form-signin'}) do |f| %>
@@ -6,7 +19,7 @@
    
     <div class="login-wrap">
 
-       <%= devise_error_messages! %>
+       
 
        <%= f.email_field :email, class: "form-control", :placeholder => "Email address", :autofocus => true %>
       
