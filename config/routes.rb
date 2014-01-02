@@ -25,6 +25,7 @@ Adonis::Application.routes.draw do
 
   get "leaderboard", to: "weighins#leaderboard"
   get "progress", to: "weighins#progress"
+  get "directory", to: "weighins#directory"
   get "teams", to: "teams#index"
 
   # Example of regular route:

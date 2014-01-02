@@ -1,0 +1,80 @@
+  <section id="main-content">
+      <section class="wrapper">
+      
+
+      <h1 class="title"><i class="fa fa-user"></i> Users</h1>
+
+<hr>
+
+
+
+	<div class="row">
+            <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">Users</header>
+                <table class="table table-bordered table-advance table-hover">
+        <thead>
+          <tr style="background-color: #eeeeee">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email Address</th>
+            <th>Location</th>
+            <th>Team</th>
+            <th>Admin?</th>
+            <th>Paid?</th>
+            <th>Actions</th>
+
+          </tr>
+        </thead>
+
+        <% unless User.blank? %>
+
+        <tbody>
+        	
+          <% User.all.each do |user| %>
+            
+            
+              <tr>
+            
+
+             
+            	<td><%= user.id %></td>            	
+            	<td><%= user.name %></td>
+              <td><%= user.email %></td>
+			        <td><%= user.location %></td>
+              <td><%= user.team.name if user.team %></td>
+              <td><%= user.admin %></td>
+            	<td><%= user.paid %></td>
+              <td>
+
+
+
+
+              </td>
+
+            </tr>
+
+          <% end %>
+          
+        </tbody>
+
+        <% end %>
+        
+      </table>
+
+    </section>
+  </div></div>
+
+
+
+      
+
+ 
+
+
+
+
+    </section>
+  </section>
+
+

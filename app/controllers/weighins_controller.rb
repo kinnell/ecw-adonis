@@ -19,6 +19,8 @@ class WeighinsController < ApplicationController
 
   end
 
+  def directory
+  end
 
 
   def new

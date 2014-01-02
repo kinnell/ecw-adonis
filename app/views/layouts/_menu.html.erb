@@ -6,20 +6,26 @@
   <div class="sidebar-toggle-box">
                   <div class="fa fa-bars tooltips" style="color: white" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
-<div class="profile-nav" style="max-width: 210px;"><div class="user-heading round">
+
+ 
+
+
+                          
+                        
+  <div id="sidebar"  class="nav-collapse">
+
+   
+
+      <ul class="sidebar-menu" id="nav-accordion">
+
+        <div class="profile-nav" style="max-width: 210px;"><div class="user-heading round" style="<%= 'background-color: #ff6c60;' if current_user.admin? %>">
                               <%= link_to(edit_user_registration_path) do %>
                                   <%= image_tag("user.jpg") %>
                               <% end %>
                               <h1><%= current_user.name %></h1>
-                              <p>Competitor</p>
+                              <p><%= 'Administrator' if current_user.admin? %><%= 'Competitor' unless current_user.admin? %></p>
                           </div></div>
-
                           <br>
-                        
-  <div id="sidebar"  class="nav-collapse">
-
-
-      <ul class="sidebar-menu" id="nav-accordion">
 
           <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to(root_path) do %>
                   <i class="fa fa-bar-chart-o"></i>
