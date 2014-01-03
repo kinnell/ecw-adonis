@@ -1,0 +1,85 @@
+<section id="main-content">
+  <section class="wrapper">
+    <h1 class="title"><i class="fa fa-user"></i> User: <%= @user.name %></h1>
+    <hr>
+
+
+   <div class="row">
+    <div class="col-lg-12">
+      <section class="panel">
+        
+        <header class="panel-heading">Weigh-Ins</header>
+        
+        <table class="table table-bordered table-advance table-hover">
+              
+          <thead>
+            <tr style="background-color: #eeeeee">
+              <th>#</th>
+              <th>Week #</th>
+              <th style="text-align: left">Date</th>
+              <th>Weight</th>
+              <th>Total Change Since Start</th>
+              <th>Weigh-In Type</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @user.weighins.each do |weighin| %>
+            <tr> 
+                
+                <td><%= weighin.weighinNum %></td>
+                <td><%= "#{weighin.weighinWeek}" %></td>
+                <td style="text-align: left"><%= weighin.printCreatedAt %></td>
+                <td><%= weighin.weight %> lbs</td>                
+                <td><%= weighin.printWeightTotalChange %></td>
+                <td>
+                  <% if weighin.verified? %>
+                    <span class="label label-success label-mini">Verified</span>
+                  <% else %>
+                    <span class="label label-info label-mini">Personal</span>
+                  <% end %>
+                </td>
+                <td>
+
+                  <% if current_user.admin? %> 
+                    <% if weighin.verified? %>
+                        <%= link_to unverify_weighin_path(weighin), class: "btn-xs btn btn-success" do %><i class="fa fa-check-square-o"></i><% end %>
+                    <% else %>
+                        <%= link_to verify_weighin_path(weighin), class: "btn-xs btn btn-success" do %><i class="fa fa-square-o"></i><% end %>
+                    <% end %>                
+                    
+                    <%= link_to edit_weighin_path(weighin), class: "btn-xs btn btn-info" do %><i class="fa fa-edit"></i><% end %>
+
+                    <%= link_to weighin, class: "btn-xs btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
+                  
+                  <% else %>
+
+                    <% unless weighin.verified? %>
+                        <%= link_to weighin, class: "btn-xs btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
+                    <% end %>
+
+                  <% end %>
+                  
+                </td>
+
+            </tr>
+            <% end %>
+          
+          </tbody>
+
+        </table>
+
+      </section>
+    </div>
+  </div>
+
+
+    </section>
+  </section>
+
+
+
+
+
+

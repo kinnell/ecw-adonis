@@ -7,6 +7,7 @@ class TeamsController < ApplicationController
   end
 
   def show
+    @team = Team.find(params[:id])
   end
 
   def new
@@ -16,11 +17,14 @@ class TeamsController < ApplicationController
   def edit
   end
 
+  def listing
+  end
+
 
   def create
     @team = Team.new(team_params)
     if @team.save
-      redirect_to teams_url, notice: 'Team was successfully created.'
+      redirect_to listing_url, notice: 'Team was successfully created.'
     else
       render action: 'new'
     end
@@ -28,7 +32,7 @@ class TeamsController < ApplicationController
 
   def update
       if @team.update(team_params)
-        redirect_to teams_url, notice: 'Team was successfully updated.'
+        redirect_to listing_url, notice: 'Team was successfully updated.'
       else
         render action: 'edit'
       end
@@ -36,7 +40,7 @@ class TeamsController < ApplicationController
 
   def destroy
     @team.destroy
-      redirect_to teams_url
+      redirect_to listing_url, notice: 'Team was successfully deleted.'
   end
 
   def join

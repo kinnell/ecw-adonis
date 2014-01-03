@@ -12,24 +12,18 @@
           
           <div class="modal-body">
             
-              <!-- Error Printing -->
-              <% if @weighin.errors.any? %>
-                <div id="error_explanation">
-                  <ul>
-                    <% @weighin.errors.full_messages.each do |msg| %>
-                     <script type="text/javascript">
-                    $(document).ready(function () {
-                      noty({text:'<%= msg %>', type: 'information', layout: 'topCenter', timeout: 5000, dismissQueue: true, animateOpen: {opacity: 'show'}});  
-                    });
-                    </script>
-                    <% end %>
-                  </ul>
-                </div>
-              <% end %>
+          <!-- Prints Errors -->
+          <% if @weighin.errors.any? %>
+            <% @weighin.errors.full_messages.each do |msg| %>
+                <script>$(document).ready(function () {
+                  noty({text:'<%= msg %>', type: 'error', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});});
+                </script>
+            <% end %>               
+          <% end %>
 
               
               
-              <div style="text-align: center;"> Weight (lbs): <%= f.number_field :weight, class: "form-control", autofocus: true %></div>
+            <div style="text-align: center;"> Weight (lbs): <%= f.number_field :weight, class: "form-control", autofocus: true %></div>
                                 
           </div>
 

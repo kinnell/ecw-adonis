@@ -11,7 +11,7 @@ class WeighinsController < ApplicationController
     @weighins = Weighin.all
   end
 
-  def progress
+  def myProgress
     @weighins = current_user.weighins
   end
 
@@ -55,16 +55,53 @@ class WeighinsController < ApplicationController
   def verify
     @weighin = Weighin.find(params[:id])
     if @weighin.update_attributes(:verified => true)
-      redirect_to weighins_url, notice: 'Weigh-in was verified.'
+      redirect_to :back, notice: 'Weigh-in was verified.'
     end 
   end
 
   def unverify
     @weighin = Weighin.find(params[:id])
     if @weighin.update_attributes(:verified => false)
-      redirect_to weighins_url, notice: 'Weigh-in was unverified.'
+      redirect_to :back, notice: 'Weigh-in was unverified.'
     end 
   end
+
+  def promote
+    @user = User.find(params[:id])
+    if @user.update_attributes(:admin => true)
+      redirect_to :back, notice: 'User was promoted to Admin.'
+    end 
+  end
+
+  def demote
+    @user = User.find(params[:id])
+    if @user.update_attributes(:admin => false)
+      redirect_to :back, notice: 'Admin was demoted to User.'
+    end
+  end
+
+  def destroyUser
+    @user = User.find(params[:id])
+
+    if @user.destroy
+        redirect_to :back, notice: "User was deleted."
+    end
+  end
+
+  def hasPaid
+    @user = User.find(params[:id])
+    if @user.update_attributes(:paid => true)
+      redirect_to :back, notice: 'User has been set to have paid.'
+    end 
+  end
+
+  def hasNotPaid
+    @user = User.find(params[:id])
+    if @user.update_attributes(:paid => false)
+      redirect_to :back, notice: 'User has been set to have not paid.'
+    end
+  end
+
 
 
   private

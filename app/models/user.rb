@@ -29,7 +29,11 @@ class User < ActiveRecord::Base
 		end
 		
 		return usersWithWeighins
+	end
 
+	def hasVerifiedWeighin
+		return false if weighins.where(verified: true).blank?
+		return true
 	end
 
 end

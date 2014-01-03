@@ -1,91 +1,63 @@
 <% if user_signed_in? %>
 
-
-
 <aside>
-  <div class="sidebar-toggle-box" style="position: fixed;">
-                  <div class="fa fa-bars tooltips" style="color: #00334b" data-placement="right" data-original-title="Toggle Navigation"></div>
-              </div>
-
- 
-
-
-                          
-                        
+  <div class="sidebar-toggle-box" style="position: absolute; margin-top: 15px;">
+    <div class="fa fa-bars tooltips" style="color: #00334b" data-placement="right" data-original-title="Toggle Navigation"></div>
+  </div>
+                      
   <div id="sidebar"  class="nav-collapse">
 
-   
+    <ul class="sidebar-menu" id="nav-accordion">
 
-      <ul class="sidebar-menu" id="nav-accordion">
+      <div class="profile-nav" style="max-width: 210px;"><div class="user-heading round" style="<%= 'background-color: #ff6c60;' if current_user.admin? %>">
+        
+        <%= link_to(edit_user_registration_path) do %><%= image_tag("user.jpg") %><% end %>
+        <h1><%= current_user.name %></h1>
+        <p><%= 'Administrator' if current_user.admin? %><%= 'Competitor' unless current_user.admin? %></p>
+        </div></div>
+        
+        <br>
 
-        <div class="profile-nav" style="max-width: 210px;"><div class="user-heading round" style="<%= 'background-color: #ff6c60;' if current_user.admin? %>">
-                              <%= link_to(edit_user_registration_path) do %>
-                                  <%= image_tag("user.jpg") %>
-                              <% end %>
-                              <h1><%= current_user.name %></h1>
-                              <p><%= 'Administrator' if current_user.admin? %><%= 'Competitor' unless current_user.admin? %></p>
-                          </div></div>
-                          <br>
+        <% if current_user.admin? %>
 
+            <li class="<%= 'active' if current_page?(directory_path) %>"><%= link_to(directory_path) do %><i class="fa fa-user"></i><span>User Directory</span>
+            <% end %></a></li>
 
-          <% if current_user.admin? %>
-            <li class="<%= 'active' if current_page?(directory_path) %>"><%= link_to(directory_path) do %>
-                  <i class="fa fa-user"></i>
-                  <span>User Directory</span>
-          <% end %></a></li>
+            <li class="<%= 'active' if current_page?(listing_path) %>"><%= link_to(listing_path) do %><i class="fa fa-users"></i><span>Team Directory</span>
+            <% end %></a></li>
 
-          <% end %>
+            <hr style="border-top: 1px solid #666; opacity: 0.3;">
+
+        <% end %>
+
 
           <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to(root_path) do %>
-                  <i class="fa fa-bar-chart-o"></i>
-                  <span>My Progress</span>
+            <i class="fa fa-bar-chart-o"></i>
+            <span>My Progress</span>
           <% end %></a></li>
 
           <li class="<%= 'active' if current_page?(teams_path) %>"><%= link_to(teams_path) do %>
-                  <i class="fa fa-users"></i>
-                  <span>My Team</span>
+            <i class="fa fa-users"></i>
+            <span>My Team</span>
           <% end %></li>
 
           <li class="<%= 'active' if current_page?(leaderboard_path) %>"><%= link_to(leaderboard_path) do %>
-                  <i class="fa fa-trophy"></i>
-                  <span>Leaderboard</span>
+            <i class="fa fa-trophy"></i>
+            <span>Leaderboard</span>
           <% end %></li>
 
           <li class="<%= 'active' if current_page?(edit_user_registration_path) %>"><%= link_to(edit_user_registration_path) do %>
-                  <i class="fa fa-gear"></i>
-                  <span>My Settings</span>
+            <i class="fa fa-gear"></i>
+            <span>My Settings</span>
           <% end %></li>
 
           <li><%= link_to(destroy_user_session_path, method: :delete) do %>
-                  <i class="fa fa-sign-out"></i>
-                  <span>Sign Out</span>
+            <i class="fa fa-sign-out"></i>
+            <span>Sign Out</span>
           <% end %></li>
                 
       </ul>
   </div>
 </aside>
-
-<% if false %>
-
-<div id="sidebar-left" class="span1" style="width: 8%">
-	<div class="nav-collapse sidebar-nav">
-		<ul class="nav nav-tabs nav-stacked main-menu">
-						
-			<li class="<%= 'active' if current_page?(root_path) %>"><%= link_to(root_path) do %><i class="fa fa-bar-chart-o"></i><span class="hidden-sm"> My Progress</span><% end %></li>
-
-			<li class="<%= 'active' if current_page?(teams_path) %>"><%= link_to(teams_path) do %><i class="fa fa-users"></i><span class="hidden-sm"> My Team</span><% end %></li>
-			
-			<li class="<%= 'active' if current_page?(leaderboard_path) %>"><%= link_to(leaderboard_path) do %><i class="fa fa-trophy"></i><span class="hidden-sm"> Leaderboard</span><% end %></li>
-			
-			<li class="<%= 'active' if current_page?(edit_user_registration_path) %>"><%= link_to(edit_user_registration_path) do %><i class="fa fa-gear"></i><span class="hidden-sm"> My Settings</span><% end %></li>	
-			
-			<li><%= link_to(destroy_user_session_path, method: :delete) do %><i class="fa fa-sign-out"></i><span class="hidden-sm"> Sign Out</span><% end %></li>	
-
-		</ul>
-	</div>
-</div>
-
-<% end %>
-
 
 <% end %>

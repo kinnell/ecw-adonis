@@ -1,10 +1,12 @@
 Adonis::Application.routes.draw do
 
-  resources :teams
-
-  resources :weighins
 
   devise_for :users
+  resources :users
+
+  resources :teams
+  resources :weighins
+
 #  devise_for :users, :controllers => { :sessions => 'users/sessions' } 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -12,11 +14,10 @@ Adonis::Application.routes.draw do
   # You can have the root of your site routed with "root"
   
   authenticated :user do
-    root :to => "weighins#index", as: :authenticated_root
+    root :to => "weighins#myProgress", as: :authenticated_root
   end
     root :to => "pages#home"
   
-
   get "weighins/:id/verify" => "weighins#verify", :as => "verify_weighin"
   get "weighins/:id/unverify" => "weighins#unverify", :as => "unverify_weighin"
 
@@ -25,11 +26,18 @@ Adonis::Application.routes.draw do
 
   get "leaderboard", to: "weighins#leaderboard"
   get "progress", to: "weighins#progress"
-  get "directory", to: "weighins#directory"
+  get "directory", to: "users#index"
   get "teams", to: "teams#index"
+  get "listing", to: "teams#listing"
 
-  get '/users/:id' => 'users#show', :as => :user
+  get 'users/:id' => 'users#show'
+  get "users/:id/promote" => "weighins#promote", :as => "promote_user"
+  get "users/:id/demote" => "weighins#demote", :as => "demote_user"
+  get "users/:id/hasPaid" => "weighins#hasPaid", :as => "hasPaid_user"
+  get "users/:id/hasNotPaid" => "weighins#hasNotPaid", :as => "hasNotPaid_user"
+  get "users/:id/destroyUser" => "weighins#destroyUser", :as => "destroy_user"
 
+ 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

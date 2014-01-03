@@ -1,6 +1,40 @@
-<h1>Editing team</h1>
+  <section id="main-content">
+      <section class="wrapper">
+    <h1 class="title"><span class="fa fa-plus"></span> Edit Team</h1>
 
-<%= render 'form' %>
+    <%= form_for(@team) do |f| %>
 
-<%= link_to 'Show', @team %> |
-<%= link_to 'Back', teams_path %>
+      <% if @team.errors.any? %>
+                <% @team.errors.full_messages.each do |msg| %>
+                    <script>
+                    $(document).ready(function () {
+                      noty({text:'<%= msg %>', type: 'warning', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});  
+                    });
+                    </script>
+                    <% end %>
+                  </ul>
+                
+              <% end %>
+
+        <table>
+          <tr>
+            <td style="vertical-align: middle; padding: 10px 0 10px 0; font-size: 13px;">Team Name: </td>
+            <td><%= f.text_field :name, class: "form-control", style: "padding: 5px 10px 5px 10px; float: left; margin: 0px; margin-left: 10px;", :autofocus => true %></td>
+          </tr>
+          
+
+        </table>
+
+
+      <div class="form-group" style="padding: 10px 0 0 0;">
+        <%= f.submit "Save", class: "btn btn-primary" %>
+      </div>
+
+      <hr>
+      
+
+
+    <% end %>
+
+</section>
+</section>
