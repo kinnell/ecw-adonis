@@ -28,6 +28,8 @@ Adonis::Application.routes.draw do
   get "directory", to: "weighins#directory"
   get "teams", to: "teams#index"
 
+  get '/users/:id' => 'users#show', :as => :user
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

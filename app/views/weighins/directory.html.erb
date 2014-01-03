@@ -1,5 +1,13 @@
+  <% if current_user.admin? %>
+
+
+
   <section id="main-content">
+
       <section class="wrapper">
+
+
+    
       
 
       <h1 class="title"><i class="fa fa-user"></i> Users</h1>
@@ -19,7 +27,6 @@
             <th>Name</th>
             <th>Email Address</th>
             <th>Location</th>
-            <th>Team</th>
             <th>Admin?</th>
             <th>Paid?</th>
             <th>Actions</th>
@@ -42,11 +49,30 @@
             	<td><%= user.name %></td>
               <td><%= user.email %></td>
 			        <td><%= user.location %></td>
-              <td><%= user.team.name if user.team %></td>
-              <td><%= user.admin %></td>
-            	<td><%= user.paid %></td>
               <td>
 
+                    <% if user.admin? %>
+                        <span class="label label-success label-mini">Admin</span>
+                    <% else %>
+                        <span class="label label-info label-mini">User</span>
+                    <% end %>
+              </td>
+            	<td>
+                    <% if user.paid? %>
+                        <span class="label label-success label-mini">Paid</span>
+                    <% else %>
+                        <span class="label label-warning label-mini">Unpaid</span>
+                    <% end %>
+
+
+              </td>
+              <td>
+
+                <%= link_to class: "btn-xs btn btn-default", data: { confirm: 'Are you sure?' } do %><i class="fa fa-dollar "></i><% end %>
+
+                <%= link_to class: "btn-xs btn btn-info", data: { confirm: 'Are you sure?' } do %><i class="fa fa-arrow-up "></i><% end %>
+
+                <%= link_to class: "btn-xs btn btn-danger", data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
 
 
 
@@ -77,4 +103,5 @@
     </section>
   </section>
 
+<% end %>
 
