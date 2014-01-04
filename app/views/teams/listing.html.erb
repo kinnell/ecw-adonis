@@ -24,7 +24,7 @@
   <div class="row">
             <div class="col-lg-12">
             <section class="panel">
-                <header class="panel-heading">Teams</header>
+                <header class="panel-heading">Teams <%= "(#{Team.all.count})" %></header>
                 <table class="table table-bordered table-advance table-hover">
         <thead>
                 <tr style="background-color: #eeeeee">
@@ -37,6 +37,8 @@
               </thead>
 
               <tbody>
+
+                
                 <% Team.all.each do |team| %>
                   
                   

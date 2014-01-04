@@ -1,6 +1,6 @@
 <section id="main-content">
 	<section class="wrapper">
-		<h1 class="title"><i class="fa fa-users"></i> Team: <%= @team.name %><button class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#addTeam"><span class="fa fa-plus"></span> Add Member</button></h1>
+		<h1 class="title"><i class="fa fa-users"></i> Team: <%= @team.name %></h1>
 		<hr>
 
 
@@ -17,7 +17,7 @@
                   <th>#</th>
                   <th>Member Name</th>
                   <th>Email Address</th>
-                  <th>Overall Percent Weight Loss</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
 
@@ -27,9 +27,9 @@
                   <tr>
 
                     <td><%= i+1 %></td>             
-                    <td><%= member.name %></td>
+                    <td><%= link_to member.name, member %></td>
                     <td><%= member.email %></td>
-                    <td><%= printWeightPercentChange(member.overallWeightPercentChange) %></td>
+                    <td></td>
 
                       
                   </tr>

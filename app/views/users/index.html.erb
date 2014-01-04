@@ -1,26 +1,14 @@
-  <% if current_user.admin? %>
-
-
-
-
+<% if current_user.admin? %>
   <section id="main-content">
+    <section class="wrapper">
 
-      <section class="wrapper">
-
-
-    
+      <h1 class="title"><i class="fa fa-user"></i> User Directory</h1>
       
-
-      <h1 class="title"><i class="fa fa-user"></i> Users
-
-
-</h1>
-
-<hr>
+      <hr>
 
 
 
-	<div class="row">
+      	<div class="row">
             <div class="col-lg-12">
             <section class="panel">
                 <header class="panel-heading">Users <%= "(#{User.all.count})" %></header>
@@ -31,7 +19,7 @@
             <th>Name</th>
             <th>Email Address</th>
             <th>Location</th>
-            <th>Verified Weighins?</th>
+            <th>Verified?</th>
             <th>Paid?</th>
             <th>Admin?</th>
             <th>Actions</th>
@@ -43,7 +31,8 @@
 
         <tbody>
         	
-          <% User.all.each do |user| %>
+          <% sortedUsers = User.all.sort_by {|u| u.id } %>
+          <% sortedUsers.each do |user| %>
             
             
               <tr>
@@ -56,7 +45,7 @@
 			        <td><%= user.location %></td>
               <td>
                     <% if user.hasVerifiedWeighin %>
-                        <span class="label label-success label-mini">Verified</span>
+                        <span class="label label-primary label-mini">Verified</span>
                     <% else %>
                         <span class="label label-default label-mini">None</span>
                     <% end %>
@@ -65,16 +54,16 @@
                     <% if user.paid? %>
                         <span class="label label-success label-mini">Paid</span>
                     <% else %>
-                        <span class="label label-warning label-mini">Unpaid</span>
+                        <span class="label label-default label-mini">Unpaid</span>
                     <% end %>
               </td>
 
               <td>
 
                     <% if user.admin? %>
-                        <span class="label label-success label-mini">Admin</span>
+                        <span class="label label-warning label-mini">Admin</span>
                     <% else %>
-                        <span class="label label-info label-mini">User</span>
+                        <span class="label label-default label-mini">User</span>
                     <% end %>
               </td>
               <td>
@@ -96,11 +85,11 @@
 
                 <% if user.admin? %>
 
-                  <%= link_to demote_user_path(user), class: "btn-xs btn btn-info" do %><i class="fa fa-arrow-down"></i><% end %>
+                  <%= link_to demote_user_path(user), class: "btn-xs btn btn-warning" do %><i class="fa fa-arrow-down"></i><% end %>
 
                 <% else %>
 
-                  <%= link_to promote_user_path(user), class: "btn-xs btn btn-success" do %><i class="fa fa-arrow-up"></i><% end %>
+                  <%= link_to promote_user_path(user), class: "btn-xs btn btn-default" do %><i class="fa fa-arrow-up"></i><% end %>
 
                 <% end %>
 

@@ -33,7 +33,7 @@ class WeighinsController < ApplicationController
   def create
     @weighin = current_user.weighins.build(weighin_params)
     if @weighin.save
-      redirect_to weighins_url, notice: 'Weigh-in was successfully added.'
+      redirect_to :back, notice: 'Weigh-in was successfully added.'
     else
       render action: 'new'
     end
@@ -41,7 +41,7 @@ class WeighinsController < ApplicationController
 
   def update
     if @weighin.update(weighin_params)
-      redirect_to weighins_url, notice: 'Weigh-in was successfully editted.'
+      redirect_to :back, notice: 'Weigh-in was successfully editted.'
     else
       render action: 'edit'
     end  
@@ -49,7 +49,7 @@ class WeighinsController < ApplicationController
 
   def destroy
     @weighin.destroy
-    redirect_to weighins_url, notice: 'Weigh-in was successfully deleted.'
+    redirect_to :back, notice: 'Weigh-in was successfully deleted.'
   end
 
   def verify

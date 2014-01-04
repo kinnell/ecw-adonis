@@ -49,6 +49,8 @@ gem 'newrelic_rpm'
 
 gem "browser"
 
+gem 'rails-backup-migrate'
+
 # gem 'protected_attributes'
 
 # Use ActiveModel has_secure_password
