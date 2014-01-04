@@ -48,7 +48,7 @@
             </div>
         </div>
 
-      
+
   	
       	<div class="form-group">
             <label class="col-lg-2 col-sm-2 control-label">Team:</label>
@@ -71,7 +71,8 @@
         <div class="form-group">
           <div class="col-lg-offset-2 col-lg-10">
               <label class="switch switch-primary">
-                <%= f.check_box :paid, {:class => "switch-input"} %>
+
+                <%= f.check_box :paid, {:class => "switch-input", :disabled => (@user == current_user)}  %>
                 <span class="switch-label" data-on="Yes" data-off="No"></span>
                 <span class="switch-handle"></span>
               </label>
@@ -82,7 +83,7 @@
         <div class="form-group">
           <div class="col-lg-offset-2 col-lg-10">
               <label class="switch switch-primary">
-                <%= f.check_box :admin, {:class => "switch-input"} %>
+                <%= f.check_box :admin, {:class => "switch-input", :disabled => (@user == current_user)} %>
                 <span class="switch-label" data-on="Yes" data-off="No"></span>
                 <span class="switch-handle"></span>
               </label>
