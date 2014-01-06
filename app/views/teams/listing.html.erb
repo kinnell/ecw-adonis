@@ -52,7 +52,7 @@
                     <td>
                       <% team.membership.each_with_index do |member, i| %>
                         <% if (i > 0) && (team.membership.size > 1) %>|<% end %>
-                        <%= member.name %>
+                        <%= link_to member.name, member %>
                       <% end %>
                     </td>
                     <td>
