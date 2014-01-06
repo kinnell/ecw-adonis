@@ -15,10 +15,11 @@
 
   <hr>
 
-  <%= content_tag :div, "", id: "weight_chart", data: {weighins: current_user.weighins} %>
-
-  <br>
-
+  <div class="row"><div class="col-lg-12"><section class="panel">
+        <header class="panel-heading">Weight Change</header>
+        <%= content_tag :div, "", id: "weight_chart", data: {weighins: current_user.weighins} %>
+  </section></div></div>
+  
   <div class="row">
     <div class="col-lg-12">
       <section class="panel">
@@ -57,24 +58,10 @@
                 </td>
                 <td>
 
-                  <% if current_user.admin? %> 
-                    <% if weighin.verified? %>
-                        <%= link_to unverify_weighin_path(weighin), class: "btn-xs btn btn-success" do %><i class="fa fa-check-square-o"></i><% end %>
-                    <% else %>
-                        <%= link_to verify_weighin_path(weighin), class: "btn-xs btn btn-success" do %><i class="fa fa-square-o"></i><% end %>
-                    <% end %>                
-                    
-                    <%= link_to edit_weighin_path(weighin), class: "btn-xs btn btn-info" do %><i class="fa fa-edit"></i><% end %>
-
-                    <%= link_to weighin, class: "btn-xs btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
-                  
-                  <% else %>
 
                     <% unless weighin.verified? %>
                         <%= link_to weighin, class: "btn-xs btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
                     <% end %>
-
-                  <% end %>
                   
                 </td>
 
@@ -89,15 +76,14 @@
     </div>
   </div>
 
+  <div class="row"><div class="col-lg-12"><section class="panel">
+          <header class="panel-heading">Weight Change in Percent</header>
+          <%= content_tag :div, "", id: "percent_chart", data: {weighins: Weighin.allWeightPercentTotalChanges(current_user)} %>
+  </section></div></div>
+  
 
-  <br>
 
 
-<% if false %>
-<center><h2><b>Percent Change from Initial Weigh-in</b></h2></center>
-<%= content_tag :div, "", id: "percent_chart", data: {weighins: Weighin.allWeightPercentTotalChanges(current_user)} %>
-
-<% end %>
 
 
 

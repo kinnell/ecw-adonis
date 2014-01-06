@@ -25,17 +25,16 @@ Adonis::Application.routes.draw do
   get "teams/:id/leave" => "teams#leave", :as => "leave_team"
 
   get "leaderboard", to: "weighins#leaderboard"
-  get "progress", to: "weighins#progress"
   get "directory", to: "users#index"
   get "teams", to: "teams#index"
   get "listing", to: "teams#listing"
 
   get 'users/:id' => 'users#show'
-  get "users/:id/promote" => "weighins#promote", :as => "promote_user"
-  get "users/:id/demote" => "weighins#demote", :as => "demote_user"
-  get "users/:id/hasPaid" => "weighins#hasPaid", :as => "hasPaid_user"
-  get "users/:id/hasNotPaid" => "weighins#hasNotPaid", :as => "hasNotPaid_user"
-  get "users/:id/destroyUser" => "weighins#destroyUser", :as => "destroy_user"
+  get "users/:id/promote" => "users#promote", :as => "promote_user"
+  get "users/:id/demote" => "users#demote", :as => "demote_user"
+  get "users/:id/hasPaid" => "users#hasPaid", :as => "hasPaid_user"
+  get "users/:id/hasNotPaid" => "users#hasNotPaid", :as => "hasNotPaid_user"
+  get "users/:id/destroyUser" => "users#destroyUser", :as => "destroy_user"
 
  
   # Example of regular route:
