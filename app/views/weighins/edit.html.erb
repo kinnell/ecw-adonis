@@ -19,7 +19,7 @@
           <div class="form-group">
             <label class="col-lg-2 col-sm-2 control-label">Your Weight (lbs):</label>
             <div class="col-lg-10">
-              <%= f.number_field :weight, class: "form-control" %>                 
+              <%= f.number_field :weight, :min => 1, class: "form-control" %>                 
             </div>
           </div>
 
