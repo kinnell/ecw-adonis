@@ -70,7 +70,8 @@
 
                 <% unless user == current_user %>
 
-                <button class="btn-xs btn btn-primary" data-toggle="modal" data-target="#addWeighin2"><span class="fa fa-plus"></span></button>
+                <%= link_to user, class: "btn-xs btn btn-info" do %><i class="fa fa-pencil "></i><% end %>
+
 
                 <% unless user.paid? %>
 

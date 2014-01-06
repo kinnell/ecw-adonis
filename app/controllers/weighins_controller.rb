@@ -27,17 +27,21 @@ class WeighinsController < ApplicationController
     @weighin = current_user.weighins.build
   end
 
+
   def edit
   end
 
   def create
-    @weighin = current_user.weighins.build(weighin_params)
+    @weighin = Weighin.new(weighin_params)
+
+    @weighin.user = current_user if @weighin.user == nil
     if @weighin.save
       redirect_to :back, notice: 'Weigh-in was successfully added.'
     else
-      render action: 'new'
+      redirect_to :back, notice: 'Weigh-in weight was invalid'
     end
   end
+
 
   def update
     if @weighin.update(weighin_params)
@@ -110,13 +114,13 @@ class WeighinsController < ApplicationController
       @weighin = Weighin.find(params[:id])
     end
 
-    def correct_user
-      @weighin = current_user.weighin.find_by(id: params[:id])
-      redirect_to weighin_path, notice: "Not authorized to edit this weighin" if @pin.nil?
-    end
+    # def correct_user
+    #  @weighin = current_user.weighin.find_by(id: params[:id])
+    #  redirect_to weighin_path, notice: "Not authorized to edit this weighin" if @pin.nil?
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def weighin_params
-      params.require(:weighin).permit(:weight)
+      params.require(:weighin).permit(:weight, :user_id, :verified)
     end
 end
