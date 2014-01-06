@@ -1,0 +1,16 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+      <% flash.each do |name, msg| %>
+        noty({text:'<%= msg %>', 
+              type: 'information', 
+              layout: 'topCenter', 
+              timeout: 5000, 
+              animation: {
+                open: {height: 'toggle'}, 
+                close: {height: 'toggle'}, 
+                easing: 'swing', 
+                speed: 200}}
+        );     
+      <% end %>
+    });
+</script>
