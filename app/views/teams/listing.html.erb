@@ -29,8 +29,8 @@
         <thead>
                 <tr style="background-color: #eeeeee">
                   <th>ID</th>
-                  <th>Team Name</th>
-                  <th>Number of Members</th>
+                  <th>Name</th>
+                  <th>Size</th>
                   <th>Members</th>
                   <th>Action</th>
                 </tr>
@@ -59,7 +59,7 @@
 
                       <%= link_to edit_team_path(team), class: "btn-xs btn btn-info" do %><i class="fa fa-pencil "></i><% end %>
 
-                     <%= link_to team, class: "btn-xs btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
+                      <%= link_to team, class: "btn-xs btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
 
                       </td>
                       
