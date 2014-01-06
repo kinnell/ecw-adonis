@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :check_if_admin
 
 	def index
 	 @users = User.all
@@ -14,7 +15,6 @@ class UsersController < ApplicationController
 			redirect_to :back, notice: 'User was updated.'
 		end
 	end
-
 
   def promote
     @user = User.find(params[:id])
@@ -32,7 +32,6 @@ class UsersController < ApplicationController
 
   def destroyUser
     @user = User.find(params[:id])
-
     if @user.destroy
         redirect_to :back, notice: "User was deleted."
     end
@@ -51,7 +50,6 @@ class UsersController < ApplicationController
       redirect_to :back, notice: 'User has been set to have not paid.'
     end
   end
-
 
 
 	private

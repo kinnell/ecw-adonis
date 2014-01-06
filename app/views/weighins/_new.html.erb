@@ -15,13 +15,15 @@
             <div style="text-align: center;"> Weight (lbs): <%= f.number_field :weight, :min => 1, class: "form-control", autofocus: true %></div> 
 
             <%= f.hidden_field :user_id, :value => @user.id %>
-            <%= f.hidden_field :verified, :value => verified %>
-                                
+
+            <%= f.hidden_field :verified, :value => ((current_user.admin?) && (@user != current_user)) %>
+
+                                    
         </div>
 
         <div class="modal-footer">
 
-              <center><%= f.submit "Submit", class: "btn btn-primary" %></center>
+            <center><%= f.submit "Submit", class: "btn btn-primary" %></center>
 
         </div>
 

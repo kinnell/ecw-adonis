@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  before_filter :check_if_admin, only: [:new, :edit, :index]
   before_action :authenticate_user!
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
@@ -6,25 +7,22 @@ class TeamsController < ApplicationController
     @teams = Team.all
   end
 
-  def show
-    @team = Team.find(params[:id])
+  def myTeam
   end
 
-  def new
-    @team = Team.new
+  def show
+    @team = Team.find(params[:id])
   end
 
   def edit
   end
 
-  def listing
-  end
 
 
   def create
     @team = Team.new(team_params)
     if @team.save
-      redirect_to listing_url, notice: 'Team was successfully created.'
+      redirect_to :back, notice: 'Team was successfully created.'
     else
       render action: 'new'
     end
@@ -32,7 +30,7 @@ class TeamsController < ApplicationController
 
   def update
       if @team.update(team_params)
-        redirect_to listing_url, notice: 'Team was successfully updated.'
+        redirect_to teams_path, notice: 'Team was successfully updated.'
       else
         render action: 'edit'
       end
@@ -40,20 +38,20 @@ class TeamsController < ApplicationController
 
   def destroy
     @team.destroy
-      redirect_to listing_url, notice: 'Team was successfully deleted.'
+      redirect_to teams_path, notice: 'Team was successfully deleted.'
   end
 
   def join
     @team = Team.find(params[:id])
     if current_user.update_attributes(:team_id => @team.id)
-      redirect_to teams_url, notice: 'Joined team'
+      redirect_to :back, notice: 'Joined team'
     end 
   end
 
   def leave
     @team = Team.find(params[:id])
     if current_user.update_attributes(:team_id => nil)
-      redirect_to teams_url, notice: 'Left team'
+      redirect_to :back, notice: 'Left team'
     end 
   end
 

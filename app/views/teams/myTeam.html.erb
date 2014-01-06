@@ -1,0 +1,57 @@
+<h1 class="title"><i class="fa fa-users"></i> My Team</h1>
+
+<hr>
+
+<% if current_user.team.blank? %>
+
+    <section class="panel panel-primary">
+      <div class="panel-heading">
+        You are not on a team yet!
+      </div>
+
+      <div class="panel-body">
+        If you would like to join a team, please have one person from your team email <b>TheBiggestLoser@eClinicalWorks.com</b> with the team name and team members by January 6th. Only 4 to 6 people per team and members cannot be modified after Wednesday, January 8th, 2014.
+      </div>
+    </section>
+
+<% else %>
+
+    <%= "You are on Team '#{current_user.team.name}'." %><br><br>
+
+    <div class="row">
+      <div class="col-lg-12">
+      <section class="panel">
+        <header class="panel-heading">Team Members</header>
+
+        <table class="table table-bordered table-advance table-hover">
+         
+          <thead>
+            <tr style="background-color: #eeeeee">
+              <th>#</th>
+              <th>Member Name</th>
+              <th>Email Address</th>
+              <th>Overall Percent Weight Loss</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% current_user.team.users.each_with_index do |member, i| %>
+                                
+            <tr>
+              <td><%= i+1 %></td>             
+              <td><%= member.name %></td>
+              <td><%= member.email %></td>
+              <td><%= printWeightPercentChange(member.overallWeightPercentChange) if false %></td>                
+            </tr>
+
+            <% end %>
+
+          </tbody>
+        </table>
+
+      </section>
+    </div>
+  </div>
+
+<% end %>
+

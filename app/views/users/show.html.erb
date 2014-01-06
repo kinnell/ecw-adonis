@@ -1,6 +1,4 @@
-<% if current_user.admin? %>
-
-  <%= render "/weighins/new", :user => @user, :verified => true %>
+  <%= render "/weighins/new", :user => @user %>
 
 
 
@@ -145,7 +143,7 @@
                 </td>
                 <td>
 
-                  <% if current_user.admin? %> 
+                  <% if current_user.admin? && (@user != current_user) %> 
                     <% if weighin.verified? %>
                         <%= link_to unverify_weighin_path(weighin), class: "btn-xs btn btn-success" do %><i class="fa fa-check-square-o"></i><% end %>
                     <% else %>
@@ -180,9 +178,6 @@
 
 
 
-
-
-<% end %>
 
 
 

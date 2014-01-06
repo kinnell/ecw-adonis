@@ -1,18 +1,8 @@
+<%= render "errors" %>
+
     <h1 class="title"><span class="fa fa-plus"></span> Edit Team</h1>
 
     <%= form_for(@team) do |f| %>
-
-      <% if @team.errors.any? %>
-                <% @team.errors.full_messages.each do |msg| %>
-                    <script>
-                    $(document).ready(function () {
-                      noty({text:'<%= msg %>', type: 'warning', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});  
-                    });
-                    </script>
-                    <% end %>
-                  </ul>
-                
-              <% end %>
 
         <table>
           <tr>

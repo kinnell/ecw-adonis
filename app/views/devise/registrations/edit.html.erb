@@ -1,76 +1,69 @@
-<section id="main-content">
-  <section class="wrapper">
-    <h1 class="title"><i class="fa fa-cog"></i> My Settings</h1>
+<h1 class="title"><i class="fa fa-cog"></i> My Settings</h1>
 
-    <hr>
+<hr>
 
-    <section class="panel">
+<section class="panel">
 
-      <header class="panel-heading">Basic Settings</header>
+  <header class="panel-heading">Basic Settings</header>
 
-      <div class="panel-body">
+  <div class="panel-body">
 
 
-          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal'}) do |f| %>
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal'}) do |f| %>
 
-          <%= devise_error_messages! %>
+      <%= devise_error_messages! %>
 
-              <div class="form-group">
-                  <label class="col-lg-2 col-sm-2 control-label">Your Name:</label>
-                  <div class="col-lg-10">
-                      <%= f.text_field :name, class: "form-control" %>                 
-                  </div>
+          <div class="form-group">
+              <label class="col-lg-2 col-sm-2 control-label">Your Name:</label>
+              <div class="col-lg-10">
+                  <%= f.text_field :name, class: "form-control" %>                 
               </div>
-
-              <div class="form-group">
-                  <label class="col-lg-2 col-sm-2 control-label">Your Email:</label>
-                  <div class="col-lg-10">
-                      <%= f.email_field :email, class: "form-control" %>                 
-                  </div>
-              </div>
-
-              <div class="form-group">
-                  <label class="col-lg-2 col-sm-2 control-label">Your Location:</label>
-                  <div class="col-lg-10">
-                      <%= f.select(:location, ["Westborough, MA", "New York City, NY", "Pleasanton, CA", "Alpharetta, GA", "Chicago, IL", "Remote"], {}, { :class => 'form-control m-bot15' }) %>                 
-                  </div>
-              </div>
-
-            
-
-              <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <label class="switch switch-primary">
-                      <%= f.check_box :visible, {:class => "switch-input"} %>
-                      <span class="switch-label" data-on="Yes" data-off="No"></span>
-                      <span class="switch-handle"></span>
-                    </label>
-                    Visible on Leaderboard?
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <label class="switch switch-primary">
-                      <%= f.check_box :paid, {:class => "switch-input", :disabled => true} %>
-                      <span class="switch-label" data-on="Yes" data-off="No"></span>
-                      <span class="switch-handle"></span>
-                    </label>
-                    Paid?
-                </div>
-              </div>
-              
-              <div class="form-group">
-                  <div class="col-lg-offset-2 col-lg-10">
-                      <%= f.submit "Update", class: "btn btn-primary" %>
-                  </div>
-              </div>
-         
-
           </div>
-      </section>
 
-    <% end %>
+          <div class="form-group">
+              <label class="col-lg-2 col-sm-2 control-label">Your Email:</label>
+              <div class="col-lg-10">
+                  <%= f.email_field :email, class: "form-control" %>                 
+              </div>
+          </div>
 
+          <div class="form-group">
+              <label class="col-lg-2 col-sm-2 control-label">Your Location:</label>
+              <div class="col-lg-10">
+                  <%= f.select(:location, ["Westborough, MA", "New York City, NY", "Pleasanton, CA", "Alpharetta, GA", "Chicago, IL", "Remote"], {}, { :class => 'form-control m-bot15' }) %>                 
+              </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <label class="switch switch-primary">
+                  <%= f.check_box :visible, {:class => "switch-input"} %>
+                  <span class="switch-label" data-on="Yes" data-off="No"></span>
+                  <span class="switch-handle"></span>
+                </label>
+                Visible on Leaderboard?
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <label class="switch switch-primary">
+                  <%= f.check_box :paid, {:class => "switch-input", :disabled => true} %>
+                  <span class="switch-label" data-on="Yes" data-off="No"></span>
+                  <span class="switch-handle"></span>
+                </label>
+                Paid?
+            </div>
+          </div>
+          
+          <div class="form-group">
+              <div class="col-lg-offset-2 col-lg-10">
+                  <%= f.submit "Update", class: "btn btn-primary" %>
+              </div>
+          </div>
+     
+
+      </div>
   </section>
-</section>
+
+<% end %>

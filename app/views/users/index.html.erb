@@ -1,5 +1,3 @@
-<% if current_user.admin? %>
-
       <h1 class="title"><i class="fa fa-user"></i> User Directory</h1>
       
       <hr>
@@ -43,9 +41,9 @@
 			        <td><%= user.location %></td>
               <td>
                     <% if user.hasVerifiedWeighin %>
-                        <span class="label label-primary label-mini">Verified</span>
+                        <span class="label label-primary label-mini"><%= user.weighins.count %></span>
                     <% else %>
-                        <span class="label label-default label-mini">None</span>
+                        <span class="label label-default label-mini"><%= user.weighins.count unless user.weighins.empty? %></span>
                     <% end %>
               </td>
             	<td>
@@ -118,15 +116,4 @@
 
     </section>
   </div></div>
-
-
-
-      
-
- 
-
-
-
-
-<% end %>
 

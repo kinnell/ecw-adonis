@@ -1,69 +1,68 @@
+<%= render "/teams/new" %>  
 
-      <h1 class="title"><i class="fa fa-users"></i> My Team</h1>
+<h1 class="title">
+  <i class="fa fa-users"></i> Team Directory 
+  <button class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#addTeam"><span class="fa fa-plus"></span> New Team</button>
+</h1>
 
-      <hr>
+<hr>
 
-        <% if current_user.team.blank? %>
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel">
+      <header class="panel-heading">Teams <%= "(#{Team.all.count})" %></header>
+      
+      <table class="table table-bordered table-advance table-hover">
+        
+        <thead>
+          <tr style="background-color: #eeeeee">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Members</th>
+            <th>Action</th>
+          </tr>
+        </thead>
 
+        <tbody>  
 
-          <section class="panel panel-primary">
-            <div class="panel-heading">
-              You are not on a team yet!
-            </div>
-
-            <div class="panel-body">
-              If you would like to join a team, please have one person from your team email <b>TheBiggestLoser@eClinicalWorks.com</b> with the team name and team members by January 6th. Only 4 to 6 people per team and members cannot be modified after January 6th.
-            </div>
-          </section>
-
-
-
-          
-
-        <% else %>
-
-            <%= "You are on Team '#{current_user.team.name}'." %><br><br>
-
-           
-
-          <div class="row">
-            <div class="col-lg-12">
-            <section class="panel">
-                <header class="panel-heading">Team Members</header>
-                <table class="table table-bordered table-advance table-hover">
-
-
-           
-              <thead>
-                <tr style="background-color: #eeeeee">
-                  <th>#</th>
-                  <th>Member Name</th>
-                  <th>Email Address</th>
-                  <th>Overall Percent Weight Loss</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <% current_user.team.users.each_with_index do |member, i| %>
-                                    
-                  <tr>
-
-                    <td><%= i+1 %></td>             
-                    <td><%= member.name %></td>
-                    <td><%= member.email %></td>
-                    <td><%= printWeightPercentChange(member.overallWeightPercentChange) if false %></td>
-                   
-
-                      
-                  </tr>
+          <% Team.all.each do |team| %>
+            
+            <tr>
+              <td><%= team.id %></td>             
+              <td><%= link_to team.name, team %></td>
+              <td><%= team.membership.size %></td>
+              <td>
+                <% team.membership.each_with_index do |member, i| %>
+                  <% if (i > 0) && (team.membership.size > 1) %>|<% end %>
+                  <%= link_to member.name, member %>
                 <% end %>
+              </td>
+              <td>
+                <%= link_to edit_team_path(team), class: "btn-xs btn btn-info" do %><i class="fa fa-pencil "></i><% end %>
+                <%= link_to team, class: "btn-xs btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
+              </td>
+                    
+            </tr>
+          
+          <% end %>
 
-              </tbody>
-            </table>
+        </tbody>
 
-          </section>
-        </div>
-      </div>
+      
+      </table>
 
-        <% end %>
+    </section>
+  </div>
+</div>
+
+
+
+      
+
+ 
+
+
+
+
 

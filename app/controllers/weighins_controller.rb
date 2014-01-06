@@ -1,47 +1,31 @@
 class WeighinsController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_filter :check_if_admin, only: [:edit, :update, :verify, :unverify]
+  before_action :authenticate_user!
   before_action :set_weighin, only: [:show, :edit, :update, :destroy]
-
-
-  def index
-    @weighins = Weighin.all
-  end
-
-  def leaderboard
-    @weighins = Weighin.all
-  end
 
   def myProgress
     @weighins = current_user.weighins
   end
 
-  def show
-
-  end
-
-  def directory
-  end
-
-
   def new
     @weighin = current_user.weighins.build
   end
 
-
   def edit
   end
+
+
+  
 
   def create
     @weighin = Weighin.new(weighin_params)
 
-    @weighin.user = current_user if @weighin.user == nil
     if @weighin.save
       redirect_to :back, notice: 'Weigh-in was successfully added.'
     else
       redirect_to :back, notice: 'Weigh-in weight was invalid'
     end
   end
-
 
   def update
     if @weighin.update(weighin_params)
@@ -69,8 +53,6 @@ class WeighinsController < ApplicationController
       redirect_to :back, notice: 'Weigh-in was unverified.'
     end 
   end
-
-
 
 
   private

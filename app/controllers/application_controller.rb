@@ -6,10 +6,14 @@ class ApplicationController < ActionController::Base
 
 protected
 
- def configure_permitted_parameters
-   devise_parameter_sanitizer.for(:sign_up) << [:name, :location]
-   devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :name, :visible, :location, :team_id, :paid) }
- end
+	def configure_permitted_parameters
+		devise_parameter_sanitizer.for(:sign_up) << [:name, :location]
+		devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :name, :visible, :location, :team_id, :paid) }
+	end
+
+	def check_if_admin
+      redirect_to :root, notice: 'You attempted to enter a restricted area!' unless current_user.admin?
+   end
 
  
 end
