@@ -13,6 +13,9 @@
         <div class="modal-body">
                                 
             <div style="text-align: center;"> Weight (lbs): <%= f.number_field :weight, :min => 1, class: "form-control", autofocus: true %></div> 
+
+            <%= f.hidden_field :user_id, :value => @user.id %>
+            <%= f.hidden_field :verified, :value => verified %>
                                 
         </div>
 

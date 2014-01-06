@@ -1,39 +1,29 @@
-<section id="main-content">
-  <section class="wrapper">
+<section class="panel panel-primary">
+  <header class="panel-heading">New Weigh-In</header>
+  
+  <div class="panel-body">
+    <%= form_for(@weighin, :html => {:class => 'form-horizontal'}) do |f| %>
+             
+      <%= render 'errors' %>
 
-    <section class="panel panel-primary">
-      <header class="panel-heading">New Weigh-In</header>
-      
-      <div class="panel-body">
-        <%= form_for(@weighin, :html => {:class => 'form-horizontal'}) do |f| %>
-                 
-          <%= render 'errors' %>
-
-          <div class="form-group">
-            <label class="col-lg-2 col-sm-2 control-label">Your Weight (lbs):</label>
-            <div class="col-lg-10">
-              <%= f.number_field :weight, :min => 1, class: "form-control" %>                 
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
-              <%= f.submit "Add Weigh-In", class: "btn btn-primary" %>
-            </div>
-          </div>
-            
-        <% end %>
+      <div class="form-group">
+        <label class="col-lg-2 col-sm-2 control-label">Your Weight (lbs):</label>
+        <div class="col-lg-10">
+          <%= f.number_field :weight, :min => 1, class: "form-control" %>                 
+        </div>
       </div>
 
-    </section>
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+          <%= f.submit "Add Weigh-In", class: "btn btn-primary" %>
+        </div>
+      </div>
+        
+    <% end %>
+  </div>
 
-  </section>
 </section>
 
-
-
-
-  
 
 
   
