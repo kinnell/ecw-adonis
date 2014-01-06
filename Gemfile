@@ -18,6 +18,7 @@ end
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -50,6 +51,8 @@ gem 'newrelic_rpm'
 gem "browser"
 
 gem 'rails-backup-migrate'
+
+
 
 # gem 'protected_attributes'
 
