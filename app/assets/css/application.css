@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require_tree ../../../vendor/assets/css
+ *= require morris
  *= require_tree .
  *= require custom
 

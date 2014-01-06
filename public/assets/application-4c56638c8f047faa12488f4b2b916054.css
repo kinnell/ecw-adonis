@@ -13,6 +13,7 @@
 
 
 
+
  */
 
 
@@ -13711,13 +13712,6 @@ html {
   -o-background-size: cover;
   background-size: cover; }
 
-/*
-body {
-  background-image: url('bokeh_bg.png');
-  background-size: 100%;
-  background-attachment: fixed;
-}
-*/
 .boxed-page, .boxed-page .container {
   background: none !important; }
 
@@ -13732,22 +13726,8 @@ body {
   -moz-border-radius: 5px;
   border-radius: 5px; }
 
-a.logo {
-  text-transform: none;
-  font-family: 'Open Sans';
-  font-size: 18px;
-  color: #fff; }
-  a.logo span {
-    color: #fff; }
-
 .table td, .table th {
   text-align: center; }
-
-.frontLogo {
-  color: #00334b;
-  font-size: 21px;
-  font-family: "Open Sans";
-  font-weight: 200; }
 
 ul.sidebar-menu, section.wrapper {
   margin-top: 0px; }
@@ -13803,15 +13783,19 @@ section.wrapper {
 .profile-nav .user-heading p {
   font-size: 12px; }
 
+.frontLogo {
+  color: #00334b;
+  font-size: 21px;
+  font-family: "Open Sans";
+  font-weight: 200; }
+
 .property {
   padding: 100px 0;
   margin-bottom: 60px;
   margin: 100px auto 0px auto;
   -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
-
-.gray-bg {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   background: white; }
 
 a.btn-purchase {
