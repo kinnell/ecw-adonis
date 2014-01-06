@@ -1,0 +1,16 @@
+
+<% if @weighin.errors.any? %>
+	<% @weighin.errors.full_messages.each do |msg| %>
+   	<script type="text/javascript">
+   		$(document).ready(function () {
+      		noty({text:'<%= msg %>', 
+      				type: 'error', 
+      				layout: 'topCenter', 
+      				timeout: 10000, 
+      				dismissQueue: true, 
+      				animateOpen: {opacity: 'show'}
+      		});
+      	});
+   	</script>
+	<% end %>
+<% end %>

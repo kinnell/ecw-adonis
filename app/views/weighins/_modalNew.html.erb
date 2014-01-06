@@ -5,31 +5,22 @@
       <% @weighin = Weighin.new %>
       <%= form_for(@weighin, :html => { :style => 'margin: 0;' }) do |f| %>
 
-          <div class="modal-header">
+        <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h2 class="modal-title" id="myModalLabel"><b><center>New Weigh-In</center></b></h4>
-          </div>
+            <h2 class="modal-title"><center>New Weigh-In</center></h2>
+        </div>
           
-          <div class="modal-body">
-            
-          <!-- Prints Errors -->
-          <% if @weighin.errors.any? %>
-            <% @weighin.errors.full_messages.each do |msg| %>
-                <script>$(document).ready(function () {
-                  noty({text:'<%= msg %>', type: 'error', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});});
-                </script>
-            <% end %>               
-          <% end %>
-
-              
-              
-            <div style="text-align: center;"> Weight (lbs): <%= f.number_field :weight, class: "form-control", autofocus: true %></div>
+        <div class="modal-body">
                                 
-          </div>
+            <div style="text-align: center;"> Weight (lbs): <%= f.number_field :weight, :min => 1, class: "form-control", autofocus: true %></div> 
+                                
+        </div>
 
-          <div class="modal-footer">
+        <div class="modal-footer">
+
               <center><%= f.submit "Submit", class: "btn btn-primary" %></center>
-          </div>
+
+        </div>
 
       <% end %>
 
