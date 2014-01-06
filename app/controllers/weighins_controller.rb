@@ -14,9 +14,6 @@ class WeighinsController < ApplicationController
   def edit
   end
 
-
-  
-
   def create
     @weighin = Weighin.new(weighin_params)
 

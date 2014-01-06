@@ -12,6 +12,7 @@
  *= require_tree ../../../vendor/assets/css
  *= require morris
  *= require_tree .
+ *= require font-awesome
  *= require custom
 
  */

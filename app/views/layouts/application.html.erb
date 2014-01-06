@@ -6,7 +6,6 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 
   <%= csrf_meta_tags %>
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,23 +14,7 @@
 
 <body class="boxed-page">
 
-  <script type="text/javascript">
-    $(document).ready(function () {
-      <% flash.each do |name, msg| %>
-        noty({text:'<%= msg %>', 
-              type: 'information', 
-              layout: 'topCenter', 
-              timeout: 5000, 
-              animation: {
-                open: {height: 'toggle'}, 
-                close: {height: 'toggle'}, 
-                easing: 'swing', 
-                speed: 200}
-              }
-        );     
-      <% end %>
-    });
-</script>
+  <%= render 'layouts/noty' %>
 
   <% if user_signed_in? %>
     
