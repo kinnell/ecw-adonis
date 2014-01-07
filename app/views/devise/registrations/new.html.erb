@@ -1,14 +1,4 @@
-<script type="text/javascript">
-	$(document).ready(function () {
-		<% unless devise_error_messages!.blank? %>
-
-			<% devise_error_messages!.each do |content| %>
-				noty({text:'<%= content %>', type: 'error', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});      
-			<% end %>
-
-		<% end %>
-	});
-</script>
+<%= render "devise/noty" %>
 
 <div class="container">
 	
@@ -18,11 +8,11 @@
    
    	<div class="login-wrap">
 
-   		<%= "Your Name:" if browser.ie? %> 	
-   		<%= f.text_field :name, class: "form-control", :placeholder => "Your Name", :autofocus => true %>
+   		<%= "Your Full Name:" if browser.ie? %> 	
+   		<%= f.text_field :name, class: "form-control", :placeholder => "Your Full Name", :autofocus => true %>
 
-		   <%= "Your Email:" if browser.ie? %>
-		   <%= f.email_field :email, class: "form-control", :placeholder => "Your Email" %>
+		   <%= "Your Email Address:" if browser.ie? %>
+		   <%= f.email_field :email, class: "form-control", :placeholder => "Your Email Address" %>
 
 		   <%= "Your Password:" if browser.ie? %>
 		   <%= f.password_field :password, class: "form-control", :placeholder => "Your Password" %>

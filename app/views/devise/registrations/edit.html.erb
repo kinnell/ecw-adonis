@@ -1,14 +1,4 @@
-<script type="text/javascript">
-  $(document).ready(function () {
-    <% unless devise_error_messages!.blank? %>
-
-      <% devise_error_messages!.each do |content| %>
-        noty({text:'<%= content %>', type: 'error', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});      
-      <% end %>
-
-    <% end %>
-  });
-</script>
+<%= render "devise/noty" %>
 
 <h1 class="title"><i class="fa fa-cog"></i> My Settings</h1>
 
@@ -27,7 +17,7 @@
       
 
           <div class="form-group">
-              <label class="col-lg-2 col-sm-2 control-label">Your Name:</label>
+              <label class="col-lg-2 col-sm-2 control-label">Your Full Name:</label>
               <div class="col-lg-10">
                   <%= f.text_field :name, class: "form-control" %>                 
               </div>

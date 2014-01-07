@@ -1,15 +1,3 @@
-<script type="text/javascript">
-	$(document).ready(function () {
-		<% unless devise_error_messages!.blank? %>
-
-			<% devise_error_messages!.each do |content| %>
-				noty({text:'<%= content %>', type: 'error', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});      
-			<% end %>
-
-		<% end %>
-	});
-</script>
-
 <div class="container">
 	
 	<%= form_for(resource, :html => {:class => 'form-signin'}, :as => resource_name, :url => session_path(resource_name)) do |f| %>
