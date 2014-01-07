@@ -6,4 +6,5 @@ module DeviseHelper
 
       return flash[:notice].to_a.concat resource.errors.full_messages
   end
+  
 end

@@ -7,11 +7,12 @@
   <header class="panel-heading">Basic Settings</header>
 
   <div class="panel-body">
-
+    
+    <%= devise_error_messages! %>
 
       <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal'}) do |f| %>
 
-      <%= devise_error_messages! %>
+      
 
           <div class="form-group">
               <label class="col-lg-2 col-sm-2 control-label">Your Name:</label>
@@ -61,9 +62,49 @@
                   <%= f.submit "Update", class: "btn btn-primary" %>
               </div>
           </div>
+
+        <% end %>
      
 
       </div>
-  </section>
+</section>
 
-<% end %>
+<section class="panel panel-primary">
+
+  <header class="panel-heading">Change Your Password</header>
+
+  <div class="panel-body">
+
+
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-horizontal'}) do |f| %>
+
+      
+
+          <div class="form-group">
+              <label class="col-lg-2 col-sm-2 control-label">New Password:</label>
+              <div class="col-lg-10">
+                  <%= f.password_field :password, class: "form-control" %>                 
+              </div>
+          </div>
+
+          <div class="form-group">
+              <label class="col-lg-2 col-sm-2 control-label">Confirm Password:</label>
+              <div class="col-lg-10">
+                  <%= f.password_field :password_confirmation, class: "form-control" %>                 
+              </div>
+          </div>
+
+                 
+          <div class="form-group">
+              <div class="col-lg-offset-2 col-lg-10">
+                  <%= f.submit "Update", class: "btn btn-primary" %>
+              </div>
+          </div>
+
+        <% end %>
+     
+
+      </div>
+</section>
+
+
