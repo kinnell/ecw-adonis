@@ -53,7 +53,7 @@ class Weighin < ActiveRecord::Base
 	end
  
  	def weighinWeek
- 		return 0 if created_at < Time.parse("05/01/2014")
+ 		return 0 if created_at < Time.parse("08/01/2014")
  		return ((created_at - Time.parse("05/01/2014"))/604800).ceil
  	end
 
