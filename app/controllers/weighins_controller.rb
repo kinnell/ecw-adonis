@@ -1,6 +1,6 @@
-class WeighinsController < ApplicationController
-  before_filter :check_if_admin, only: [:edit, :update, :verify, :unverify]
+class WeighinsController < ApplicationController  
   before_action :authenticate_user!
+  before_action :check_if_admin, only: [:edit, :update, :verify, :unverify]
   before_action :set_weighin, only: [:show, :edit, :update, :destroy]
 
   def myProgress

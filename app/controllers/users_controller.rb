@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_filter :check_if_admin
+  before_action :check_if_admin
+
+
 
 	def index
 	 @users = User.all
@@ -13,7 +15,7 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
     	if @user.update_attributes(user_params)
-			redirect_to :back, notice: 'User was updated.'
+  			redirect_to :back, notice: 'User was updated.'
 		end
 	end
 

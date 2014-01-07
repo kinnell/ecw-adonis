@@ -1,4 +1,14 @@
-<%= devise_error_messages! %>
+<script type="text/javascript">
+  $(document).ready(function () {
+    <% unless devise_error_messages!.blank? %>
+
+      <% devise_error_messages!.each do |content| %>
+        noty({text:'<%= content %>', type: 'error', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});      
+      <% end %>
+
+    <% end %>
+  });
+</script>
 
 <h1 class="title"><i class="fa fa-cog"></i> My Settings</h1>
 

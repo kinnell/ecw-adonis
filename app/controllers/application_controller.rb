@@ -12,8 +12,11 @@ protected
 	end
 
 	def check_if_admin
-      redirect_to :root, notice: 'You attempted to enter a restricted area!' unless current_user.admin?
+		if signed_in?
+      	redirect_to :root, notice: 'You attempted to enter a restricted area!' unless current_user.admin?
+      else
+      	redirect_to :root
+      end
    end
-
  
 end

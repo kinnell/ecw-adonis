@@ -1,6 +1,6 @@
-class TeamsController < ApplicationController
-  before_filter :check_if_admin, only: [:new, :edit, :index]
+class TeamsController < ApplicationController  
   before_action :authenticate_user!
+  before_action :check_if_admin, only: [:new, :edit, :index]
   before_action :set_team, only: [:show, :edit, :update, :destroy]
 
   def index
