@@ -3,50 +3,95 @@
 <hr>
 
 
-
-
 <div class="row state-overview">
 
-	<div class="col-lg-3 col-sm-6">
+	<div class="col-lg-4 col-sm-6">
       <section class="panel">
-           <div class="symbol red">
+           <div class="symbol blue">
                <i class="fa fa-dashboard"></i>
            </div>
            <div class="value">
-               <h1>
-                   <%= Weighin.all.count %>
-               </h1>
+             	<h1><%= Weighin.all.count %></h1>
                <p>Total Weigh-Ins</p>
            </div>
        </section>
    </div>
 
-   <div class="col-lg-3 col-sm-6">
+   <div class="col-lg-4 col-sm-6">
        <section class="panel">
            <div class="symbol terques">
                <i class="fa fa-user"></i>
            </div>
            <div class="value">
-               <h1>
-                   <%= User.all.count %>
-               </h1>
+               <h1><%= User.all.count %></h1>
                <p>Total Users</p>
            </div>
        </section>
    </div>
-   <div class="col-lg-3 col-sm-6">
+
+   <div class="col-lg-4 col-sm-6">
        <section class="panel">
            <div class="symbol yellow">
                <i class="fa fa-users"></i>
            </div>
            <div class="value">
-               <h1>
-                   <%= Team.all.count %>
-               </h1>
+               <h1><%= Team.all.count %></h1>
                <p>Total Teams</p>
            </div>
        </section>
    </div>
-
-
 </div>
+
+<div class="row">
+            <div class="col-lg-12">
+            <section class="panel">
+                <header class="panel-heading">Recent 5 Users</header>
+                <table class="table table-bordered table-advance table-hover">
+        <thead>
+          <tr style="background-color: #eeeeee">
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email Address</th>
+            <th>Admin?</th>
+            <th>Last Login</th>
+
+          </tr>
+        </thead>
+
+        <% unless User.blank? %>
+
+        <tbody>
+        	
+        	<% sortedUsers = User.find(:all, :order => "last_sign_in_at").last(5).reverse %>
+          <% sortedUsers.each do |user| %>
+            
+            
+              <tr>
+                         
+            	<td><%= user.id %></td>            	
+            	<td><%= link_to user.name, user %></td>
+               <td><%= user.email %></td>
+			        
+	            <td>
+                 <% if user.admin? %>
+                     <span class="label label-warning label-mini">Admin</span>
+                 <% else %>
+                     <span class="label label-default label-mini">User</span>
+                 <% end %>
+	            </td>
+              <td><%= time_ago_in_words(user.last_sign_in_at) %></td>
+
+            </tr>
+
+          <% end %>
+          
+        </tbody>
+
+        <% end %>
+        
+      </table>
+
+    </section>
+  </div></div>
+
+
