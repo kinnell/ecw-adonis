@@ -1,0 +1,75 @@
+<h1 class="title"><i class="fa fa-money"></i> Treasury</h1>
+
+<hr>
+
+
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel panel-primary">
+      <header class="panel-heading">Competition Treasury</header>
+
+      <div class="panel-body">
+    
+            <div class="col-lg-4 col-sm-2 control-label">Total Users:</div>
+            <div class="col-lg-8"><%= User.all.count %> users</div>
+
+            <div class="col-lg-4">Paid Users:</div>
+            <div class="col-lg-8"><%= User.paid.count %> users</div>
+
+            
+            <div class="col-lg-4">Total Money:</div>
+            <div class="col-lg-8">$<%= (User.all.count*10) %>.00</div>
+
+            <div class="col-lg-4">Collected Money:</div>
+            <div class="col-lg-8">$<%= (User.paid.count*10) %>.00</div>
+
+            <div class="col-lg-4">Percent Collected:</div>
+            <div class="col-lg-8"><%= ((User.paid.count.to_f/User.all.count.to_f)*100).round(2) %>%</div>
+
+
+      </div>
+
+    </header>
+
+  </section>
+</div>
+</div>
+
+<div class="row">
+  <div class="col-lg-12">
+    <section class="panel panel-primary">
+      <header class="panel-heading">Competition Prizes</header>
+
+      <div class="panel-body">
+    
+            <div class="col-lg-4 col-sm-2 control-label">1st Place:</div>
+            <div class="col-lg-8">$<%= (User.all.count*2.5)+300 %></div>
+
+            <div class="col-lg-4 col-sm-2 control-label">2nd Place:</div>
+            <div class="col-lg-8">$<%= (User.all.count*2.5)+200 %></div>
+
+            <div class="col-lg-4 col-sm-2 control-label">3rd Place:</div>
+            <div class="col-lg-8">$<%= (User.all.count*2.5)+100 %></div>
+
+            <div class="col-lg-4 col-sm-2 control-label">Random Draw:</div>
+            <div class="col-lg-8">$<%= (User.all.count*2.5)+100 %></div>
+
+            <div class="col-lg-4 col-sm-2 control-label">Team Winner:</div>
+            <div class="col-lg-8">$<%= 600 %></div>
+
+          
+
+
+      </div>
+
+    </header>
+
+  </section>
+</div>
+</div>
+
+	
+
+
+ 
+

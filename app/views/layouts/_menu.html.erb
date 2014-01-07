@@ -18,10 +18,16 @@
 
         <% if current_user.admin? %>
 
+            <li class="<%= 'active' if current_page?(dashboard_path) %>"><%= link_to(dashboard_path) do %><i class="fa fa-tasks"></i><span>Admin Dashboard</span>
+            <% end %></a></li>
+
             <li class="<%= 'active' if current_page?(users_path) %>"><%= link_to(users_path) do %><i class="fa fa-user"></i><span>User Directory</span>
             <% end %></a></li>
 
             <li class="<%= 'active' if current_page?(teams_path) %>"><%= link_to(teams_path) do %><i class="fa fa-users"></i><span>Team Directory</span>
+            <% end %></a></li>
+
+            <li class="<%= 'active' if current_page?(treasury_path) %>"><%= link_to(treasury_path) do %><i class="fa fa-money"></i><span>Treasury</span>
             <% end %></a></li>
 
             <hr style="border-top: 1px solid #666; opacity: 0.3;">

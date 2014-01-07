@@ -16,6 +16,11 @@ class User < ActiveRecord::Base
 		where(visible: true)
 	end
 
+	def self.paid
+		where(paid: true)
+	end
+
+
 
 	def overallWeightPercentChange
 		weighins.last.weightPercentTotalChange
