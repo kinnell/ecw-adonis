@@ -26,7 +26,8 @@
 
         <tbody>  
 
-          <% Team.all.each do |team| %>
+          <% sortedTeams = Team.all.sort_by {|t| t.id } %>
+          <% sortedTeams.each do |team| %>
             
             <tr>
               <td><%= team.id %></td>             

@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
 	end
 
 
-
 	def overallWeightPercentChange
 		weighins.last.weightPercentTotalChange
 	end
