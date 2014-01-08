@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
    validates :name, presence: true
 
    has_many :weighins, dependent: :destroy
-   belongs_to :team
+   belongs_to :team, touch: true
 
    include WeighinsHelper
 

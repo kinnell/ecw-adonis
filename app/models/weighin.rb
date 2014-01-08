@@ -1,7 +1,7 @@
 class Weighin < ActiveRecord::Base
 	include WeighinsHelper
 
-	belongs_to :user
+	belongs_to :user, touch: true
 	validates :weight, presence: true, numericality: { greater_than: 0 }
 
 	def firstWeight() Weighin.by_user(user)[0].weight end
