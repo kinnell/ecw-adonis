@@ -1,6 +1,5 @@
 jQuery(function() {
 
-
   Morris.Line({
     element: "weight_chart",
     data: $("#weight_chart").data("weighins"),

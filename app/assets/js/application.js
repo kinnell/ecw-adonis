@@ -16,7 +16,7 @@
 //= require morris
 //= require bootstrap
 //= require turbolinks
-//= require custom
+//= require customCharts
 //= require_tree ../../../vendor/assets/js
 //= require_tree .
 
