@@ -18,6 +18,9 @@
 //= require turbolinks
 //= require customCharts
 //= require_tree ../../../vendor/assets/js
+
 //= require_tree .
+
+
 
 
