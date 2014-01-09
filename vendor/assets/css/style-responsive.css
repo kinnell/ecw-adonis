@@ -23,6 +23,20 @@
 
 @media (max-width: 768px) {
 
+    .property {
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+    }
+
+    .property img {
+        display: none;
+    }
+
+    .property {
+        text-align: center;
+    }
+
+
     .header {
         position: absolute;
     }
@@ -39,6 +53,10 @@
 
 
     /* body container */
+
+    .boxed-page .container {
+        margin: 5px!important;
+    }
     #main-content {
         margin: 0px!important;
         position: none !important;

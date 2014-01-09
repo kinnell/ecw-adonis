@@ -1,97 +1,82 @@
   <%= render "/weighins/new", :user => @user %>
 
 
+  <!-- Prints Errors -->
+  <% if @user.errors.any? %>
+    <% @user.errors.full_messages.each do |msg| %>
+        <script>$(document).ready(function () {
+          noty({text:'<%= msg %>', type: 'error', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});});
+        </script>
+    <% end %>               
+  <% end %>
 
-
-    <h1 class="title"><i class="fa fa-user"></i> User: <%= @user.name %><button class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#addWeighin"><span class="fa fa-plus"></span> Add a Weigh-In</button></h1>
+    <h1 class="title"><i class="fa fa-user"></i> User: <%= @user.name %></h1>
     <hr>
 
 
     <div class="row">
     <div class="col-lg-12">
-<section class="panel">
+<section class="panel panel-primary">
 
-	<header class="panel-heading">Basic Profile</header>
+	<header class="panel-heading"><i class="fa fa-user"></i> Basic Profile</header>
 
 	<div class="panel-body">
 
 
     <%= form_for(@user, :html => { :method => :put, :class => 'form-horizontal'}) do |f| %>
 
-    		<!-- Prints Errors -->
-          <% if @user.errors.any? %>
-            <% @user.errors.full_messages.each do |msg| %>
-                <script>$(document).ready(function () {
-                  noty({text:'<%= msg %>', type: 'error', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});});
-                </script>
-            <% end %>               
-          <% end %>
-
-
         <div class="form-group">
-            <label class="col-lg-2 col-sm-2 control-label">Name:</label>
-            <div class="col-lg-10">
-                <%= f.text_field :name, class: "form-control" %>                 
+            <label class="col-lg-2 col-sm-3 control-label">Name:</label>
+            <div class="col-lg-10 col-sm-9">
+                <%= f.text_field :name, class: "form-control", :required => true %>                 
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-lg-2 col-sm-2 control-label">Email:</label>
-            <div class="col-lg-10">
-                <%= f.email_field :email, class: "form-control" %>                 
+            <label class="col-lg-2 col-sm-3 control-label">Email:</label>
+            <div class="col-lg-10 col-sm-9">
+                <%= f.email_field :email, class: "form-control", :required => true %>                 
             </div>
         </div>
       
-         <div class="form-group">
-            <label class="col-lg-2 col-sm-2 control-label">Location:</label>
-            <div class="col-lg-10">
+        <div class="form-group">
+            <label class="col-lg-2 col-sm-3 control-label">Location:</label>
+            <div class="col-lg-10 col-sm-9">
                 <%= f.select(:location, ["Westborough, MA", "New York City, NY", "Pleasanton, CA", "Alpharetta, GA", "Chicago, IL", "Remote"], {}, { :class => 'form-control m-bot15' }) %>                 
             </div>
         </div>
 
-
-  	
-      	<div class="form-group">
-            <label class="col-lg-2 col-sm-2 control-label">Team:</label>
-            <div class="col-lg-10">
-                <%= f.collection_select(:team_id, Team.all, :id , :name, {:include_blank => true}, {:class => 'form-control m-bot15' }) %>                 
-            </div>
-        </div>
-
+        
         <div class="form-group">
-          <div class="col-lg-offset-2 col-lg-10">
-              <label class="switch switch-primary">
+            <label class="col-lg-2 col-sm-2 control-label">Visible?:</label>
+            <div class="col-lg-2 col-sm-2">
+                <label class="switch switch-primary">
                 <%= f.check_box :visible, {:class => "switch-input"} %>
                 <span class="switch-label" data-on="Yes" data-off="No"></span>
                 <span class="switch-handle"></span>
-              </label>
-              Visible on Leaderboard?
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-lg-offset-2 col-lg-10">
-              <label class="switch switch-primary">
-
-                <%= f.check_box :paid, {:class => "switch-input", :disabled => (@user == current_user)}  %>
+              </label>                
+            </div>
+        
+            <label class="col-lg-2 col-sm-2 control-label">Paid?:</label>
+            <div class="col-lg-2 col-sm-2">
+                <label class="switch switch-primary">
+                <%= f.check_box :paid, {:class => "switch-input", :disabled => (@user == current_user)} %>
                 <span class="switch-label" data-on="Yes" data-off="No"></span>
                 <span class="switch-handle"></span>
-              </label>
-              Paid?
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-lg-offset-2 col-lg-10">
-              <label class="switch switch-primary">
+              </label>                
+            </div>
+        
+            <label class="col-lg-2 col-sm-2 control-label">Admin?:</label>
+            <div class="col-lg-2 col-sm-2">
+                <label class="switch switch-primary">
                 <%= f.check_box :admin, {:class => "switch-input", :disabled => (@user == current_user)} %>
                 <span class="switch-label" data-on="Yes" data-off="No"></span>
                 <span class="switch-handle"></span>
-              </label>
-              Admin?
-          </div>
+              </label>                
+            </div>
         </div>
-        
+            
+
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
                 <%= f.submit "Update", class: "btn btn-primary" %>
@@ -105,11 +90,47 @@
 </div>
 
 
+    <div class="row">
+    <div class="col-lg-12">
+<section class="panel panel-primary">
+
+  <header class="panel-heading"><i class="fa fa-users"></i> Team</header>
+
+  <div class="panel-body">
+    <br>
+
+
+    <%= form_for(@user, :html => { :method => :put, :class => 'form-horizontal'}) do |f| %>
+
+
+
+        <div class="form-group">
+            <label class="col-lg-2 col-sm-3 control-label">Team:</label>
+            <div class="col-lg-8 col-sm-6">
+                <%= f.collection_select(:team_id, Team.all, :id , :name, {:include_blank => true}, {:class => 'form-control m-bot15' }) %>                 
+            </div>
+            <div class="col-lg-2 col-lg-10">
+                <%= f.submit "Update", class: "btn btn-primary" %>
+            </div>
+        </div>
+
+    
+  
+  <% end %>   
+
+   </div>
+</section>
+</div>
+</div>
+
+
    <div class="row">
     <div class="col-lg-12">
-      <section class="panel">
+      <section class="panel panel-primary">
         
-        <header class="panel-heading">Weigh-Ins</header>
+        <header class="panel-heading"><i class="fa fa-dashboard"></i> Weigh-Ins (<%= @user.weighins.all.count %>)
+          <button class="btn btn-info btn-xs" style="float: right;" data-toggle="modal" data-target="#addWeighin"><span class="fa fa-plus"></span></button>
+        </header>
         
         <table class="table table-bordered table-advance table-hover">
               

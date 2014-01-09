@@ -17,47 +17,38 @@
       
 
           <div class="form-group">
-              <label class="col-lg-2 col-sm-2 control-label">Your Full Name:</label>
-              <div class="col-lg-10">
-                  <%= f.text_field :name, class: "form-control" %>                 
+              <label class="col-lg-2 col-sm-3 control-label">Your Full Name:</label>
+              <div class="col-lg-10 col-sm-9">
+                  <%= f.text_field :name, class: "form-control", :required => true %>                 
               </div>
           </div>
 
           <div class="form-group">
-              <label class="col-lg-2 col-sm-2 control-label">Your Email:</label>
-              <div class="col-lg-10">
-                  <%= f.email_field :email, class: "form-control" %>                 
+              <label class="col-lg-2 col-sm-3 control-label">Your Email:</label>
+              <div class="col-lg-10 col-sm-9">
+                  <%= f.email_field :email, class: "form-control", :required => true %>                 
               </div>
           </div>
 
           <div class="form-group">
-              <label class="col-lg-2 col-sm-2 control-label">Your Location:</label>
-              <div class="col-lg-10">
+              <label class="col-lg-2 col-sm-3 control-label">Your Location:</label>
+              <div class="col-lg-10 col-sm-9">
                   <%= f.select(:location, ["Westborough, MA", "New York City, NY", "Pleasanton, CA", "Alpharetta, GA", "Chicago, IL", "Remote"], {}, { :class => 'form-control m-bot15' }) %>                 
               </div>
           </div>
 
           <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
+            <label class="col-lg-2 col-sm-3 control-label">Visible:</label>
+            <div class="col-lg-10 col-sm-9">
                 <label class="switch switch-primary">
-                  <%= f.check_box :visible, {:class => "switch-input"} %>
-                  <span class="switch-label" data-on="Yes" data-off="No"></span>
-                  <span class="switch-handle"></span>
-                </label>
-                Visible on Leaderboard?
-            </div>
-          </div>
+                <%= f.check_box :visible, {:class => "switch-input"} %>
+                <span class="switch-label" data-on="Yes" data-off="No"></span>
+                <span class="switch-handle"></span>
+              </label>
+                             
+            </div>       
+        </div>
 
-          <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
-                <label class="switch switch-primary">
-                  <%= f.check_box :paid, {:class => "switch-input", :disabled => true} %>
-                  <span class="switch-label" data-on="Yes" data-off="No"></span>
-                  <span class="switch-handle"></span>
-                </label>
-                Paid?
-            </div>
-          </div>
           
           <div class="form-group">
               <div class="col-lg-offset-2 col-lg-10">
@@ -83,15 +74,15 @@
       
 
           <div class="form-group">
-              <label class="col-lg-2 col-sm-2 control-label">New Password:</label>
-              <div class="col-lg-10">
+              <label class="col-lg-2 col-sm-3 control-label">New Password:</label>
+              <div class="col-lg-10 col-sm-9">
                   <%= f.password_field :password, class: "form-control", :required => true %>                 
               </div>
           </div>
 
           <div class="form-group">
-              <label class="col-lg-2 col-sm-2 control-label">Confirm Password:</label>
-              <div class="col-lg-10">
+              <label class="col-lg-2 col-sm-3 control-label">Confirm Password:</label>
+              <div class="col-lg-10 col-sm-9">
                   <%= f.password_field :password_confirmation, class: "form-control", :required => true %>                 
               </div>
           </div>

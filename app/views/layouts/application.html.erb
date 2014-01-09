@@ -11,6 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <%= javascript_include_tag "jquery-1.10.2.min" %>
+  <%= javascript_include_tag "jquery.dcjqaccordion.2.7" %>  
   <%= javascript_include_tag "jquery.noty" %>
 
 </head>
@@ -35,8 +36,13 @@
       <%= yield %>
   
   <% end %>
+
+  <%= javascript_include_tag "bootstrap.min" %>
+  <%= javascript_include_tag "common-scripts" %>
+
+  <%= javascript_include_tag "html5shiv" %>
+  <%= javascript_include_tag "respond.min" %>
+
     
-
-
 </body>
 </html>

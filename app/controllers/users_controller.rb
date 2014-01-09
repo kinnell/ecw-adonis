@@ -16,6 +16,8 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
     	if @user.update_attributes(user_params)
   			redirect_to :back, notice: 'User was updated.'
+      else
+        redirect_to :back, notice: 'There was an issue in updating the user.'
 		end
 	end
 

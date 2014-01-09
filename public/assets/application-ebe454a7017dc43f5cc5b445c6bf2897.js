@@ -23896,6 +23896,233 @@ jQuery.cookie = function(name, value, options) {
  */
 
 (function(a){a.fn.extend({customSelect:function(c){if(typeof document.body.style.maxHeight==="undefined"){return this}var e={customClass:"customSelect",mapClass:true,mapStyle:true},c=a.extend(e,c),d=c.customClass,f=function(h,k){var g=h.find(":selected"),j=k.children(":first"),i=g.html()||"&nbsp;";j.html(i);if(g.attr("disabled")){k.addClass(b("DisabledOption"))}else{k.removeClass(b("DisabledOption"))}setTimeout(function(){k.removeClass(b("Open"));a(document).off("mouseup."+b("Open"))},60)},b=function(g){return d+g};return this.each(function(){var g=a(this),i=a("<span />").addClass(b("Inner")),h=a("<span />");g.after(h.append(i));h.addClass(d);if(c.mapClass){h.addClass(g.attr("class"))}if(c.mapStyle){h.attr("style",g.attr("style"))}g.addClass("hasCustomSelect").on("update",function(){f(g,h);var k=parseInt(g.outerWidth(),10)-(parseInt(h.outerWidth(),10)-parseInt(h.width(),10));h.css({display:"inline-block"});var j=h.outerHeight();if(g.attr("disabled")){h.addClass(b("Disabled"))}else{h.removeClass(b("Disabled"))}i.css({width:k,display:"inline-block"});g.css({"-webkit-appearance":"menulist-button",width:h.outerWidth(),position:"absolute",opacity:0,height:j,fontSize:h.css("font-size")})}).on("change",function(){h.addClass(b("Changed"));f(g,h)}).on("keyup",function(j){if(!h.hasClass(b("Open"))){g.blur();g.focus()}else{if(j.which==13||j.which==27){f(g,h)}}}).on("mousedown",function(j){h.removeClass(b("Changed"))}).on("mouseup",function(j){if(!h.hasClass(b("Open"))){if(a("."+b("Open")).not(h).length>0&&typeof InstallTrigger!=="undefined"){g.focus()}else{h.addClass(b("Open"));j.stopPropagation();a(document).one("mouseup."+b("Open"),function(k){if(k.target!=g.get(0)&&a.inArray(k.target,g.find("*").get())<0){g.blur()}else{f(g,h)}})}}}).focus(function(){h.removeClass(b("Changed")).addClass(b("Focus"))}).blur(function(){h.removeClass(b("Focus")+" "+b("Open"))}).hover(function(){h.addClass(b("Hover"))},function(){h.removeClass(b("Hover"))}).trigger("update")})}})})(jQuery);
+/*
+ * DC jQuery Vertical Accordion Menu - jQuery vertical accordion menu plugin
+ * Copyright (c) 2011 Design Chemical
+ *
+ * Dual licensed under the MIT and GPL licenses:
+ * 	http://www.opensource.org/licenses/mit-license.php
+ * 	http://www.gnu.org/licenses/gpl.html
+ *
+ */
+
+
+(function($){
+
+	$.fn.dcAccordion = function(options) {
+
+		//set default options 
+		var defaults = {
+			classParent	 : 'dcjq-parent',
+			classActive	 : 'active',
+			classArrow	 : 'dcjq-icon',
+			classCount	 : 'dcjq-count',
+			classExpand	 : 'dcjq-current-parent',
+			eventType	 : 'click',
+			hoverDelay	 : 300,
+			menuClose     : true,
+			autoClose    : true,
+			autoExpand	 : false,
+			speed        : 'slow',
+			saveState	 : true,
+			disableLink	 : true,
+			showCount : false,
+//			cookie	: 'dcjq-accordion'
+		};
+
+		//call in the default otions
+		var options = $.extend(defaults, options);
+
+		this.each(function(options){
+
+			var obj = this;
+			setUpAccordion();
+//			if(defaults.saveState == true){
+//				checkCookie(defaults.cookie, obj);
+//			}
+			if(defaults.autoExpand == true){
+				$('li.'+defaults.classExpand+' > a').addClass(defaults.classActive);
+			}
+			resetAccordion();
+
+			if(defaults.eventType == 'hover'){
+
+				var config = {
+					sensitivity: 2, // number = sensitivity threshold (must be 1 or higher)
+					interval: defaults.hoverDelay, // number = milliseconds for onMouseOver polling interval
+					over: linkOver, // function = onMouseOver callback (REQUIRED)
+					timeout: defaults.hoverDelay, // number = milliseconds delay before onMouseOut
+					out: linkOut // function = onMouseOut callback (REQUIRED)
+				};
+
+				$('li a',obj).hoverIntent(config);
+				var configMenu = {
+					sensitivity: 2, // number = sensitivity threshold (must be 1 or higher)
+					interval: 1000, // number = milliseconds for onMouseOver polling interval
+					over: menuOver, // function = onMouseOver callback (REQUIRED)
+					timeout: 1000, // number = milliseconds delay before onMouseOut
+					out: menuOut // function = onMouseOut callback (REQUIRED)
+				};
+
+				$(obj).hoverIntent(configMenu);
+
+				// Disable parent links
+				if(defaults.disableLink == true){
+
+					$('li a',obj).click(function(e){
+						if($(this).siblings('ul').length >0){
+							e.preventDefault();
+						}
+					});
+				}
+
+			} else {
+			
+				$('li a',obj).click(function(e){
+
+					$activeLi = $(this).parent('li');
+					$parentsLi = $activeLi.parents('li');
+					$parentsUl = $activeLi.parents('ul');
+
+					// Prevent browsing to link if has child links
+					if(defaults.disableLink == true){
+						if($(this).siblings('ul').length >0){
+							e.preventDefault();
+						}
+					}
+
+					// Auto close sibling menus
+					if(defaults.autoClose == true){
+						autoCloseAccordion($parentsLi, $parentsUl);
+					}
+
+					if ($('> ul',$activeLi).is(':visible')){
+						$('ul',$activeLi).slideUp(defaults.speed);
+						$('a',$activeLi).removeClass(defaults.classActive);
+					} else {
+						$(this).siblings('ul').slideToggle(defaults.speed);
+						$('> a',$activeLi).addClass(defaults.classActive);
+					}
+					
+//					// Write cookie if save state is on
+//					if(defaults.saveState == true){
+//						createCookie(defaults.cookie, obj);
+//					}
+				});
+			}
+
+			// Set up accordion
+			function setUpAccordion(){
+
+				$arrow = '<span class="'+defaults.classArrow+'"></span>';
+				var classParentLi = defaults.classParent+'-li';
+				$('> ul',obj).show();
+				$('li',obj).each(function(){
+					if($('> ul',this).length > 0){
+						$(this).addClass(classParentLi);
+						$('> a',this).addClass(defaults.classParent).append($arrow);
+					}
+				});
+				$('> ul',obj).hide();
+				if(defaults.showCount == true){
+					$('li.'+classParentLi,obj).each(function(){
+						if(defaults.disableLink == true){
+							var getCount = parseInt($('ul a:not(.'+defaults.classParent+')',this).length);
+						} else {
+							var getCount = parseInt($('ul a',this).length);
+						}
+						$('> a',this).append(' <span class="'+defaults.classCount+'">'+getCount+'</span>');
+					});
+				}
+			}
+			
+			function linkOver(){
+
+			$activeLi = $(this).parent('li');
+			$parentsLi = $activeLi.parents('li');
+			$parentsUl = $activeLi.parents('ul');
+
+			// Auto close sibling menus
+			if(defaults.autoClose == true){
+				autoCloseAccordion($parentsLi, $parentsUl);
+
+			}
+
+			if ($('> ul',$activeLi).is(':visible')){
+				$('ul',$activeLi).slideUp(defaults.speed);
+				$('a',$activeLi).removeClass(defaults.classActive);
+			} else {
+				$(this).siblings('ul').slideToggle(defaults.speed);
+				$('> a',$activeLi).addClass(defaults.classActive);
+			}
+
+			// Write cookie if save state is on
+			if(defaults.saveState == true){
+				createCookie(defaults.cookie, obj);
+			}
+		}
+
+		function linkOut(){
+		}
+
+		function menuOver(){
+		}
+
+		function menuOut(){
+
+			if(defaults.menuClose == true){
+				$('ul',obj).slideUp(defaults.speed);
+				// Reset active links
+				$('a',obj).removeClass(defaults.classActive);
+				createCookie(defaults.cookie, obj);
+			}
+		}
+
+		// Auto-Close Open Menu Items
+		function autoCloseAccordion($parentsLi, $parentsUl){
+			$('ul',obj).not($parentsUl).slideUp(defaults.speed);
+			// Reset active links
+			$('a',obj).removeClass(defaults.classActive);
+			$('> a',$parentsLi).addClass(defaults.classActive);
+		}
+		// Reset accordion using active links
+		function resetAccordion(){
+			$('ul',obj).hide();
+			$allActiveLi = $('a.'+defaults.classActive,obj);
+			$allActiveLi.siblings('ul').show();
+		}
+		});
+
+		// Retrieve cookie value and set active items
+//		function checkCookie(cookieId, obj){
+//			var cookieVal = $.cookie(cookieId);
+//			if(cookieVal != null){
+//				// create array from cookie string
+//				var activeArray = cookieVal.split(',');
+//				$.each(activeArray, function(index,value){
+//					var $cookieLi = $('li:eq('+value+')',obj);
+//					$('> a',$cookieLi).addClass(defaults.classActive);
+//					var $parentsLi = $cookieLi.parents('li');
+//					$('> a',$parentsLi).addClass(defaults.classActive);
+//				});
+//			}
+//		}
+
+		// Write cookie
+//		function createCookie(cookieId, obj){
+//			var activeIndex = [];
+//			// Create array of active items index value
+//			$('li a.'+defaults.classActive,obj).each(function(i){
+//				var $arrayItem = $(this).parent('li');
+//				var itemIndex = $('li',obj).index($arrayItem);
+//					activeIndex.push(itemIndex);
+//				});
+//			// Store in cookie
+//			$.cookie(cookieId, activeIndex, { path: '/' });
+//		}
+	};
+})(jQuery);
+(function($){$.fn.dcAccordion=function(options){var defaults={classParent:'dcjq-parent',classActive:'active',classArrow:'dcjq-icon',classCount:'dcjq-count',classExpand:'dcjq-current-parent',eventType:'click',hoverDelay:300,menuClose:true,autoClose:true,autoExpand:false,speed:'slow',saveState:true,disableLink:true,showCount:false,cookie:'dcjq-accordion'};var options=$.extend(defaults,options);this.each(function(options){var obj=this;setUpAccordion();if(defaults.saveState==true){checkCookie(defaults.cookie,obj)}if(defaults.autoExpand==true){$('li.'+defaults.classExpand+' > a').addClass(defaults.classActive)}resetAccordion();if(defaults.eventType=='hover'){var config={sensitivity:2,interval:defaults.hoverDelay,over:linkOver,timeout:defaults.hoverDelay,out:linkOut};$('li a',obj).hoverIntent(config);var configMenu={sensitivity:2,interval:1000,over:menuOver,timeout:1000,out:menuOut};$(obj).hoverIntent(configMenu);if(defaults.disableLink==true){$('li a',obj).click(function(e){if($(this).siblings('ul').length>0){e.preventDefault()}})}}else{$('li a',obj).click(function(e){$activeLi=$(this).parent('li');$parentsLi=$activeLi.parents('li');$parentsUl=$activeLi.parents('ul');if(defaults.disableLink==true){if($(this).siblings('ul').length>0){e.preventDefault()}}if(defaults.autoClose==true){autoCloseAccordion($parentsLi,$parentsUl)}if($('> ul',$activeLi).is(':visible')){$('ul',$activeLi).slideUp(defaults.speed);$('a',$activeLi).removeClass(defaults.classActive)}else{$(this).siblings('ul').slideToggle(defaults.speed);$('> a',$activeLi).addClass(defaults.classActive)}if(defaults.saveState==true){createCookie(defaults.cookie,obj)}})}function setUpAccordion(){$arrow='<span class="'+defaults.classArrow+'"></span>';var classParentLi=defaults.classParent+'-li';$('> ul',obj).show();$('li',obj).each(function(){if($('> ul',this).length>0){$(this).addClass(classParentLi);$('> a',this).addClass(defaults.classParent).append($arrow)}});$('> ul',obj).hide();if(defaults.showCount==true){$('li.'+classParentLi,obj).each(function(){if(defaults.disableLink==true){var getCount=parseInt($('ul a:not(.'+defaults.classParent+')',this).length)}else{var getCount=parseInt($('ul a',this).length)}$('> a',this).append(' <span class="'+defaults.classCount+'">('+getCount+')</span>')})}}function linkOver(){$activeLi=$(this).parent('li');$parentsLi=$activeLi.parents('li');$parentsUl=$activeLi.parents('ul');if(defaults.autoClose==true){autoCloseAccordion($parentsLi,$parentsUl)}if($('> ul',$activeLi).is(':visible')){$('ul',$activeLi).slideUp(defaults.speed);$('a',$activeLi).removeClass(defaults.classActive)}else{$(this).siblings('ul').slideToggle(defaults.speed);$('> a',$activeLi).addClass(defaults.classActive)}if(defaults.saveState==true){createCookie(defaults.cookie,obj)}}function linkOut(){}function menuOver(){}function menuOut(){if(defaults.menuClose==true){$('ul',obj).slideUp(defaults.speed);$('a',obj).removeClass(defaults.classActive);createCookie(defaults.cookie,obj)}}function autoCloseAccordion($parentsLi,$parentsUl){$('ul',obj).not($parentsUl).slideUp(defaults.speed);$('a',obj).removeClass(defaults.classActive);$('> a',$parentsLi).addClass(defaults.classActive)}function resetAccordion(){$('ul',obj).hide();$allActiveLi=$('a.'+defaults.classActive,obj);$allActiveLi.siblings('ul').show()}});function checkCookie(cookieId,obj){var cookieVal=$.cookie(cookieId);if(cookieVal!=null){var activeArray=cookieVal.split(',');$.each(activeArray,function(index,value){var $cookieLi=$('li:eq('+value+')',obj);$('> a',$cookieLi).addClass(defaults.classActive);var $parentsLi=$cookieLi.parents('li');$('> a',$parentsLi).addClass(defaults.classActive)})}}function createCookie(cookieId,obj){var activeIndex=[];$('li a.'+defaults.classActive,obj).each(function(i){var $arrayItem=$(this).parent('li');var itemIndex=$('li',obj).index($arrayItem);activeIndex.push(itemIndex)});$.cookie(cookieId,activeIndex,{path:'/'})}}})(jQuery);
 /* jquery.nicescroll 3.5.0 InuYaksa*2013 MIT http://areaaperta.com/nicescroll */
 (function(e){var z=!1,E=!1,L=5E3,M=2E3,y=0,N=function(){var e=document.getElementsByTagName("script"),e=e[e.length-1].src.split("?")[0];return 0<e.split("/").length?e.split("/").slice(0,-1).join("/")+"/":""}(),H=["ms","moz","webkit","o"],v=window.requestAnimationFrame||!1,w=window.cancelAnimationFrame||!1;if(!v)for(var O in H){var F=H[O];v||(v=window[F+"RequestAnimationFrame"]);w||(w=window[F+"CancelAnimationFrame"]||window[F+"CancelRequestAnimationFrame"])}var A=window.MutationObserver||window.WebKitMutationObserver||
     !1,I={zindex:"auto",cursoropacitymin:0,cursoropacitymax:1,cursorcolor:"#424242",cursorwidth:"5px",cursorborder:"1px solid #fff",cursorborderradius:"5px",scrollspeed:60,mousescrollstep:24,touchbehavior:!1,hwacceleration:!0,usetransition:!0,boxzoom:!1,dblclickzoom:!0,gesturezoom:!0,grabcursorenabled:!0,autohidemode:!0,background:"",iframeautoresize:!0,cursorminheight:32,preservenativescrolling:!0,railoffset:!1,bouncescroll:!0,spacebarenabled:!0,railpadding:{top:0,right:0,left:0,bottom:0},disableoutline:!0,
