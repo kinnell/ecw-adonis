@@ -34,8 +34,8 @@ class User < ActiveRecord::Base
 	def currentWeightChange() weightChange(currentWeight) end
 	def currentWeightPercentChange() weightPercentChange(currentWeight) end
 
-	def printCurrentWeightChange() currentWeighin.printWeightChange end
-	def printCurrentWeightPercentChange() currentWeighin.printWeightPercentChange end
+	def printCurrentWeightChange() if hasWeighin then currentWeighin.printWeightChange end end
+	def printCurrentWeightPercentChange() if hasWeighin then currentWeighin.printWeightPercentChange end end
 
 	def weights_as_array() weighins.pluck(:created_at, :weight).map {|d,w| {"created_at" => d, "weight" => w}} end
 	def weightPercentChanges_as_array() weighins.pluck(:created_at, :weight).map {|d,w| {"created_at" => d, "percent_change" => weightPercentChange(w)}} end
