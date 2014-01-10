@@ -10,34 +10,37 @@ class User < ActiveRecord::Base
    has_many :weighins, dependent: :destroy
    belongs_to :team, touch: true
 
-   include WeighinsHelper
+   default_scope order("id ASC")
 
-	def self.visible
-		where(visible: true)
-	end
+   include MathHelper
 
-	def self.paid
-		where(paid: true)
-	end
+	def self.visible() where(visible: true) end
+	def self.paid() where(paid: true) end
 
+	def self.withWeighins() joins(:weighins).distinct end
+	def self.withVerifiedWeighins() joins(:weighins).where(:weighins => {:verified => true}).distinct end
 
-	def overallWeightPercentChange
-		weighins.last.weightPercentTotalChange
-	end
+	def hasWeighin() weighins.present? end
+	def hasVerifiedWeighin() weighins.where(verified: true).present? end
 
-	def self.withWeighins
-		usersWithWeighins = Array.new
+	def firstWeight() if hasVerifiedWeighin then weighins.where(verified: true).first.weight elsif hasWeighin then weighins.first.weight end end
 
-		User.all.each do |u|			
-			usersWithWeighins = usersWithWeighins + [u] unless (u.weighins.blank?)
-		end
-		
-		return usersWithWeighins
-	end
+	def currentWeighin() weighins.last end
+	def currentWeight() weighins.last.weight end
+	def currentVerifiedWeight() weighins.where(verified: true).last.weight end
 
-	def hasVerifiedWeighin
-		return false if weighins.where(verified: true).blank?
-		return true
-	end
+	def weightChange (wt) if hasWeighin then (wt - firstWeight) end end
+	def weightPercentChange (wt) if hasWeighin then percentChange(firstWeight, wt) end end
+	def currentWeightChange() weightChange(currentWeight) end
+	def currentWeightPercentChange() weightPercentChange(currentWeight) end
+
+	def printCurrentWeightChange() currentWeighin.printWeightChange end
+	def printCurrentWeightPercentChange() currentWeighin.printWeightPercentChange end
+
+	def weights_as_array() weighins.pluck(:created_at, :weight).map {|d,w| {"created_at" => d, "weight" => w}} end
+	def weightPercentChanges_as_array() weighins.pluck(:created_at, :weight).map {|d,w| {"created_at" => d, "percent_change" => weightPercentChange(w)}} end
+
+	
+
 
 end

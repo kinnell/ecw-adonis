@@ -26,16 +26,15 @@
 
         <tbody>  
 
-          <% sortedTeams = Team.all.sort_by {|t| t.id } %>
-          <% sortedTeams.each do |team| %>
+          <% Team.all.each do |team| %>
             
             <tr>
               <td><%= team.id %></td>             
               <td><%= link_to team.name, team %></td>
-              <td><%= team.membership.size %></td>
+              <td><%= team.users.size %></td>
               <td>
-                <% team.membership.each_with_index do |member, i| %>
-                  <% if (i > 0) && (team.membership.size > 1) %>|<% end %>
+                <% team.users.each_with_index do |member, i| %>
+                  <% if (i > 0) && (team.size > 1) %>|<% end %>
                   <%= link_to member.name, member %>
                 <% end %>
               </td>

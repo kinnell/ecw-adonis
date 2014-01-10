@@ -62,7 +62,7 @@
 
         <tbody>
         	
-        	<% sortedUsers = User.find(:all, :order => "last_sign_in_at").last(5).reverse %>
+        	<% sortedUsers = User.order(last_sign_in_at: :desc).limit(5) %>
           <% sortedUsers.each do |user| %>
             
             

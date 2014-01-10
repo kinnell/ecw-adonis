@@ -122,14 +122,14 @@
           </thead>
 
           <tbody>
-            <% @user.weighins.each do |weighin| %>
+            <% @user.weighins.each_with_index do |weighin, i| %>
             <tr> 
                 
-                <td><%= weighin.weighinNum %></td>
-                <td><%= "#{weighin.weighinWeek}" %></td>
+                <td><%= i+1 %></td>
+                <td><%= weighin.weighinWeek %></td>
                 <td style="text-align: left"><%= weighin.printCreatedAt %></td>
-                <td><%= weighin.weight %> lbs</td>                
-                <td><%= weighin.printWeightTotalChange %></td>
+                <td><%= weighin.printWeight %></td>                
+                <td><%= weighin.printWeightChangeStatement %></td>
                 <td>
                   <% if weighin.verified? %>
                     <span class="label label-success label-mini">Verified</span>

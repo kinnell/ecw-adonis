@@ -55,6 +55,8 @@ gem 'rails-backup-migrate'
 gem 'paperclip', '~> 3.0'
 gem 'font-awesome-sass'
 
+gem "puma"
+
 
 
 

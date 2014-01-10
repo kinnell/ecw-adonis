@@ -1,28 +1,28 @@
 module WeighinsHelper
 	include ActionView::Helpers::TextHelper
 
-	def printCreatedAt() return created_at.in_time_zone('Eastern Time (US & Canada)').strftime("%A, %B %-d, %Y %-I:%M %p %Z") end
+	def printWeight(wt = weight) return pluralize(wt, "lb") end
 
+	def printCreatedAt(tm = created_at) return tm.in_time_zone('Eastern Time (US & Canada)').strftime("%A, %B %-d, %Y %-I:%M %p %Z") end
+	
+	def printWeightChange() formatWeightChange("#{pluralize(weightChange, "lb")}").html_safe end
 
-	def printWeightPercentChange wtPercentChange
-		pWeight = "<b>#{printSign(wtPercentChange)}%</b></font>"
-		return ("<font color=green>" + pWeight).html_safe if wtPercentChange < 0
-		return ("<font color=black>" + pWeight).html_safe if wtPercentChange == 0
-		return ("<font color=red>" + pWeight).html_safe if wtPercentChange > 0	
+	def printWeightPercentChange() formatWeightChange("#{weightPercentChange}%").html_safe end
 
+	def printWeightChangeStatement() colorWeightChange("#{printWeightChange} (#{printWeightPercentChange})").html_safe end
+
+	
+	private
+
+	def formatWeightChange(str) colorWeightChange(signWeightChange(str)) end
+
+	def colorWeightChange(str)
+		if weightChange < 0 then wtColor = "green" elsif weightChange == 0 then wtColor = "black" else wtColor = "red" end
+		return "<b><font color='#{wtColor}'>#{str}</font></b>"
 	end
 
-	def printWeight wtChange, wtPercentChange
-		pWeight = "#{pluralize(wtChange, 'lb')} <b>(#{printSign(wtPercentChange)}%)</b></font>"
-		return ("<font color=green>" + pWeight).html_safe if weightTotalChange < 0
-		return ("<font color=black>" + pWeight).html_safe if weightTotalChange == 0
-		return ("<font color=red>" + pWeight).html_safe if weightTotalChange > 0
-		
-	end
-
-	def printSign num
-		return "+#{num.to_s}" if num >= 0
-		return num.to_s
+	def signWeightChange(str)
+		if weightChange >= 0 then "+#{str}" else str end
 	end
 
 end
