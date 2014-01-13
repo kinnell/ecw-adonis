@@ -13,6 +13,5 @@ class Weighin < ActiveRecord::Base
 
 	def weightPercentChange() user.weightPercentChange weight end
 
-
 end
 
