@@ -19,8 +19,6 @@ class TeamsController < ApplicationController
   def edit
   end
 
-
-
   def create
     @team = Team.new(team_params)
     if @team.save

@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+   # Include default devise modules. Others available are:
+   # :confirmable, :lockable, :timeoutable and :omniauthable
+   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :email_regexp => /\A[\w+\-.]+@eclinicalworks.com/i
 
    validates_format_of :email, :with=>email_regexp, :allow_blank => true, :message=>"needs to be an eClinicalWorks email."      
@@ -10,17 +10,16 @@ class User < ActiveRecord::Base
    has_many :weighins, dependent: :destroy
    belongs_to :team, touch: true
 
-   default_scope { order("users.id ASC") }
-
    include MathHelper
 
-	def self.visible() where(visible: true) end
-	def self.paid() where(paid: true) end
+   default_scope { order("users.id ASC") }
 
-	def self.withWeighins() joins(:weighins).distinct end
-	def self.withVerifiedWeighins() joins(:weighins).where(:weighins => {:verified => true}).distinct end
+   scope :visible, -> { where(visible: true) }
+   scope :paid, -> { where(paid: true) }
+	scope :withWeighins, -> { joins(:weighins).distinct }
+	scope :withVerifiedWeighins, -> { joins(:weighins).merge(Weighin.verified).distinct }
 
-	def hasWeighin() weighins.present? end
+	def hasWeighin() self.weighins.present? end
 	def hasVerifiedWeighin() weighins.where(verified: true).present? end
 
 	def firstWeight() if hasVerifiedWeighin then weighins.where(verified: true).first.weight elsif hasWeighin then weighins.first.weight end end
