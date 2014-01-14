@@ -21,7 +21,7 @@
 
         <tbody>
           
-          <% sortedUsers = User.visible.withVerifiedWeighins.includes(:team).sort_by {|u| [u.currentWeightPercentChange, u.id] } %>
+          <% sortedUsers = User.visible.withLoadedVerifiedWeighins.includes(:team).sort_by {|u| [u.currentWeightPercentChange, u.id] } %>
           <% sortedUsers.each_with_index do |user, i| %>
             
             <% if current_user == user %>

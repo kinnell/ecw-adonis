@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
 
 	def self.withWeighins() joins(:weighins).distinct end
 	def self.withVerifiedWeighins() joins(:weighins).where(:weighins => {:verified => true}).distinct end
+	def self.withLoadedVerifiedWeighins() includes(:weighins).where(:weighins => {:verified => true}).distinct end
 
 	def hasWeighin() weighins.present? end
 	def hasVerifiedWeighin() weighins.where(verified: true).present? end
