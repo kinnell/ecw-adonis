@@ -8,6 +8,8 @@ class TeamsController < ApplicationController
   end
 
   def myTeam
+    @team = current_user.team
+    @users = @team.users.includes(:weighins)
   end
 
   def show

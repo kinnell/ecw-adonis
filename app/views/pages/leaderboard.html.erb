@@ -17,11 +17,11 @@
           </tr>
         </thead>
 
-        <% unless User.blank? %>
+        <% unless @users.blank? %>
 
         <tbody>
           
-          <% sortedUsers = User.visible.withVerifiedWeighins.includes(:team).sort_by {|u| [u.currentWeightPercentChange, u.id] } %>
+          <% sortedUsers = @users.includes(:team).sort_by {|u| [u.currentWeightPercentChange, u.id] } %>
           <% sortedUsers.each_with_index do |user, i| %>
             
             <% if current_user == user %>
@@ -68,7 +68,7 @@
         <% unless Team.blank? %>
 
         <tbody>
-          <% sortedTeams = Team.withUsers.sort_by {|t| t.weightPercentChange }.first(10) %>
+          <% sortedTeams = Team.withUsers.includes(:users => :weighins).sort_by {|t| t.weightPercentChange }.first(10) %>
           <% sortedTeams.each_with_index do |team, i| %>
             
             <% if current_user.team == team %>

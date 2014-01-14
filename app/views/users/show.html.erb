@@ -122,7 +122,7 @@
           </thead>
 
           <tbody>
-            <% @user.weighins.each_with_index do |weighin, i| %>
+            <% @user.weighins.includes(:user).each_with_index do |weighin, i| %>
             <tr> 
                 
                 <td><%= i+1 %></td>

@@ -38,6 +38,9 @@ GEM
     bcrypt-ruby (3.1.2)
     browser (0.3.2)
     builder (3.1.4)
+    bullet (4.7.1)
+      activesupport
+      uniform_notifier (>= 1.4.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.3)
@@ -142,6 +145,7 @@ GEM
     uglifier (2.3.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    uniform_notifier (1.4.0)
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -151,6 +155,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass!
   browser
+  bullet
   coffee-rails (~> 4.0.0)
   devise (~> 3.1.1)
   font-awesome-sass

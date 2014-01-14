@@ -36,7 +36,7 @@
 
     <tbody>
       
-      <% current_user.weighins.each_with_index do |weighin, i| %>
+      <% current_user.weighins.includes(:user).each_with_index do |weighin, i| %>
       
       <tr>     
         <td><%= i+1 %></td>
