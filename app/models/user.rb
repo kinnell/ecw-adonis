@@ -12,13 +12,18 @@ class User < ActiveRecord::Base
 
    include MathHelper
 
-#   default_scope { order("users.id ASC") }
+   default_scope { order("users.id ASC") }
 
-   scope :visible, -> { where(visible: true) }
-   scope :paid, -> { where(paid: true) }
-	scope :withWeighins, -> { joins(:weighins).distinct }
-	scope :withVerifiedWeighins, -> { joins(:weighins).merge(Weighin.verified).distinct }
+   #scope :visible, -> { where(visible: true) }
+   #scope :paid, -> { where(paid: true) }
+	#scope :withWeighins, -> { joins(:weighins).distinct }
+	#scope :withVerifiedWeighins, -> { joins(:weighins).merge(Weighin.verified).distinct }
 
+	def self.visible() where(visible: true) end
+   def self.paid() where(paid: true) end
+   def self.withWeighins() joins(:weighins).distinct end
+   def self.withVerifiedWeighins() joins(:weighins).where(:weighins => {:verified => true}).distinct end
+	
 	def hasWeighin() self.weighins.present? end
 	def hasVerifiedWeighin() weighins.where(verified: true).present? end
 
