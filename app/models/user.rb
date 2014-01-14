@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
    has_many :weighins, dependent: :destroy
    belongs_to :team, touch: true
 
-   default_scope { order("id ASC") }
+   default_scope { order("users.id ASC") }
 
    include MathHelper
 

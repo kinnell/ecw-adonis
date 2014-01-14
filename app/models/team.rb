@@ -1,7 +1,7 @@
 class Team < ActiveRecord::Base
 	has_many :users
 
-	default_scope { order("id ASC") }
+	default_scope { order("teams.id ASC") }
 
 	include MathHelper
 
