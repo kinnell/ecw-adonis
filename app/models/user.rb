@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
 
    include MathHelper
 
-   default_scope { order("users.id ASC") }
+#   default_scope { order("users.id ASC") }
 
    scope :visible, -> { where(visible: true) }
    scope :paid, -> { where(paid: true) }
