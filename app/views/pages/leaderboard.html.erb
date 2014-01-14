@@ -21,7 +21,7 @@
 
         <tbody>
           
-          <% sortedUsers = @users.includes(:team).sort_by {|u| [u.currentWeightPercentChange, u.id] } %>
+          <% sortedUsers = @users.includes(:team).sort_by {|u| [u.currentWeightPercentChange, u.id] }.first(25) %>
           <% sortedUsers.each_with_index do |user, i| %>
             
             <% if current_user == user %>
