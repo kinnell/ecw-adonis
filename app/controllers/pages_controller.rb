@@ -6,7 +6,6 @@ class PagesController < ApplicationController
   end
 
   def leaderboard
-    @users = User.visible.withVerifiedWeighins
   end
 
   def treasury
