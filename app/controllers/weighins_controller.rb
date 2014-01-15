@@ -18,6 +18,8 @@ class WeighinsController < ApplicationController
     @weighin = Weighin.new(weighin_params)
 
     if @weighin.save
+      expire_fragment('users_leaderboard')
+      expire_fragment('teams_leaderboard')
       redirect_to :back, notice: 'Weigh-in was successfully added.'
     else
       redirect_to :back, notice: 'Weigh-in weight was invalid'
@@ -26,6 +28,8 @@ class WeighinsController < ApplicationController
 
   def update
     if @weighin.update(weighin_params)
+      expire_fragment('users_leaderboard')
+      expire_fragment('teams_leaderboard')
       redirect_to :back, notice: 'Weigh-in was successfully editted.'
     else
       render action: 'edit'
@@ -34,12 +38,16 @@ class WeighinsController < ApplicationController
 
   def destroy
     @weighin.destroy
+    expire_fragment('users_leaderboard')
+    expire_fragment('teams_leaderboard')
     redirect_to :back, notice: 'Weigh-in was successfully deleted.'
   end
 
   def verify
     @weighin = Weighin.find(params[:id])
     if @weighin.update_attributes(:verified => true)
+      expire_fragment('users_leaderboard')
+      expire_fragment('teams_leaderboard')
       redirect_to :back, notice: 'Weigh-in was verified.'
     end 
   end
@@ -47,6 +55,8 @@ class WeighinsController < ApplicationController
   def unverify
     @weighin = Weighin.find(params[:id])
     if @weighin.update_attributes(:verified => false)
+      expire_fragment('users_leaderboard')
+      expire_fragment('teams_leaderboard')
       redirect_to :back, notice: 'Weigh-in was unverified.'
     end 
   end

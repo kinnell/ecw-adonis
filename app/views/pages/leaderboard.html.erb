@@ -20,11 +20,11 @@
         <% unless @users.blank? %>
 
         <tbody>
+
+          <% cache('users_leaderboard') do %>
          
           <% sortedUsers = @users.visible.withVerifiedWeighins.includes(:team).sort_by {|u| [u.currentWeightPercentChange, u.id] }.first(25) %>
           <% sortedUsers.each_with_index do |user, i| %>
-
-            <% cache(user) do %>
             
             <% if current_user == user %><tr style="background-color: #e3f2ff"><% else %><tr><% end %>
 
@@ -70,10 +70,10 @@
 
         <tbody>
 
+          <% cache('teams_leaderboard') do %>
+
           <% sortedTeams = Team.withUsers.includes(:users => :weighins).sort_by {|t| t.weightPercentChange }.first(10) %>
           <% sortedTeams.each_with_index do |team, i| %>
-
-            <% cache(team) do %>
             
             <% if current_user.team == team %>
               <tr style="background-color: #e3f2ff">
