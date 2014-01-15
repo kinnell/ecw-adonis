@@ -2,7 +2,6 @@ class WeighinsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_if_admin, only: [:edit, :update, :verify, :unverify]
   before_action :set_weighin, only: [:show, :edit, :update, :destroy]
-  before_action :expireAllFragments
 
   def myProgress
     @weighins = current_user.weighins
@@ -57,11 +56,6 @@ class WeighinsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_weighin
       @weighin = Weighin.find(params[:id])
-    end
-
-    def expireAllFragments
-      expire_fragment(:action => 'leaderboard', :controller => 'pages', :action_suffix => 'users')
-      expire_fragment(:action => 'leaderboard', :controller => 'pages', :action_suffix => 'teams')
     end
 
     # def correct_user
