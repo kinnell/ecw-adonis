@@ -23,7 +23,7 @@
 
     <tbody>
 
-    <% cache @users do %>
+    <% cache ["v3", @users] do %>
           	          
       <% @users.all.each do |user| %>
                       

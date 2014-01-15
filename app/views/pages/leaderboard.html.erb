@@ -21,7 +21,7 @@
 
         <tbody>
          
-        <% cache @users do %> 
+        <% cache ["v1", @users] do %> 
           <% sortedUsers = @users.visible.withVerifiedWeighins.includes(:team).sort_by {|u| [u.currentWeightPercentChange, u.id] }.first(25) %>
           <% sortedUsers.each_with_index do |user, i| %>
             
@@ -70,7 +70,7 @@
         <% unless Team.blank? %>
 
         <tbody>
-        <% cache @users do %> 
+        <% cache ["v2", @users] do %> 
           <% sortedTeams = Team.withUsers.includes(:users => :weighins).sort_by {|t| t.weightPercentChange }.first(10) %>
           <% sortedTeams.each_with_index do |team, i| %>
             
