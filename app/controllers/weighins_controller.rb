@@ -60,8 +60,8 @@ class WeighinsController < ApplicationController
     end
 
     def expireAllFragments
-      expire_fragment('users_leaderboard')
-      expire_fragment('teams_leaderboard')
+      expire_fragment(:action => 'leaderboard', :controller => 'pages', :action_suffix => 'users')
+      expire_fragment(:action => 'leaderboard', :controller => 'pages', :action_suffix => 'teams')
     end
 
     # def correct_user
