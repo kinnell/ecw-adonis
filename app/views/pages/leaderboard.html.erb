@@ -17,12 +17,12 @@
           </tr>
         </thead>
 
-        <% unless User.blank? %>
+        <% unless @users.blank? %>
 
         <tbody>
          
-        <% cache("user_leaderboard", :expires_in => 10.minutes) do %> 
-          <% sortedUsers = User.visible.withVerifiedWeighins.includes(:team).sort_by {|u| [u.currentWeightPercentChange, u.id] }.first(25) %>
+        <% cache @users do %> 
+          <% sortedUsers = @users.visible.withVerifiedWeighins.includes(:team).sort_by {|u| [u.currentWeightPercentChange, u.id] }.first(25) %>
           <% sortedUsers.each_with_index do |user, i| %>
             
             <% if current_user == user %>
@@ -70,7 +70,7 @@
         <% unless Team.blank? %>
 
         <tbody>
-        <% cache("team_leaderboard", :expires_in => 10.minutes) do %> 
+        <% cache @users do %> 
           <% sortedTeams = Team.withUsers.includes(:users => :weighins).sort_by {|t| t.weightPercentChange }.first(10) %>
           <% sortedTeams.each_with_index do |team, i| %>
             

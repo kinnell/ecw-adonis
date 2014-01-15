@@ -22,6 +22,8 @@
     </thead>
 
     <tbody>
+
+    <% cache @users do %>
           	          
       <% @users.all.each do |user| %>
                       
@@ -78,6 +80,8 @@
       </tr>
 
       <% end %>
+
+    <% end %>
             
     </tbody>
           
