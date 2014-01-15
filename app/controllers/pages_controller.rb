@@ -9,6 +9,10 @@ class PagesController < ApplicationController
     @users = User.all
   end
 
+  def testLeaderboard
+    @users = User.all
+  end
+
   def treasury
   end
 

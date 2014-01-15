@@ -18,6 +18,9 @@
 
         <% if current_user.admin? %>
 
+
+
+
             <li class="<%= 'active' if current_page?(dashboard_path) %>"><%= link_to(dashboard_path) do %><i class="fa fa-tasks"></i><span>Admin Dashboard</span>
             <% end %></a></li>
 
@@ -29,6 +32,16 @@
 
             <li class="<%= 'active' if current_page?(treasury_path) %>"><%= link_to(treasury_path) do %><i class="fa fa-money"></i><span>Treasury</span>
             <% end %></a></li>
+
+            <hr style="border-top: 1px solid #666; opacity: 0.3;">
+
+        <% end %>
+        <% if current_user == User.find(1) %>
+
+            <li class="<%= 'active' if current_page?(test_leaderboard_path) %>"><%= link_to(test_leaderboard_path) do %>
+            <i class="fa fa-trophy"></i>
+            <span>Test Leaderboard</span>
+            <% end %></li>
 
             <hr style="border-top: 1px solid #666; opacity: 0.3;">
 
