@@ -23,7 +23,7 @@
 
     <tbody>
 
-    <% cache ["v3", @users] do %>
+    <% cache ["v3",  Digest::MD5.hexdigest(@users.map(&:cache_key))] do %>
           	          
       <% @users.all.each do |user| %>
                       
