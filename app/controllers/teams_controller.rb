@@ -9,7 +9,7 @@ class TeamsController < ApplicationController
 
   def myTeam
     @team = current_user.team
-    @users = @team.users.includes(:weighins)
+    @users = @team.users.includes(:weighins) if @team.present?
   end
 
   def show
