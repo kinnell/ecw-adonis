@@ -2,6 +2,7 @@ class WeighinsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_if_admin, only: [:edit, :update, :verify, :unverify]
   before_action :set_weighin, only: [:show, :edit, :update, :destroy]
+  before_action :expireAllFragments
 
   def myProgress
     @weighins = current_user.weighins
@@ -18,8 +19,6 @@ class WeighinsController < ApplicationController
     @weighin = Weighin.new(weighin_params)
 
     if @weighin.save
-      expire_fragment('users_leaderboard')
-      expire_fragment('teams_leaderboard')
       redirect_to :back, notice: 'Weigh-in was successfully added.'
     else
       redirect_to :back, notice: 'Weigh-in weight was invalid'
@@ -28,8 +27,6 @@ class WeighinsController < ApplicationController
 
   def update
     if @weighin.update(weighin_params)
-      expire_fragment('users_leaderboard')
-      expire_fragment('teams_leaderboard')
       redirect_to :back, notice: 'Weigh-in was successfully editted.'
     else
       render action: 'edit'
@@ -38,16 +35,12 @@ class WeighinsController < ApplicationController
 
   def destroy
     @weighin.destroy
-    expire_fragment('users_leaderboard')
-    expire_fragment('teams_leaderboard')
     redirect_to :back, notice: 'Weigh-in was successfully deleted.'
   end
 
   def verify
     @weighin = Weighin.find(params[:id])
     if @weighin.update_attributes(:verified => true)
-      expire_fragment('users_leaderboard')
-      expire_fragment('teams_leaderboard')
       redirect_to :back, notice: 'Weigh-in was verified.'
     end 
   end
@@ -55,8 +48,6 @@ class WeighinsController < ApplicationController
   def unverify
     @weighin = Weighin.find(params[:id])
     if @weighin.update_attributes(:verified => false)
-      expire_fragment('users_leaderboard')
-      expire_fragment('teams_leaderboard')
       redirect_to :back, notice: 'Weigh-in was unverified.'
     end 
   end
@@ -66,6 +57,11 @@ class WeighinsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_weighin
       @weighin = Weighin.find(params[:id])
+    end
+
+    def expireAllFragments
+      expire_fragment('users_leaderboard')
+      expire_fragment('teams_leaderboard')
     end
 
     # def correct_user
