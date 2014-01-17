@@ -29,5 +29,9 @@ module Adonis
 
     config.assets.initialize_on_precompile = false
 
+    config.generators.stylesheets = false
+    config.generators.javascripts = false
+    config.generators.helper      = false
+
   end
 end

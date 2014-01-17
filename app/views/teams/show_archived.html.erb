@@ -5,7 +5,7 @@
 <div class="row">
   <div class="col-lg-12">
     <section class="panel">
-      <header class="panel-heading">Team Members (<%= @team.users.count %>)</header>
+      <header class="panel-heading">Team Members</header>
 
       <table class="table table-bordered table-advance table-hover">
         <thead>
@@ -13,7 +13,7 @@
             <th>#</th>
             <th>Member Name</th>
             <th>Email Address</th>
-            <th>Overall Percent Weight Loss</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
@@ -21,9 +21,9 @@
           <% @team.users.each_with_index do |member, i| %>
             <tr>
               <td><%= i+1 %></td>
-              <td><%= member.name %></td>
+              <td><%= link_to member.name, member %></td>
               <td><%= member.email %></td>
-              <td><%= if member.visible then member.printCurrentWeightPercentChange else "-" end  %></td>
+              <td></td>
             </tr>
           <% end %>
 

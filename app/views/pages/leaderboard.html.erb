@@ -21,15 +21,15 @@
 
         <tbody>
 
-          
-         
+
+
           <% sortedUsers = @users.visible.withVerifiedWeighins.includes(:team).sort_by {|u| [u.currentWeightPercentChange, u.id] }.first(25) %>
           <% sortedUsers.each_with_index do |user, i| %>
-            
+
             <% if current_user == user %><tr style="background-color: #e3f2ff"><% else %><tr><% end %>
 
-             
-            	<td><%= i+1 %></td>            	
+
+            	<td><%= i+1 %></td>
             	<td><%= user.name %><% if (current_user == user) %> <b>(You)</b><% end %></td>
 			        <td><%= user.location %></td>
               <td><%= user.team.name if user.team %></td>
@@ -38,14 +38,14 @@
             </tr>
 
           <% end %>
-        
-        
+
+
 
         <% end %>
         </tbody>
 
-        
-        
+
+
       </table>
 
     </section>
@@ -70,31 +70,31 @@
 
         <tbody>
 
-          
+
 
           <% sortedTeams = Team.withUsers.includes(:users => :weighins).sort_by {|t| t.weightPercentChange }.first(10) %>
           <% sortedTeams.each_with_index do |team, i| %>
-            
+
             <% if current_user.team == team %>
               <tr style="background-color: #e3f2ff">
             <% else %>
               <tr>
             <% end %>
 
-             
-              <td><%= i+1 %></td>             
-              <td><%= team.name %><% if (current_user.team == team) %> <b>(Your Team)</b><% end %></td>
+
+              <td><%= i+1 %></td>
+              <td><%= link_to team.name, team %><% if (current_user.team == team) %> <b>(Your Team)</b><% end %></td>
               <td><%= team.printWeightPercentChange %></td>
 
             </tr>
             <% end %>
 
           <% end %>
-        
 
-         
+
+
         </tbody>
 
-        
+
       </table>
     </section></div></div>

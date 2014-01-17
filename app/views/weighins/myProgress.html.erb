@@ -1,8 +1,8 @@
 <% @user = current_user %>
 <%= render "/weighins/new", :user => @user %>
-  
+
 <h1 class="title">
-  <i class="fa fa-bar-chart-o"></i> 
+  <i class="fa fa-bar-chart-o"></i>
   My Progress
   <button class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#addWeighin"><span class="fa fa-plus"></span> Add a Weigh-In</button>
 </h1>
@@ -17,11 +17,11 @@
 </section></div></div>
 
 <div class="row"><div class="col-lg-12"><section class="panel panel-primary">
-      
+
   <header class="panel-heading">Your Weigh-Ins</header>
-      
+
   <table class="table table-bordered table-advance table-hover">
-            
+
     <thead>
       <tr style="background-color: #eeeeee">
         <th>#</th>
@@ -35,14 +35,14 @@
     </thead>
 
     <tbody>
-      
+
       <% current_user.weighins.includes(:user).each_with_index do |weighin, i| %>
-      
-      <tr>     
+
+      <tr>
         <td><%= i+1 %></td>
         <td><%= weighin.weighinWeek %></td>
         <td style="text-align:left;"><%= weighin.printCreatedAt %></td>
-        <td><%= weighin.printWeight %></td>                
+        <td><%= weighin.printWeight %></td>
         <td><%= weighin.printWeightChangeStatement %></td>
         <td>
           <% if weighin.verified? %><span class="label label-success label-mini">Verified</span>
@@ -54,7 +54,7 @@
       </tr>
 
       <% end %>
-    
+
     </tbody>
 
   </table>

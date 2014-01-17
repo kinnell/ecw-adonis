@@ -1,23 +1,22 @@
 Adonis::Application.routes.draw do
 
-
   devise_for :users
   resources :users
 
   resources :teams
   resources :weighins
 
-#  devise_for :users, :controllers => { :sessions => 'users/sessions' } 
+  # devise_for :users, :controllers => { :sessions => 'users/sessions' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  
+
   authenticated :user do
     root :to => "weighins#myProgress", as: :authenticated_root
   end
     root :to => "pages#home"
-  
+
   get "weighins/:id/verify" => "weighins#verify", :as => "verify_weighin"
   get "weighins/:id/unverify" => "weighins#unverify", :as => "unverify_weighin"
 
@@ -37,7 +36,7 @@ Adonis::Application.routes.draw do
   get "users/:id/hasNotPaid" => "users#hasNotPaid", :as => "hasNotPaid_user"
   get "users/:id/destroyUser" => "users#destroyUser", :as => "destroy_user"
 
- 
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -72,7 +71,7 @@ Adonis::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

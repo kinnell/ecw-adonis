@@ -2,11 +2,11 @@
   <% @team.errors.full_messages.each do |msg| %>
     <script>
       $(document).ready(function () {
-        noty({text:'<%= msg %>', 
-              type: 'warning', 
-              layout: 'topCenter', 
-              timeout: 10000, 
-              animateOpen: {opacity: 'show'}});  
+        noty({text:'<%= msg %>',
+              type: 'warning',
+              layout: 'topCenter',
+              timeout: 10000,
+              animateOpen: {opacity: 'show'}});
       });
     </script>
   <% end %>

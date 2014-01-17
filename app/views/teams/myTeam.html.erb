@@ -24,7 +24,7 @@
         <header class="panel-heading">Team Members</header>
 
         <table class="table table-bordered table-advance table-hover">
-         
+
           <thead>
             <tr style="background-color: #eeeeee">
               <th>#</th>
@@ -36,12 +36,12 @@
 
           <tbody>
             <% @users.each_with_index do |member, i| %>
-                                
+
             <tr>
-              <td><%= i+1 %></td>             
+              <td><%= i+1 %></td>
               <td><%= member.name %></td>
               <td><%= member.email %></td>
-              <td><%= member.printCurrentWeightPercentChange %></td>                
+              <td><%= member.printCurrentWeightPercentChange %></td>
             </tr>
 
             <% end %>

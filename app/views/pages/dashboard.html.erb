@@ -61,17 +61,17 @@
         <% unless User.blank? %>
 
         <tbody>
-        	
+
         	<% sortedUsers = User.order(last_sign_in_at: :desc).limit(5) %>
           <% sortedUsers.each do |user| %>
-            
-            
+
+
               <tr>
-                         
-            	<td><%= user.id %></td>            	
+
+            	<td><%= user.id %></td>
             	<td><%= link_to user.name, user %></td>
                <td><%= user.email %></td>
-			        
+
 	            <td>
                  <% if user.admin? %>
                      <span class="label label-warning label-mini">Admin</span>
@@ -85,11 +85,11 @@
             </tr>
 
           <% end %>
-          
+
         </tbody>
 
         <% end %>
-        
+
       </table>
 
     </section>

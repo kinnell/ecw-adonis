@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(:admin => true)
       redirect_to :back, notice: 'User was promoted to Admin.'
-    end 
+    end
   end
 
   def demote
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(:paid => true)
       redirect_to :back, notice: 'User has been set to have paid.'
-    end 
+    end
   end
 
   def hasNotPaid

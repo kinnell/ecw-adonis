@@ -9,16 +9,16 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             <h2 class="modal-title"><center>New Weigh-In</center></h2>
         </div>
-          
+
         <div class="modal-body">
-                                
-            <div style="text-align: center;"> Weight (lbs): <%= f.number_field :weight, :min => 1, class: "form-control", autofocus: true %></div> 
+
+            <div style="text-align: center;"> Weight (lbs): <%= f.number_field :weight, :min => 1, class: "form-control", autofocus: true %></div>
 
             <%= f.hidden_field :user_id, :value => @user.id %>
 
             <%= f.hidden_field :verified, :value => ((current_user.admin?) && (@user != current_user)) %>
 
-                                    
+
         </div>
 
         <div class="modal-footer">
@@ -36,4 +36,3 @@
 
 
 
-  

@@ -1,4 +1,4 @@
-class WeighinsController < ApplicationController  
+class WeighinsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_if_admin, only: [:edit, :update, :verify, :unverify]
   before_action :set_weighin, only: [:show, :edit, :update, :destroy]
@@ -29,7 +29,7 @@ class WeighinsController < ApplicationController
       redirect_to :back, notice: 'Weigh-in was successfully editted.'
     else
       render action: 'edit'
-    end  
+    end
   end
 
   def destroy
@@ -41,14 +41,14 @@ class WeighinsController < ApplicationController
     @weighin = Weighin.find(params[:id])
     if @weighin.update_attributes(:verified => true)
       redirect_to :back, notice: 'Weigh-in was verified.'
-    end 
+    end
   end
 
   def unverify
     @weighin = Weighin.find(params[:id])
     if @weighin.update_attributes(:verified => false)
       redirect_to :back, notice: 'Weigh-in was unverified.'
-    end 
+    end
   end
 
 

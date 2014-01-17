@@ -9,14 +9,14 @@
 
 
       <div class="panel-body">
-    
+
             <div class="col-lg-4 col-sm-2">Total Users:</div>
             <div class="col-lg-8"><%= User.all.count %> users</div>
 
             <div class="col-lg-4">Paid Users:</div>
             <div class="col-lg-8"><%= User.paid.count %> users</div>
 
-            
+
             <div class="col-lg-4">Total Money:</div>
             <div class="col-lg-8">$<%= (User.all.count*10) %>.00</div>
 
@@ -41,7 +41,7 @@
       <header class="panel-heading">Competition Prizes</header>
 
       <div class="panel-body">
-    
+
             <div class="col-lg-4 col-sm-2 control-label">1st Place:</div>
             <div class="col-lg-8">$<%= (User.all.count*2.5)+300 %></div>
 
@@ -64,7 +64,3 @@
   </section>
 </div>
 </div>
-
-
- 
-

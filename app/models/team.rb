@@ -12,7 +12,7 @@ class Team < ActiveRecord::Base
 	def hasUsersWithWeighins() users.withWeighins.present? end
 
 	def firstWeight() users.includes(:weighins).withWeighins.map{|u| u.firstWeight}.sum end
-	def currentWeight() users.includes(:weighins).withWeighins.map{|u| u.currentWeight}.sum end		
+	def currentWeight() users.includes(:weighins).withWeighins.map{|u| u.currentWeight}.sum end
 
 	def weightChange(wt = currentWeight) wt - firstWeight end
 	def weightPercentChange(wt = currentWeight) if hasUsersWithWeighins then percentChange(firstWeight,wt) else 0 end end

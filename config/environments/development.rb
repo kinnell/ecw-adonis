@@ -37,5 +37,5 @@ Adonis::Application.configure do
     Bullet.rails_logger = false
     Bullet.add_footer = false
   end
-  
+
 end

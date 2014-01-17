@@ -1,4 +1,4 @@
-class TeamsController < ApplicationController  
+class TeamsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_if_admin, only: [:new, :edit, :index]
   before_action :set_team, only: [:show, :edit, :update, :destroy]
@@ -45,14 +45,14 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     if current_user.update_attributes(:team_id => @team.id)
       redirect_to :back, notice: 'Joined team'
-    end 
+    end
   end
 
   def leave
     @team = Team.find(params[:id])
     if current_user.update_attributes(:team_id => nil)
       redirect_to :back, notice: 'Left team'
-    end 
+    end
   end
 
   private

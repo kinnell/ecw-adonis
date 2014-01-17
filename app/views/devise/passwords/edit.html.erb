@@ -3,7 +3,7 @@
     <% unless devise_error_messages!.blank? %>
 
       <% devise_error_messages!.each do |content| %>
-        noty({text:'<%= content %>', type: 'error', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});      
+        noty({text:'<%= content %>', type: 'error', layout: 'topCenter', timeout: 10000, dismissQueue: true, animateOpen: {opacity: 'show'}});
       <% end %>
 
     <% end %>
@@ -16,21 +16,21 @@
   <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put, :class => 'form-signin' }) do |f| %>
 
     <h2 class="form-signin-heading" style="background-color: #00334b"><span class="fa fa-undo"></span> Reset Your Password</h2>
-   
+
     <div class="login-wrap">
 
        <%= f.hidden_field :reset_password_token %>
 
-       
+
 
        <%= f.password_field :password, class: "form-control", :placeholder => "New password", :autofocus => true %>
 
        <%= f.password_field :password_confirmation, class: "form-control", :placeholder => "Confirm new password" %>
-      
+
        <div class="form-group"><%= f.submit "Change My Password", class: "btn btn-primary btn-block" %></div>
 
       <hr>
-        
+
       <center><%= link_to "Log In", new_session_path(resource_name) %> | <%= link_to "Register", new_registration_path(resource_name) %></center>
 
     </div>

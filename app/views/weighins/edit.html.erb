@@ -2,30 +2,30 @@
 
 <section class="panel panel-primary">
   <header class="panel-heading">Edit Weigh-In</header>
-  
+
   <div class="panel-body">
     <%= form_for(@weighin, :html => {:class => 'form-horizontal'}) do |f| %>
-    
+
       <%= render 'errors' %>
 
       <div class="form-group">
         <label class="col-lg-2 col-sm-2 control-label">Weigh-in Date:</label>
         <div class="col-lg-10">
-          <%= f.datetime_local_field :created_at, :disabled => true, class: "form-control" %>               
+          <%= f.datetime_local_field :created_at, :disabled => true, class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-lg-2 col-sm-2 control-label">Your Weight (lbs):</label>
         <div class="col-lg-10">
-          <%= f.number_field :weight, :min => 1, class: "form-control" %>                 
+          <%= f.number_field :weight, :min => 1, class: "form-control" %>
         </div>
       </div>
 
       <div class="form-group">
         <label class="col-lg-2 col-sm-2 control-label">Verified?</label>
         <div class="col-lg-10">
-          <%= f.check_box :verified %>                 
+          <%= f.check_box :verified %>
         </div>
       </div>
 
@@ -34,7 +34,7 @@
           <%= f.submit "Update", class: "btn btn-primary" %>
         </div>
       </div>
-        
+
     <% end %>
   </div>
 
@@ -45,4 +45,3 @@
 
 
 
-  

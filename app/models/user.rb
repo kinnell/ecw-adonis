@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
    devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :email_regexp => /\A[\w+\-.]+@eclinicalworks.com/i
 
-   validates_format_of :email, :with=>email_regexp, :allow_blank => true, :message=>"needs to be an eClinicalWorks email."      
+   validates_format_of :email, :with=>email_regexp, :allow_blank => true, :message=>"needs to be an eClinicalWorks email."
    validates :name, presence: true
 
    has_many :weighins, dependent: :destroy
@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
    def self.paid() where(paid: true) end
    def self.withWeighins() joins(:weighins).distinct end
    def self.withVerifiedWeighins() joins(:weighins).where(:weighins => {:verified => true}).distinct end
-	
+
 	def hasWeighin() self.weighins.present? end
 	def hasVerifiedWeighin() weighins.where(verified: true).present? end
 
@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
 	def weights_as_array() weighins.pluck(:created_at, :weight).map {|d,w| {"created_at" => d, "weight" => w}} end
 	def weightPercentChanges_as_array() weighins.pluck(:created_at, :weight).map {|d,w| {"created_at" => d, "percent_change" => weightPercentChange(w)}} end
 
-	
+
 
 
 end

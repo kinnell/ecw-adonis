@@ -1,7 +1,7 @@
-<%= render "/teams/new" %>  
+<%= render "/teams/new" %>
 
 <h1 class="title">
-  <i class="fa fa-users"></i> Team Directory 
+  <i class="fa fa-users"></i> Team Directory
   <button class="btn btn-primary" style="float: right;" data-toggle="modal" data-target="#addTeam"><span class="fa fa-plus"></span> New Team</button>
 </h1>
 
@@ -11,9 +11,9 @@
   <div class="col-lg-12">
     <section class="panel panel-primary">
       <header class="panel-heading">Teams <%= "(#{Team.all.count})" %></header>
-      
+
       <table class="table table-bordered table-advance table-hover">
-        
+
         <thead>
           <tr style="background-color: #eeeeee">
             <th>ID</th>
@@ -24,12 +24,12 @@
           </tr>
         </thead>
 
-        <tbody>  
+        <tbody>
 
           <% Team.all.each do |team| %>
-            
+
             <tr>
-              <td><%= team.id %></td>             
+              <td><%= team.id %></td>
               <td><%= link_to team.name, team %></td>
               <td><%= team.users.size %></td>
               <td>
@@ -42,14 +42,14 @@
                 <%= link_to edit_team_path(team), class: "btn-xs btn btn-info" do %><i class="fa fa-pencil "></i><% end %>
                 <%= link_to team, class: "btn-xs btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash-o "></i><% end %>
               </td>
-                    
+
             </tr>
-          
+
           <% end %>
 
         </tbody>
 
-      
+
       </table>
 
     </section>
@@ -58,9 +58,9 @@
 
 
 
-      
 
- 
+
+
 
 
 

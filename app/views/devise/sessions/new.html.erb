@@ -1,12 +1,12 @@
 <div class="container">
-	
+
 	<%= form_for(resource, :html => {:class => 'form-signin'}, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 
 		<h2 class="form-signin-heading" style="background-color: #00334b"><span class="fa fa-sign-in"></span> Login</h2>
-   
+
    	<div class="login-wrap">
 
-		   
+
 		   <%= "Email Address:" if browser.ie? %>
 		   <%= f.email_field :email, class: "form-control", :placeholder => "Email address", :autofocus => true %>
 
@@ -18,7 +18,7 @@
 		   <div class="form-group"><%= f.submit "Login", class: "btn btn-primary btn-block" %></div>
 
 			<hr>
-				
+
 			<center><%= render "devise/shared/links" %></center>
 
 		</div>

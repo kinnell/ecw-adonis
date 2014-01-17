@@ -58,6 +58,8 @@ gem 'font-awesome-sass'
 
 gem "puma"
 
+gem "rails_best_practices"
+
 
 
 
