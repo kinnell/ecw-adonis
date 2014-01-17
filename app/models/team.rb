@@ -11,6 +11,12 @@ class Team < ActiveRecord::Base
 	def hasUsers() users.present? end
 	def hasUsersWithWeighins() users.withWeighins.present? end
 
+	def numWeighins() users.includes(:weighins).withWeighins.map{|u| u.weighins.size}.sum end
+
+	def rank()
+		Team.all.withUsers.includes(:users => :weighins).sort_by {|t| t.weightPercentChange }.index(self)+1
+	end
+
 	def firstWeight() users.includes(:weighins).withWeighins.map{|u| u.firstWeight}.sum end
 	def currentWeight() users.includes(:weighins).withWeighins.map{|u| u.currentWeight}.sum end
 

@@ -28,6 +28,7 @@ Adonis::Application.routes.draw do
   get "treasury", to: "pages#treasury"
   get "dashboard", to: "pages#dashboard"
   get "myteam", to: "teams#myTeam"
+  get "changelog", to: "pages#changelog"
 
   get 'users/:id' => 'users#show'
   get "users/:id/promote" => "users#promote", :as => "promote_user"

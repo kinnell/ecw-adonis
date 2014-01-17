@@ -18,9 +18,6 @@
 
         <% if current_user.admin? %>
 
-
-
-
             <li class="<%= 'active' if current_page?(dashboard_path) %>"><%= link_to(dashboard_path) do %><i class="fa fa-tasks"></i><span>Admin Dashboard</span>
             <% end %></a></li>
 
@@ -72,6 +69,11 @@
             <i class="fa fa-sign-out"></i>
             <span>Sign Out</span>
           <% end %></li>
+
+          <hr style="border-top: 1px solid #666; opacity: 0.3;">
+
+          <li class="<%= 'active' if current_page?(changelog_path) %>"><%= link_to(changelog_path) do %><i class="fa fa-wrench"></i><span>Changelog</span>
+            <% end %></a></li>
 
       </ul>
   </div>

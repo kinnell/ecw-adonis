@@ -19,4 +19,7 @@ class PagesController < ApplicationController
   def dashboard
   end
 
+  def changelog
+  end
+
 end

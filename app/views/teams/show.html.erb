@@ -1,10 +1,56 @@
-<h1 class="title"><i class="fa fa-users"></i> Team: <%= @team.name %></h1>
 
-<hr>
+
+<section class="panel panel-primary">
+  <header class="panel-heading blue"><center><font size=18><i class="fa fa-users"></i> <%= @team.name %></font></center></header>
+</section>
+
+<div class="row state-overview">
+
+  <div class="col-lg-4 col-sm-6">
+       <section class="panel">
+           <div class="symbol blue">
+               <i class="fa fa-dashboard"></i>
+           </div>
+           <div class="value">
+               <h1><%= @team.numWeighins %></h1>
+               <p>Total Weigh-Ins</p>
+           </div>
+       </section>
+   </div>
+
+  <div class="col-lg-4 col-sm-6">
+      <section class="panel">
+           <div class="symbol yellow">
+               <i class="fa fa-bar-chart-o"></i>
+           </div>
+           <div class="value">
+              <h1><%= @team.weightPercentChange %>%</h1>
+               <p>Weight Loss</p>
+           </div>
+       </section>
+   </div>
+
+
+
+   <div class="col-lg-4 col-sm-6">
+       <section class="panel">
+           <div class="symbol red">
+               <i class="fa fa-trophy"></i>
+           </div>
+           <div class="value">
+               <h1>#<%= @team.rank %></h1>
+               <p>Team Rank</p>
+           </div>
+       </section>
+   </div>
+</div>
+
+
+
 
 <div class="row">
   <div class="col-lg-12">
-    <section class="panel">
+    <section class="panel panel-primary">
       <header class="panel-heading">Team Members (<%= @team.users.count %>)</header>
 
       <table class="table table-bordered table-advance table-hover">
@@ -23,7 +69,7 @@
               <td><%= i+1 %></td>
               <td><%= member.name %></td>
               <td><%= member.email %></td>
-              <td><%= if member.visible then member.printCurrentWeightPercentChange else "-" end  %></td>
+              <td><%= if member.visible then member.printCurrentWeightPercentChange else "[hidden]" end  %></td>
             </tr>
           <% end %>
 
