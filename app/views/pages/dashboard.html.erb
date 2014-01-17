@@ -79,7 +79,7 @@
                      <span class="label label-default label-mini">User</span>
                  <% end %>
 	            </td>
-              <td><%= time_ago_in_words(user.last_sign_in_at) if user.last_sign_in_at.present? %></td>
+              <td><%= time_ago_in_words(user.last_sign_in_at) if user.last_sign_in_at? %></td>
               <td><%= time_ago_in_words(user.updated_at) %></td>
 
             </tr>

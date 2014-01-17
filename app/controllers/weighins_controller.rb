@@ -28,7 +28,7 @@ class WeighinsController < ApplicationController
     if @weighin.update(weighin_params)
       redirect_to :back, notice: 'Weigh-in was successfully editted.'
     else
-      render action: 'edit'
+      render :edit
     end
   end
 

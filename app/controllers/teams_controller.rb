@@ -24,7 +24,7 @@ class TeamsController < ApplicationController
     if @team.save
       redirect_to :back, notice: 'Team was successfully created.'
     else
-      render action: 'new'
+      render :new
     end
   end
 
@@ -32,7 +32,7 @@ class TeamsController < ApplicationController
       if @team.update(team_params)
         redirect_to teams_path, notice: 'Team was successfully updated.'
       else
-        render action: 'edit'
+        render :edit
       end
   end
 

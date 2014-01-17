@@ -9,4 +9,9 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Adonis::Application.config.secret_key_base = '26ed2e0cdf0767c5592e0eba7bda6cdc6937b7c5ec5613f880ca35addf32f5282dcc8fc5ce6d6dd673455f03b4313ac6ee6df499af2f2250a8b509e3ef4f04b5'
+
+if Rails.env.production? && ENV['SECRET_TOKEN'].blank?
+	raise 'SECRET_TOKEN environment variable must be set!'
+end
+
+Adonis::Application.config.secret_key_base = ENV['SECRET_TOKEN'] || '26ed2e0cdf0767c5592e0eba7bda6cdc6937b7c5ec5613f880ca35addf32f5282dcc8fc5ce6d6dd673455f03b4313ac6ee6df499af2f2250a8b509e3ef4f04b5'
