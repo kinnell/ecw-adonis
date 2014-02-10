@@ -31,11 +31,11 @@
             <tr>
               <td><%= team.id %></td>
               <td><%= link_to team.name, team %></td>
-              <td><%= team.users.size %></td>
+              <td><%= team.users_count %></td>
               <td>
                 <% team.users.each_with_index do |member, i| %>
-                  <% if (i > 0) && (team.size > 1) %>|<% end %>
                   <%= link_to member.name, member %>
+                  <%= "|" if i < (team.users_count - 1) %>
                 <% end %>
               </td>
               <td>

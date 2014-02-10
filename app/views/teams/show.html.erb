@@ -24,7 +24,7 @@
                <i class="fa fa-bar-chart-o"></i>
            </div>
            <div class="value">
-              <h1><%= @team.weightPercentChange %>%</h1>
+              <h1><%= @team.percentWeightChange %>%</h1>
                <p>Weight Loss</p>
            </div>
        </section>
@@ -46,12 +46,10 @@
 </div>
 
 
-
-
 <div class="row">
   <div class="col-lg-12">
     <section class="panel panel-primary">
-      <header class="panel-heading">Team Members (<%= @team.users.count %>)</header>
+      <header class="panel-heading">Team Members (<%= @team.users_count %>)</header>
 
       <table class="table table-bordered table-advance table-hover">
         <thead>
@@ -69,7 +67,7 @@
               <td><%= i+1 %></td>
               <td><%= member.name %></td>
               <td><%= member.email %></td>
-              <td><%= if member.visible then member.printCurrentWeightPercentChange else "[hidden]" end  %></td>
+              <td><%= if member.visible then member.printCurrentPercentWeightChange else "[hidden]" end  %></td>
             </tr>
           <% end %>
 

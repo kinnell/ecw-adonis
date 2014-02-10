@@ -6,7 +6,8 @@ class PagesController < ApplicationController
   end
 
   def leaderboard
-    @users = User.all
+    @users = User.visible.paid.withVerifiedWeighins
+    @teams = Team.withUsers
   end
 
   def testLeaderboard

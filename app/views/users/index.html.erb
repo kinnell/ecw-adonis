@@ -33,10 +33,10 @@
         <td><%= user.email %></td>
         <td><%= user.location %></td>
         <td>
-            <% if user.hasVerifiedWeighin %>
-                <span class="label label-primary label-mini"><%= user.weighins.count %></span>
+            <% if user.hasVerifiedWeighins %>
+                <span class="label label-primary label-mini"><%= user.weighins_count %></span>
             <% else %>
-                <span class="label label-default label-mini"><%= user.weighins.count unless user.weighins.empty? %></span>
+                <span class="label label-default label-mini"><%= user.weighins_count unless user.weighins.empty? %></span>
             <% end %>
         </td>
       	<td>
