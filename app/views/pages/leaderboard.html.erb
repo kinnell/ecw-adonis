@@ -5,7 +5,7 @@
 	<div class="row">
     <div class="col-lg-12">
       <section class="panel panel-primary">
-        <header class="panel-heading"><i class="fa fa-user"></i> Individual Rankings (Top 50)</header>
+        <header class="panel-heading"><i class="fa fa-user"></i> Individual Rankings (Top 25)</header>
         <table class="table table-bordered table-advance table-hover">
         <thead>
           <tr style="background-color: #eeeeee">
@@ -21,7 +21,7 @@
 
           <tbody>
 
-            <% sortedUsers = @users.includes(:team).sort_by {|u| [u.percentWeightChange, u.id] }.first(50) %>
+            <% sortedUsers = @users.includes(:team).sort_by {|u| [u.percentWeightChange, u.id] }.first(25) %>
             <% sortedUsers.each_with_index do |user, i| %>
 
               <% if current_user == user %><tr style="background-color: #e3f2ff"><% else %><tr><% end %>
