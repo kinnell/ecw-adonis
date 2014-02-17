@@ -67,7 +67,7 @@
               <td><%= i+1 %></td>
               <td><%= member.name %></td>
               <td><%= member.email %></td>
-              <td><%= if member.visible then member.printCurrentPercentWeightChange else "[hidden]" end  %></td>
+              <td><%= if member.visible then format_percentChange(member.percentWeightChange) else "[hidden]" end  %></td>
             </tr>
           <% end %>
 

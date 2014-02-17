@@ -18,7 +18,8 @@ class WeighinsController < ApplicationController
     @weighin = Weighin.new(weighin_params)
 
     if @weighin.save
-      redirect_to :back, notice: 'Weigh-in was successfully added.'
+      @weighin.user.update_percentWeightChange
+      redirect_to :back, notice: "Weigh-in was successfully added."
     else
       redirect_to :back, notice: 'Weigh-in weight was invalid'
     end
@@ -26,7 +27,8 @@ class WeighinsController < ApplicationController
 
   def update
     if @weighin.update(weighin_params)
-      redirect_to :back, notice: 'Weigh-in was successfully editted.'
+      @weighin.user.update_percentWeightChange
+      redirect_to :back, notice: 'Weigh-in was successfully edited.'
     else
       render :edit
     end
@@ -34,6 +36,7 @@ class WeighinsController < ApplicationController
 
   def destroy
     @weighin.destroy
+    @weighin.user.update_percentWeightChange
     redirect_to :back, notice: 'Weigh-in was successfully deleted.'
   end
 
@@ -57,6 +60,7 @@ class WeighinsController < ApplicationController
     def set_weighin
       @weighin = Weighin.find(params[:id])
     end
+
 
     # def correct_user
     #  @weighin = current_user.weighin.find_by(id: params[:id])

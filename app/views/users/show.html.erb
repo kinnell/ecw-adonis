@@ -127,9 +127,9 @@
 
                 <td><%= i+1 %></td>
                 <td><%= weighin.weighinWeek %></td>
-                <td style="text-align: left"><%= weighin.printCreatedAt %></td>
-                <td><%= weighin.printWeight %></td>
-                <td><%= weighin.printWeightChangeStatement %></td>
+                <td style="text-align: left"><%= format_time(weighin.created_at) %></td>
+                <td><%= format_weight(weighin.weight) %></td>
+                <td><%= format_statement(weighin.weightChange, weighin.percentWeightChange) %></td>
                 <td>
                   <% if weighin.verified? %>
                     <span class="label label-success label-mini">Verified</span>

@@ -33,17 +33,6 @@
             <hr style="border-top: 1px solid #666; opacity: 0.3;">
 
         <% end %>
-        <% if current_user == User.find(1) %>
-
-            <li class="<%= 'active' if current_page?(test_leaderboard_path) %>"><%= link_to(test_leaderboard_path) do %>
-            <i class="fa fa-trophy"></i>
-            <span>Test Leaderboard</span>
-            <% end %></li>
-
-            <hr style="border-top: 1px solid #666; opacity: 0.3;">
-
-        <% end %>
-
 
           <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to(root_path) do %>
             <i class="fa fa-bar-chart-o"></i>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129181003) do
+ActiveRecord::Schema.define(version: 20140129191516) do
 
   create_table "teams", force: true do |t|
     t.string   "name"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20140129181003) do
     t.integer  "team_id"
     t.boolean  "paid",                   default: false
     t.integer  "weighins_count",         default: 0,     null: false
+    t.float    "percentWeightChange",    default: 0.0,   null: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
