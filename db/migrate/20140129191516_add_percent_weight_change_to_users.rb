@@ -2,6 +2,9 @@ class AddPercentWeightChangeToUsers < ActiveRecord::Migration
   	class ::User < ActiveRecord::Base
   	end
 
+  	class ::Weighin < ActiveRecord::Base
+  	end
+
 	def change
   		add_column :users, :percentWeightChange, :float, default: 0, null: false
 
