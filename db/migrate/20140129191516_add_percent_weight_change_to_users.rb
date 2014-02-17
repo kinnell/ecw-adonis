@@ -6,7 +6,7 @@ class AddPercentWeightChangeToUsers < ActiveRecord::Migration
   		add_column :users, :percentWeightChange, :float, default: 0, null: false
 
   		User.all.each do |u|
-  			u.update_attribute(:percentWeightChange, u.currentPercentWeightChange)
+  			u.update_attribute(:percentWeightChange, percentChange(u.firstWeight, u.currentWeight))
   			u.save!
   		end
 
