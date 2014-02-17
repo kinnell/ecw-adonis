@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
    default_scope { order("users.id ASC") }
 
-	def update_percentWeightChange() update_attribute(:percentWeightChange, percentChange(firstWeight, currentWeight)) end
+	def update_percentWeightChange() update_attribute(:percentWeightChange, percentChange(firstWeight, currentWeight).round(2)) end
 
 	def self.visible() where(visible: true) end
    def self.paid() where(paid: true) end
