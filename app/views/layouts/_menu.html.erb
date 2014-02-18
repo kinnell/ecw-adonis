@@ -18,50 +18,50 @@
 
         <% if current_user.admin? %>
 
-            <li class="<%= 'active' if current_page?(dashboard_path) %>"><%= link_to(dashboard_path) do %><i class="fa fa-tasks"></i><span>Admin Dashboard</span>
+            <li class="<%= 'active' if current_page?(dashboard_path) %>" onClick="$(this).find('.loader').show();"><%= link_to(dashboard_path) do %><i class="fa fa-tasks"></i><span>Admin Dashboard</span><div class="loader"></div>
             <% end %></a></li>
 
-            <li class="<%= 'active' if current_page?(users_path) %>"><%= link_to(users_path) do %><i class="fa fa-user"></i><span>User Directory</span>
+            <li class="<%= 'active' if current_page?(users_path) %>" onClick="$(this).find('.loader').show();"><%= link_to(users_path) do %><i class="fa fa-user"></i><span>User Directory</span><div class="loader"></div>
             <% end %></a></li>
 
-            <li class="<%= 'active' if current_page?(teams_path) %>"><%= link_to(teams_path) do %><i class="fa fa-users"></i><span>Team Directory</span>
+            <li class="<%= 'active' if current_page?(teams_path) %>" onClick="$(this).find('.loader').show();"><%= link_to(teams_path) do %><i class="fa fa-users"></i><span>Team Directory</span><div class="loader"></div>
             <% end %></a></li>
 
-            <li class="<%= 'active' if current_page?(treasury_path) %>"><%= link_to(treasury_path) do %><i class="fa fa-money"></i><span>Treasury</span>
+            <li class="<%= 'active' if current_page?(treasury_path) %>" onClick="$(this).find('.loader').show();"><%= link_to(treasury_path) do %><i class="fa fa-money"></i><span>Treasury</span><div class="loader"></div>
             <% end %></a></li>
 
             <hr style="border-top: 1px solid #666; opacity: 0.3;">
 
         <% end %>
 
-          <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to(root_path) do %>
+          <li class="<%= 'active' if current_page?(root_path) %>" onClick="$(this).find('.loader').show();"><%= link_to(root_path) do %>
             <i class="fa fa-bar-chart-o"></i>
-            <span>My Progress</span>
+            <span>My Progress</span><div class="loader"></div>
           <% end %></a></li>
 
-          <li class="<%= 'active' if current_page?(myteam_path) %>"><%= link_to(myteam_path) do %>
+          <li class="<%= 'active' if current_page?(myteam_path) %>" onClick="$(this).find('.loader').show();"><%= link_to(myteam_path) do %>
             <i class="fa fa-users"></i>
-            <span>My Team</span>
+            <span>My Team</span><div class="loader"></div>
           <% end %></li>
 
-          <li class="<%= 'active' if current_page?(leaderboard_path) %>"><%= link_to(leaderboard_path) do %>
+          <li class="<%= 'active' if current_page?(leaderboard_path) %>" onClick="$(this).find('.loader').show();"><%= link_to(leaderboard_path) do %>
             <i class="fa fa-trophy"></i>
-            <span>Leaderboard</span>
+            <span>Leaderboard</span><div class="loader"></div>
           <% end %></li>
 
-          <li class="<%= 'active' if current_page?(edit_user_registration_path) %>"><%= link_to(edit_user_registration_path) do %>
+          <li class="<%= 'active' if current_page?(edit_user_registration_path) %>" onClick="$(this).find('.loader').show();"><%= link_to(edit_user_registration_path) do %>
             <i class="fa fa-gear"></i>
-            <span>My Settings</span>
+            <span>My Settings</span><div class="loader"></div>
           <% end %></li>
 
-          <li><%= link_to(destroy_user_session_path, method: :delete) do %>
+          <li onClick="$(this).find('.loader').show();"><%= link_to(destroy_user_session_path, method: :delete) do %>
             <i class="fa fa-sign-out"></i>
-            <span>Sign Out</span>
+            <span>Sign Out</span><div class="loader"></div>
           <% end %></li>
 
           <hr style="border-top: 1px solid #666; opacity: 0.3;">
 
-          <li class="<%= 'active' if current_page?(changelog_path) %>"><%= link_to(changelog_path) do %><i class="fa fa-wrench"></i><span>Changelog</span>
+          <li class="<%= 'active' if current_page?(changelog_path) %>" onClick="$(this).find('.loader').show();"><%= link_to(changelog_path) do %><i class="fa fa-wrench"></i><span>Changelog</span><div class="loader"></div>
             <% end %></a></li>
 
       </ul>
