@@ -9607,7 +9607,7 @@ ul.ft-link li a i {
 }
 
 .post-highlight.terques {
-    background: #41cac0;
+    background: #428bca;
     border-radius: 4px 0px 0px 04px;
     -webkit-border-radius: 4px 0px 0px 04px;
 }
@@ -13359,6 +13359,14 @@ hr {
   margin-bottom: 20px;
   border: 0;
   border-top: 1px solid #dddddd; }
+
+.loader {
+  background: url("ajax-loader.gif");
+  display: none;
+  float: right;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px; }
 /*!
  *  Font Awesome 4.0.1
  *  the iconic font designed for Bootstrap
