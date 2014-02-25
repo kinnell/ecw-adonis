@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   end
 
   def adminLeaderboard
-    @users = User.visible.paid.withVerifiedWeighins
+    @users = User.paid.withVerifiedWeighins
     @teams = Team.withUsers
   end
 
