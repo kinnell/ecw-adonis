@@ -10,6 +10,11 @@ class PagesController < ApplicationController
     @teams = Team.withUsers
   end
 
+  def adminLeaderboard
+    @users = User.visible.paid.withVerifiedWeighins
+    @teams = Team.withUsers
+  end
+
   def testLeaderboard
     @users = User.all
   end

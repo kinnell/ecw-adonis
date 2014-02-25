@@ -24,6 +24,7 @@ Adonis::Application.routes.draw do
   get "teams/:id/leave" => "teams#leave", :as => "leave_team"
 
   get "leaderboard", to: "pages#leaderboard"
+  get "adminLeaderboard", to: "pages#adminLeaderboard"
   get "treasury", to: "pages#treasury"
   get "dashboard", to: "pages#dashboard"
   get "myteam", to: "teams#myTeam"
