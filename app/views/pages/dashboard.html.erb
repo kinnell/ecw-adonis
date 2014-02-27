@@ -97,8 +97,6 @@
 
 <hr>
 
-<% if (current_user == User.all[0]) || (current_user == User.all[1]) %>
-
   <% companyWeightLoss = (User.all.includes(:weighins).withWeighins.map{|u| u.currentWeight}.sum)-(User.all.includes(:weighins).withWeighins.map{|u| u.firstWeight}.sum) %>
 
   <% averageWeightLoss = companyWeightLoss/User.all.count %>
@@ -144,6 +142,5 @@
      </div>
   </div>
 
-<% end %>
 
 
