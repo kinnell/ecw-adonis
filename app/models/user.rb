@@ -24,6 +24,12 @@ class User < ActiveRecord::Base
    def self.withWeighins() joins(:weighins).distinct end
    def self.withVerifiedWeighins() joins(:weighins).where(:weighins => {:verified => true}).distinct end
 
+   def isActive?()
+   	currentWeek = ((Time.now - Time.parse("05/01/2014"))/604800).ceil
+   	weighins.map {|w| w.weighinWeek}.uniq.sum == (currentWeek*(currentWeek+1))/2
+   end
+
+
 	def hasWeighins?() self.weighins.present? end
 	def hasVerifiedWeighins?() weighins.where(verified: true).present? end
 

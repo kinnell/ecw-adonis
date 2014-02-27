@@ -34,8 +34,8 @@
                 <td><%= user.team.name if user.team %></td>
                 <td><%= if user.visible then "Visible" else "Invisible" end %></td>
                 <td>
-                  <% if user.hasVerifiedWeighins? %>
-                  <span class="label label-primary label-mini"><%= user.weighins_count %></span>
+                  <% if user.isActive? %>
+                  <span class="label label-success label-mini"><%= user.weighins_count %></span>
                    <% else %>
                   <span class="label label-default label-mini"><%= user.weighins_count unless user.weighins.empty? %></span>
                    <% end %>
