@@ -18,7 +18,7 @@
 
    <div class="col-lg-4 col-sm-6">
        <section class="panel">
-           <div class="symbol terques">
+           <div class="symbol blue">
                <i class="fa fa-user"></i>
            </div>
            <div class="value">
@@ -30,7 +30,7 @@
 
    <div class="col-lg-4 col-sm-6">
        <section class="panel">
-           <div class="symbol yellow">
+           <div class="symbol blue">
                <i class="fa fa-users"></i>
            </div>
            <div class="value">
@@ -94,5 +94,56 @@
 
     </section>
   </div></div>
+
+<hr>
+
+<% if (current_user == User.all[0]) || (current_user == User.all[1]) %>
+
+  <% companyWeightLoss = (User.all.includes(:weighins).withWeighins.map{|u| u.currentWeight}.sum)-(User.all.includes(:weighins).withWeighins.map{|u| u.firstWeight}.sum) %>
+
+  <% averageWeightLoss = companyWeightLoss/User.all.count %>
+
+  <% averageWeightLossPercent = ((User.all.withWeighins.pluck(:percentWeightChange).sum)/(User.all.count)).round(2) %>
+
+  <div class="row state-overview">
+
+    <div class="col-lg-4 col-sm-6">
+        <section class="panel">
+             <div class="symbol terques">
+                 <i class="fa fa-dashboard"></i>
+             </div>
+             <div class="value">
+                <h1><%= companyWeightLoss %> lbs</h1>
+                 <p>Total Weight Loss</p>
+             </div>
+         </section>
+     </div>
+
+     <div class="col-lg-4 col-sm-6">
+         <section class="panel">
+             <div class="symbol terques">
+                 <i class="fa fa-user"></i>
+             </div>
+             <div class="value">
+                 <h1><%= averageWeightLoss %> lbs</h1>
+                 <p>Average Weight Loss</p>
+             </div>
+         </section>
+     </div>
+
+     <div class="col-lg-4 col-sm-6">
+         <section class="panel">
+             <div class="symbol terques">
+                 <i class="fa fa-user"></i>
+             </div>
+             <div class="value">
+                 <h1><%= averageWeightLossPercent %>%</h1>
+                 <p>Average Loss %</p>
+             </div>
+         </section>
+     </div>
+  </div>
+
+<% end %>
 
 
