@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: [:leaderboard]
-  before_action :check_if_admin, only: [:treasury, :dashboard]
+  before_action :check_if_admin, only: [:treasury, :dashboard, :leaderboard]
 
   def home
   end

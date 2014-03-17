@@ -47,10 +47,13 @@
             <span>My Team</span><div class="loader"></div>
           <% end %></li>
 
-          <li class="<%= 'active' if current_page?(leaderboard_path) %>" onClick="$(this).find('.loader').show();"><%= link_to(leaderboard_path) do %>
-            <i class="fa fa-trophy"></i>
-            <span>Leaderboard</span><div class="loader"></div>
-          <% end %></li>
+          <% if false then %>
+            <li class="<%= 'active' if current_page?(leaderboard_path) %>" onClick="$(this).find('.loader').show();"><%= link_to(leaderboard_path) do %>
+              <i class="fa fa-trophy"></i>
+              <span>Leaderboard</span><div class="loader"></div>
+            <% end %></li>
+          <% end %>
+
 
           <li class="<%= 'active' if current_page?(edit_user_registration_path) %>" onClick="$(this).find('.loader').show();"><%= link_to(edit_user_registration_path) do %>
             <i class="fa fa-gear"></i>
