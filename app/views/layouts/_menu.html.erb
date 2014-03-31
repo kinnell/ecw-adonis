@@ -33,6 +33,9 @@
             <li class="<%= 'active' if current_page?(adminLeaderboard_path) %>" onClick="$(this).find('.loader').show();"><%= link_to(adminLeaderboard_path) do %><i class="fa fa-trophy"></i><span>Admin Leaderboard</span><div class="loader"></div>
             <% end %></a></li>
 
+            <li class="<%= 'active' if current_page?(finalLeaderboard_path) %>" onClick="$(this).find('.loader').show();"><%= link_to(finalLeaderboard_path) do %><i class="fa fa-trophy"></i><span>Final Leaderboard</span><div class="loader"></div>
+            <% end %></a></li>
+
             <hr style="border-top: 1px solid #666; opacity: 0.3;">
 
         <% end %>

@@ -25,6 +25,7 @@ Adonis::Application.routes.draw do
 
   get "leaderboard", to: "pages#leaderboard"
   get "adminLeaderboard", to: "pages#adminLeaderboard"
+  get "finalLeaderboard", to: "pages#finalLeaderboard"
   get "treasury", to: "pages#treasury"
   get "dashboard", to: "pages#dashboard"
   get "myteam", to: "teams#myTeam"

@@ -15,6 +15,11 @@ class PagesController < ApplicationController
     @teams = Team.withUsers
   end
 
+  def finalLeaderboard
+    @users = User.paid.withVerifiedWeighins
+    @teams = Team.withUsers
+  end
+
   def testLeaderboard
     @users = User.all
   end

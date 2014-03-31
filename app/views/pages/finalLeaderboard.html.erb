@@ -1,0 +1,65 @@
+<h1 class="title"><i class="fa fa-trophy"></i> Final Leaderboard</h1>
+
+<hr>
+
+	<div class="row">
+    <div class="col-lg-12">
+      <section class="panel panel-primary">
+        <header class="panel-heading"><i class="fa fa-user"></i> Final Rankings</header>
+        <table class="table table-bordered table-advance table-hover">
+        <thead>
+          <tr style="background-color: #eeeeee">
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Team</th>
+            <th>Visibility</th>
+            <th>Weigh-Ins</th>
+            <th>Overall Percent Weight Loss</th>
+          </tr>
+        </thead>
+
+        <% unless @users.blank? %>
+
+          <tbody>
+
+            <% sortedUsers = @users.includes(:team).sort_by {|u| [u.percentWeightChange, u.id] } %>
+            <% sortedUsers.each_with_index do |user, i| %>
+
+            <% if user.weighins.where(:verified => true).count > 1 %>
+
+              <tr>
+
+              	<td><%= i+1 %></td>
+              	<td><%= link_to user.name, user %></td>
+  			        <td><%= user.location %></td>
+                <td><%= user.team.name if user.team %></td>
+                <td><%= if user.visible then "Visible" else "Invisible" end %></td>
+                <td>
+                  <% if user.weighins.where(:verified => true).count > 1 %>
+                  <span class="label label-success label-mini"><%= user.weighins_count %></span>
+                   <% else %>
+                  <span class="label label-default label-mini"><%= user.weighins_count unless user.weighins.empty? %></span>
+                   <% end %>
+                  <% if user.isActive? %>*<% end %>
+                </td>
+              	<td><%= format_percentChange(user.percentWeightChange) %></td>
+
+              </tr>
+
+              <% end %>
+
+            <% end %>
+
+          </tbody>
+
+        <% end %>
+
+        </table>
+
+      </section>
+    </div>
+  </div>
+
+
+
